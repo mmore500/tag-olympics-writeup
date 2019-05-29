@@ -1,10 +1,117 @@
 \section{Methods}
 
-TODO
+\subsection{Distance Metrics}
 
-\subsection{TODO}
+\begin{itemize}
+\item Positive integers with wraparound \citep{spector2011tag}
+\item Streak method \citep{downing2015intelligence}
+\item Hamming distance \citep{lalejini2019else}
+\end{itemize}
 
-\input{fig/explanatory.tex}
+a list of bytes, must have at least X match within each byte (personal communication with Ofria)
+\begin{itemize}
+\item min
+\item max
+\item multiplicative
+\item additive
+\end{itemize}
+
+meta... multi-receptor tags (e.g., multiple receptors you can match... variable number?) (my idea)
+\begin{itemize}
+\item multiplicative
+\item min
+\item additive distance among sub-tags
+\item max
+\end{itemize}
+
+\subsection{Selection Techniques}
+
+best with threshold \citep{lalejini2019else}
+
+roulette
+\begin{itemize}
+\item skew
+\item similarity cut-off
+\end{itemize}
+
+\subsection{Evolutionary Characteristics}
+
+find citations for this subsection in my undergraduate thesis
+
+\subsubsection{Duplication and Differentiation}
+
+Question: How fast/complicated can duplication/divergence events occur?
+
+\subsubsection{Canalization}
+
+Question:
+\begin{itemize}
+\item several sets of "related" signal/response groups... triggering the wrong signal/response pair within the group is okay... but triggering the signal/response pairs that correspond to different groups is not okay
+\item do we end up with mutations tending to cause changes that stay within the group? how much mutation until we start to see signal/response pairs from different groups triggered
+\end{itemize}
+
+\subsubsection{Plasticity (via regulation)}
+
+Question: how fast/how complicated can we evolve plastic responses (e.g., in environment A certain signal/response pairs; in environment B certain signal/response pairs) using regulation
+
+maybe also differentiation?
+(e.g., go stably into state A or state B based on an initial environmental cue)
+
+\subsubsection{Bandwidth}
+
+Question: what is the relationship between the number of signals/responses and the evolutionary difficulty of
+\begin{itemize}
+\item evolving n connection pairs de-novo
+\item with n connection pairs evolved, evolving a n+1 connection pair
+\end{itemize}
+
+\subsubsection{Hidden Genetic Variation}
+
+Question: evolve one signal/response pair (might need multiple signal/response pairs), how much tag diversity exists in population at end of run?
+
+\subsubsection{Degeneracy}
+
+Question: how many independent but redundant cue/response tag pairs (that link the same cue and same response) arise spontaneously?
+
+\subsubsection{Robustness}
+
+\begin{itemize}
+\item plot match score versus random mutational walk like in Downing
+\item fat-tailed or thin-tailed? (e.g., gradual or walking off a cliff)
+\end{itemize}
+
+distribution of effect on match score for different mutations
+\begin{itemize}
+\item are some mutations silent?
+\item do some mutations cause extreme/catastrophic effects?
+\end{itemize}
+
+\subsection{System-level Metrics}
+
+systems:
+\begin{itemize}
+\item environment matching with SignalGP
+\item DISHTINY with SignalGP
+\item lawnmower \citep{spector2011tag} / dirt-sensing, obstacle-avoiding robot \citep{spector2011tag} / even-4-parity \citep{spector2012tag}
+\item TODO more / better please
+\end{itemize}
+
+metrics:
+\begin{itemize}
+\item evolvability signatures \citep{tarapore2015evolvability}
+\item solution quality
+\item phenotypic lock-in
+\item the graph structure of gene regulatory networks that tend to evolve?
+\end{itemize}
+
+\subsection{Computational Efficiency}
+
+\begin{itemize}
+\item time to calculate distance between two tags
+\item the computational complexity of selection techniques
+\item possible optimizations that make matching better than linear?
+(not with regulation, I suspect)
+\end{itemize}
 
 \subsection{Implementation}
 
