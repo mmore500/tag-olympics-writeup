@@ -1,6 +1,6 @@
-## TODO
+## Tag Olympics
 
-TODO.
+Benchmarking evolutionary characteristics and system-level performance of tagging techniques.
 
 ### Authorship
 
