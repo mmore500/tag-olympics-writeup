@@ -1,3 +1,56 @@
 \section{Introduction}
 
 TODO \citep{taylor2016open}
+
+\subsection{What is a tag?}
+
+At a broad level, tags are labels that can be used to refer to labelees (the
+tagged thing).
+
+\subsubsection{Examples of tags}
+
+\begin{itemize}
+  \item Human culture (probably don't want to draw too many examples from this category)
+    \begin{itemize}
+      \item We name our offspring, which is useful for later referring to them.
+            Names are often repeated across individuals (e.g., we'll be seeing an
+            uptick in `Arya's post-GoT). Context + multi-level naming (first, middle,
+            last in 20th century American culture) is important for resolving collisions.
+    \end{itemize}
+  \item Software development
+    \begin{itemize}
+      \item In software development, we label and refer to lots of things! In this
+            domain, tags are precise: after labeling (tagging) something, subsequent
+            referrals to those labeled things must be \textit{exact}. Inexactness
+            in a reference typically results in syntactic errors.
+      \item Common uses: labeling and specifying locations in memory, custom data
+            structures (e.g., structs, classes, etc), functions, libraries/modules,
+            language constants/built-ins, program entry points, locations in an
+            instruction sequence (e.g., function names, looping, conditionals etc).
+    \end{itemize}
+  \item Chemistry?
+  \item Biology?
+    \begin{itemize}
+      \item cell signaling
+      \item protein folding
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{What are the benefits of tags/tag-based referencing?}
+
+\begin{itemize}
+  \item Hypothesis: Inexactness allowed by tag-based referencing makes these references
+        more robust to minor genetic perturbations, smoothing the genotype-phenotype
+        mapping relative to more traditional memory-indexing techniques (pulled from
+        2019 Tag-access memory abstract).
+  \item We don't need to know/lock-in the architecture of what our tags are referencing.
+        If a referent (e.g., module) is deleted, it doesn't invalidate any of the
+        in-program references (e.g., module calls). The same is true for creating
+        a new referent. For example, using tags to reference program modules allows
+        you to mutate the number of modules in the program without (necessarily)
+        breaking existing references.
+  \item Hypothesis: Tag-based referencing should help to enable the duplication/
+        deletion of referents (e.g., modules), which should improve capacity for
+        complexity to evolve (i.e., duplication is often cited as important in the
+        evolution of complex features).
+\end{itemize}
