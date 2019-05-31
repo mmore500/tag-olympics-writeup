@@ -128,6 +128,26 @@ metrics:
 (not with regulation, I suspect)
 \end{itemize}
 
+\subsection{Applications}
+
+\begin{itemize}
+  \item GP Modules (SignalGP, Lee's PushGP stuff)
+  \item Memory access in GP: use tags to label and refer to locations in memory.
+        Tags should allow us to evolve the \textit{size} of our memory buffer. Perhaps
+        this is useful?
+  \item Neural networks: could use tags to specify (and evolve) connections between
+        nodes and to specify node functions (e.g., 0000 = sin, 1111 = threshold, etc)
+\end{itemize}
+
+\subsubsection{SignalGP Tag Extensions}
+
+\begin{itemize}
+  \item Module regulation
+  \item Allow modules to be renamed by `renaming' instructions (another form of
+        module regulation). This is sort of similar to Lee's PushGP implementation
+        that allows Push programs to label and subsequently relabel tagged things.
+\end{itemize}
+
 \subsection{Implementation}
 
 We implemented our experimental system using the Empirical library for scientific software development in C++, available at \url{https://github.com/devosoft/Empirical}.
