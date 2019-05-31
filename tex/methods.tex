@@ -28,6 +28,16 @@ meta... multi-receptor tags (e.g., multiple receptors you can match... variable 
 \item max
 \end{itemize}
 
+Multi-level/hierarchical tags: i.e., you need to reference down a hierarchy. For
+example, access a member of a member of a member of a particular struct.
+\begin{itemize}
+  \item If you know how many levels, you can use different `chunks' of the tag for
+        each level.
+  \item Use the same tag at each level (let evolution work out the `chunking')
+  \item Source multiple tags from the referer (e.g., need to go down three levels?
+    be sure to get three tags, one for each level)
+\end{itemize}
+
 \subsection{Selection Techniques}
 
 best with threshold \citep{lalejini2019else}
@@ -50,7 +60,7 @@ Question: How fast/complicated can duplication/divergence events occur?
 
 Question:
 \begin{itemize}
-\item several sets of "related" signal/response groups... triggering the wrong signal/response pair within the group is okay... but triggering the signal/response pairs that correspond to different groups is not okay
+\item several sets of ``related" signal/response groups... triggering the wrong signal/response pair within the group is okay... but triggering the signal/response pairs that correspond to different groups is not okay
 \item do we end up with mutations tending to cause changes that stay within the group? how much mutation until we start to see signal/response pairs from different groups triggered
 \item (side question) how strong of an effect can plasticity have on promoting canalization (e.g., select for plastic rearrangement of connections within group)
 \end{itemize}
