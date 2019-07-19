@@ -48,13 +48,36 @@ roulette
 \item similarity cut-off
 \end{itemize}
 
+evolvable (per-tag) threshold
+
 \subsection{Evolutionary Characteristics}
 
 find citations for this subsection in my undergraduate thesis
 
+\begin{itemize}
+  \item Question: do tag matches evolve to become more specific? i.e., become stronger over time?
+        If so, do matches lock-in early, leading to strong historical contingencies?
+  \item Question: How stable are tag-based references over time? Are stable references
+        associated with successful lineages? Does stability change over time (e.g.,
+        low stability early, increasingly higher stability over time? W/major stability
+        shake-ups when new architectures arise)
+  \item Do tags enable more complex genetic architectures over traditional reference
+        techniques?
+  \item Quantify how often perturbations (mutations) change references. Compare
+        successful lineages to general population averages (are successful lineages
+        avoiding or embracing perturbation)
+  \item Track the frequency of and effect of (deleterious, neutral, beneficial)
+        perturbations that change references. Again, are successful lineages different
+        from population averages?
+\end{itemize}
+
 \subsubsection{Duplication and Differentiation}
 
-Question: How fast/complicated can duplication/divergence events occur?
+\begin{itemize}
+  \item Question: How fast and complicated can duplication/divergence events occur?
+        Quantify how often these events occur in general vs how often they are along
+        successful lineages.
+\end{itemize}
 
 \subsubsection{Canalization}
 
@@ -99,6 +122,7 @@ distribution of effect on match score for different mutations
 \begin{itemize}
 \item are some mutations silent?
 \item do some mutations cause extreme/catastrophic effects?
+\item e.g., how often do perturbations disrupt existing references?
 \end{itemize}
 
 \subsection{System-level Metrics}
@@ -137,6 +161,8 @@ metrics:
         this is useful?
   \item Neural networks: could use tags to specify (and evolve) connections between
         nodes and to specify node functions (e.g., 0000 = sin, 1111 = threshold, etc)
+  \item Genetic alphabet: use tag-based referencing to implement an indirect encoding.
+        e.g., each instruction/operator has a tag id, start codons?
 \end{itemize}
 
 \subsubsection{SignalGP Tag Extensions}
