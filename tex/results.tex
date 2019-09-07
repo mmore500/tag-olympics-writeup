@@ -1,10 +1,85 @@
 \section{Results and Discussion}
 
-\input{fig/grid_progression.tex}
+\subsection{Low-Level Properties}
 
-\subsection{TODO}
+\subsection{Expressiveness}
 
-Figure \ref{fig:grid_progression}
+best fitness after lots of generations, one link per vs irregular
 
-standard versus blind+even ($p < 0.05$; bootstrap test)
-small wave versus blind+even ($p < 0.01$; bootstrap test)
+\begin{figure*}[!htbp]
+\begin{center}
+  \includegraphics[width=\linewidth]{{{bitweight=0.5+experiment=mid-flex-match+fit-fun=ranked+viz=fitness-line+_data_hathash_hash=b681f20513e727bb+_script_fullcat_hash=97943b1863adc763+ext=}}}
+\caption{
+eventually should be a bar plot
+}
+\label{fig:TODO}
+\end{center}
+\end{figure*}
+
+\subsection{Evolutionary Speed}
+
+\begin{figure*}[!htbp]
+\begin{center}
+  \includegraphics[width=\linewidth]{{{bitweight=0.5+experiment=mid-flex-match+fit-fun=ranked+viz=fitness-line+_data_hathash_hash=b681f20513e727bb+_script_fullcat_hash=97943b1863adc763+ext=}}}
+\caption{
+TODO focus on start of evolution, should this be a bar plot of updates until first perfect soluiton?
+}
+\label{fig:TODO}
+\end{center}
+\end{figure*}
+
+
+fitness by generation, one link per vs irregular
+
+16 vs 32 targets
+
+\subsection{Neutrality}
+
+\begin{figure*}[!htbp]
+\begin{center}
+  \includegraphics[width=\linewidth]{{{bitweight=0.5+experiment=mid-flex-match+fit-fun=ranked+viz=neutrality-ancestry-line+_data_hathash_hash=c232a31962b449a7+_script_fullcat_hash=2890a55353ee6039+ext=}}}
+\caption{
+Eventually should be a bar plot
+}
+\label{fig:TODO}
+\end{center}
+\end{figure*}
+
+mutational walk
+
+number of mutations to first phenotypic change
+
+long-term genetic distance
+(e.g., over 16, 64, 256, 1024 generations)
+
+\subsection{Modularity}
+
+\begin{figure*}[!htbp]
+\begin{center}
+\begin{subfigure}[b]{0.5\linewidth}
+  \includegraphics[width=\linewidth]{{{bitweight=0.5+experiment=mid-flex-match+fit-fun=ranked+viz=mutation-modularity-violin+_data_hathash_hash=01e5cfbd6360506b+_script_fullcat_hash=6abaf7fcf2beda8b+ext=}}}
+  \caption{violin plot}
+  \label{fig:TODO}
+\end{subfigure}
+\begin{subfigure}[b]{0.5\linewidth}
+  \includegraphics[width=\linewidth]{{{bitweight=0.5+experiment=mid-flex-match+fit-fun=ranked+viz=mutation-modularity-bar+_data_hathash_hash=01e5cfbd6360506b+_script_fullcat_hash=6abaf7fcf2beda8b+ext=}}}
+  \caption{bar graph}
+  \label{fig:TODO}
+\end{subfigure}
+\caption{
+Mean
+}
+\label{fig:modularity}
+\end{center}
+\end{figure*}
+
+
+\subsection{Promiscuity}
+
+best fitness to try to evolve a hub
+
+REGULATION
+
+ideas: bitweight, wildcards
+
+if first bit set, divide match score by two
