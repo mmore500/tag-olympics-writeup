@@ -1,42 +1,137 @@
 \section{Methods}
 
-\subsection{Distance Metrics}
+Each tag was represented as an ordered, fixed-length bitstring,
+\begin{align*}
+t = \langle t_0, t_1, t_2, \dots, t_{n-2}, t_{n-1} \rangle
+\end{align*}
+where
+\begin{align*}
+\forall i, t_i \in \{0, 1\}.
+\end{align*}
+In all experiments, we used 32 bit tags.
 
-\begin{itemize}
-\item Positive integers with wraparound \citep{spector2011tag}
-\item Streak method \citep{downing2015intelligence}
-\item Hamming distance \citep{lalejini2019else}
-\item NK-fitness landscape \citep{kauffman1987towards} (note: this isn't directly symmetric tag-tag matching)
-\item full-on protein docking simulations (or at least cite the BEACON person who's working on this
-\item Anselmo's proprietary tags (maybe if we promise to keep it proprietary?)
-\item uneven weighting of 0/1 probabilities at different locations on the bitstring (MAM)
-\end{itemize}
+For consistency between metrics, we bound all metrics between 0 and 1.
 
-a list of bytes, must have at least X match within each byte (personal communication with Ofria)
-\begin{itemize}
-\item min
-\item max
-\item multiplicative
-\item additive
-\end{itemize}
+\subsection{Integer Metric}
 
-meta... multi-receptor tags (e.g., multiple receptors you can match... variable number?) (my idea)
-\begin{itemize}
-\item multiplicative
-\item min
-\item additive distance among sub-tags
-\item max
-\end{itemize}
+This metric is inspired by \citep{spector2011tag}.
+They used positive values between 0 and 100 (TODO check this) to name referents.
+Queries were provided the referent that had the next-larger value, wrapping around from 100 back to 0.
 
-Multi-level/hierarchical tags: i.e., you need to reference down a hierarchy. For
-example, access a member of a member of a member of a particular struct.
-\begin{itemize}
-  \item If you know how many levels, you can use different `chunks' of the tag for
-        each level.
-  \item Use the same tag at each level (let evolution work out the `chunking')
-  \item Source multiple tags from the referer (e.g., need to go down three levels?
-    be sure to get three tags, one for each level)
-\end{itemize}
+In this metric, we compare tags according to their value as an unsigned integer according to the following representation $f$,
+\begin{align*}
+f(t)
+= \sum_{i=0}^{n-1} t_i \times 2^i.
+\end{align*}
+
+The distance metric $I$ between two length-$n$ tags $t$ and $u$ is
+\begin{align*}
+I(t, u) =
+\begin{cases}
+  2^{n} - f(t) + f(u), & \text{if } f(t) > f(u), \\
+  f(t) - f(u),         & \text{else} f(t) \leq f(u).
+\end{cases}
+\end{align*}
+
+Note that this metric is non-commutative, i.e., it is not necessarily true that $I(t, u) = I(u, t)$.
+
+Note also that this metric is one-dimensional.
+
+A algorithmic advantage of this metric is that it allows for log-time matching.
+
+\subsection{Hamming Metric}
+
+This metric is based on the work of \citep{lalejini2019else}, originally after TODO hamming cite(?).
+
+In this metric, we compare tags according to their bitwise hamming distance.
+Mathematically speaking for tags $t$ and $u$ we compute the distance according to the metric $M$ as,
+\begin{align*}
+M(t, u)
+= \#\{ i : t_i \neq u_i, i=0, \dots ,n-1\}
+\end{align*}
+
+This metric is commutative and $n$-dimensional.
+
+\subsection{Hash Metric}
+
+This metric is original to the our paper and meant to serve as a control.
+
+The an arbitrary, but determinsitic value, uniformly distributed between 0 and 1.
+
+We rely on the \texttt{hash\_combine} function, adapted from BOOST (TODO cite).
+
+for two values \texttt{v1} and \texttt{v2}, \texttt{hash\_combine} is defined as follows
+\begin{verbatim}
+unsigned int hash_combine(
+  unsigned int v1,
+  unsigned int v2
+) {
+  return v1 ^ (
+    v2 * 0x9e3779b9
+    + (v1 << 6) + (v1 >> 2)
+  );
+}
+\end{verbatim}
+
+We compute the hash value of a tag as follows
+\begin{verbatim}
+unsigned int h(unsigned char *tag) {
+  unsigned int result = tag[0];
+  for (int i = 1; i < 4; ++i){
+    result = hash_combine(result, t[i]);
+  }
+  return result;
+}
+\end{verbatim}
+where \texttt{tag} is the tag's bitstring stored as an array of bytes.
+
+To compute the metric $H$ we then call \texttt{hash\_combine} to combine the hash values of the tags $t$ and $u$
+\begin{align*}
+H(t, u) = \texttt{hash\_combine( h(}t\texttt{), h(}u\texttt{))}
+\end{align*}
+
+Note that this is not commutative.
+
+\subsection{Streak Metric}
+
+This metric was originally proposed by \citep{downing2015intelligence}.
+Downing claims that it exhibits
+It is computed according to the ratio between the longest contiguously matching substring among two bitsets and the longest contiguously mismatching substring among those two bitsets.
+Downing claims that this metric exhibits greater robustness compared to integer and hamming distance metrics using mutational walk experiments but does not demonstrate it in an evolving system.
+
+We define the greatest contiguously-matching length of $n$-long bitstrings $t$ and $u$ as follows,
+\begin{align*}
+m(t, u) = \max(\{i - j \forall i, j \in 0..n-1 \mid \forall q \in i..j, t_q = u_q \})
+\end{align*}
+
+We define the greatest contiguously-mismatching length as follows,
+\begin{align*}
+n(t, u) = \max(\{i - j \forall i, j \in 0..n-1 \mid \forall q \in i..j, t_q \neq u_q \})
+\end{align*}
+
+The streak metric $S'$  with tags $t$ and $u$
+\begin{align*}
+S'(t, u)
+= \frac{ p(n(t,u)) }{p(m(t,u)) + p(n(t,u))}.
+\end{align*}
+where $p$ approximates the probability of a contiguously-matching substring between
+
+It is worth noting that the formula for computing the probability of a $k$-bit match or mismatch, given by Downing as follows, is actually mathematically flawed.
+\begin{align*}
+p_k
+= \frac{n - k + 1}{2^k}
+\end{align*}
+
+The probability of a $0$-bit match according to this formula would be computed as $p_0 = \frac{n - 0 + 1}{2^0} = n + 1$ which is clearly impossible because $p_0 > 1 \forall n > 0$.
+The actual can probability be achieved using a lookup table computed using dynamic programming.
+
+However, the formula Downing presented provides a useful approximation to the probability of a $k$ bit match.
+For computational efficiency and consistency with the existing literature we use clamp edge cases between 0 and 1 to yield the corrected streak metric $S$.
+
+\begin{align*}
+S(t, u) =
+\max( \min( S'(t, u), 1), 0)
+\end{align*}
 
 \subsection{Selection Techniques}
 
