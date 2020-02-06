@@ -15,7 +15,7 @@ For consistency between metrics, we bound all metrics between 0 and 1.
 \subsection{Integer Metric}
 
 This metric is inspired by \citep{spector2011tag}.
-They used positive values between 0 and 100 (TODO check this) to name referents.
+They used positive integers between 0 and 100 to name referents.
 Queries were provided the referent that had the next-larger value, wrapping around from 100 back to 0.
 
 In this metric, we compare tags according to their value as an unsigned integer according to the following representation $f$,
@@ -28,8 +28,8 @@ The distance metric $I$ between two length-$n$ tags $t$ and $u$ is
 \begin{align*}
 I(t, u) =
 \begin{cases}
-  2^{n} - f(t) + f(u), & \text{if } f(t) > f(u), \\
-  f(t) - f(u),         & \text{else} f(t) \leq f(u).
+  \frac{2^n - f(t) + f(u)}{2^n}, & \text{if } f(t) > f(u), \\
+  \frac{f(t) - f(u)}{2^n},         & \text{else} f(t) \leq f(u).
 \end{cases}
 \end{align*}
 
@@ -47,7 +47,11 @@ In this metric, we compare tags according to their bitwise hamming distance.
 Mathematically speaking for tags $t$ and $u$ we compute the distance according to the metric $M$ as,
 \begin{align*}
 M(t, u)
-= \#\{ i : t_i \neq u_i, i=0, \dots ,n-1\}
+= \frac{
+  \#\{ i : t_i \neq u_i, i=0, \dots ,n-1\}
+}{
+  n
+}
 \end{align*}
 
 This metric is commutative and $n$-dimensional.
