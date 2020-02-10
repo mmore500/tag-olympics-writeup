@@ -149,7 +149,19 @@ Specifically,
 \end{align*}
 where $p()$ is the percentile function, $m_a$ is the next-greater match score, and $m_b$ is the next-lower match score.
 
-\subsection{Implementation}
+there's a lot of arbitrary metrics that could be created as follows
+note that, for example,
+\begin{align*}
+f( \cup_{i=0}^32 \mathcal{E}^i \times \cup_{i=0}^32 \mathcal{E}^i ) \rightarrow [0, 1]
+\end{align*}
 
+\begin{align*}
+f^2( \cup_{i=0}^32 \mathcal{E}^i \times \cup_{i=0}^32 \mathcal{E}^i ) \rightarrow [0, 1]
+\end{align*}
+
+What we're really interested is the ranking order of similarities over the $\cup_{i=0}^32 \mathcal{E}^i \times \cup_{i=0}^32 \mathcal{E}^i$ that the metric imposes, so applying a unifying transform onto the raw match scores helps to isolate that.
+Plus, it provides an intuitive interpretation to match scores: a 0.01 distance match matches better than 99\% of all matches.
+
+\subsection{Implementation}
 We implemented our experimental system using the Empirical library for scientific software development in C++, available at \url{https://github.com/devosoft/Empirical}.
 The code used to perform and analyze our experiments, our figures, data from our experiments, and a live in-browser demo of our system is available via the Open Science Framework at \url{https://osf.io/TODO/}.
