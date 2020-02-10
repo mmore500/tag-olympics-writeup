@@ -152,14 +152,14 @@ where $p()$ is the percentile function, $m_a$ is the next-greater match score, a
 there's a lot of arbitrary metrics that could be created as follows
 note that, for example,
 \begin{align*}
-f( \cup_{i=0}^32 \mathcal{E}^i \times \cup_{i=0}^32 \mathcal{E}^i ) \rightarrow [0, 1]
+f( \cup_{i=0}^{32} \mathcal{E}^i \times \cup_{i=0}^{32} \mathcal{E}^i ) \rightarrow [0, 1]
 \end{align*}
 
 \begin{align*}
-f^2( \cup_{i=0}^32 \mathcal{E}^i \times \cup_{i=0}^32 \mathcal{E}^i ) \rightarrow [0, 1]
+f^2( \cup_{i=0}^{32} \mathcal{E}^i \times \cup_{i=0}^{32} \mathcal{E}^i ) \rightarrow [0, 1]
 \end{align*}
 
-What we're really interested is the ranking order of similarities over the $\cup_{i=0}^32 \mathcal{E}^i \times \cup_{i=0}^32 \mathcal{E}^i$ that the metric imposes, so applying a unifying transform onto the raw match scores helps to isolate that.
+What we're really interested is the ranking order of similarities over the $\cup_{i=0}^{32} \mathcal{E}^i \times \cup_{i=0}^{32} \mathcal{E}^i$ that the metric imposes, so applying a unifying transform onto the raw match scores helps to isolate that.
 Plus, it provides an intuitive interpretation to match scores: a 0.01 distance match matches better than 99\% of all matches.
 
 \subsection{Implementation}
