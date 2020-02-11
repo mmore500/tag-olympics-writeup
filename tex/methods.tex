@@ -137,17 +137,20 @@ S(t, u) =
 \max( \min( S'(t, u), 1), 0)
 \end{align*}
 
-\subsection{Regularization}
+\subsection{Uniformification}
 
-In experiments where actual match distance values, instead of the relative ranking of match distances, were mechanistically important or reported as data we transformed each match distance function such that the distribution of match scores of randomly generated bitstring pairs would approximate the uniform distribution between 0 and 1.
-We sampled 10,000 randomly generated bitstring pairs to generate a set of match scores for each metric.
-To generate a corrected score for a raw score $r$, we simply calculated its percentile ranking in the match score database divided by one hundred.
-If the exact raw score $r$ wasn't present in the set of sampled match scores, we applied linear interpolation.
+In experiments where actual match distance values, instead of the relative ranking of match distances, were mechanistically important or reported as data we transformed each match distance function such that the distribution of match distances of randomly generated bitstring pairs would approximate the uniform distribution between 0 and 1.
+We sampled 10,000 randomly generated bitstring pairs to generate a set of match distances for each metric.
+To generate a corrected distance for a raw distance $r$, we simply calculated its percentile ranking in the match distance database divided by one hundred.
+If the exact raw distance $r$ wasn't present in the set of sampled match distances, we applied linear interpolation.
 Specifically,
 \begin{align*}
  p(m_b)/100.0 + r \times \frac{m_a - r}{m_a - m_b}
 \end{align*}
-where $p()$ is the percentile function, $m_a$ is the next-greater match score, and $m_b$ is the next-lower match score.
+where $p()$ is the percentile function, $m_a$ is the next-greater match distance, and $m_b$ is the next-lower match distance.
+
+\input{fig/uniformification.tex}
+Figure \ref{fig:uniformification} depicts the distributions of match distances between randomly sampled bitstring pairs for each metric before and after uniformification.
 
 there's a lot of arbitrary metrics that could be created as follows
 note that, for example,
@@ -159,9 +162,10 @@ f( \cup_{i=0}^{32} \mathcal{E}^i \times \cup_{i=0}^{32} \mathcal{E}^i ) \rightar
 f^2( \cup_{i=0}^{32} \mathcal{E}^i \times \cup_{i=0}^{32} \mathcal{E}^i ) \rightarrow [0, 1]
 \end{align*}
 
-What we're really interested is the ranking order of similarities over the $\cup_{i=0}^{32} \mathcal{E}^i \times \cup_{i=0}^{32} \mathcal{E}^i$ that the metric imposes, so applying a unifying transform onto the raw match scores helps to isolate that.
-Plus, it provides an intuitive interpretation to match scores: a 0.01 distance match matches better than 99\% of all matches.
+What we're really interested is the ranking order of similarities over the $\cup_{i=0}^{32} \mathcal{E}^i \times \cup_{i=0}^{32} \mathcal{E}^i$ that the metric imposes, so applying a unifying transform onto the raw match distances helps to isolate that.
+Plus, it provides an intuitive interpretation to match distances: a 0.01 distance match matches better than 99\% of all matches.
 
 \subsection{Implementation}
+
 We implemented our experimental system using the Empirical library for scientific software development in C++, available at \url{https://github.com/devosoft/Empirical}.
 The code used to perform and analyze our experiments, our figures, data from our experiments, and a live in-browser demo of our system is available via the Open Science Framework at \url{https://osf.io/TODO/}.
