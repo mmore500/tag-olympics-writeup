@@ -18,31 +18,30 @@ In one dimension, this value approximates to 0.00666667 \citep{dunbar1997average
 In two dimensions, 0.00905415 \citep{dunbar1997average}.
 In 32 dimensions, 0.0136618 \citep{dunbar1997average}.
 
-We calculated this statistic as 0.0068 for the bidirectional integer metric, in line with expectations.
+We calculated this statistic as  0.0067569292903519994 for the bidirectional integer metric, in line with expectations.
 As you can see in Figure \ref{fig:sphere_distnplot}, the distances are all bounded by the diameter of 0.02.
 
 However, other metrics had much higher values.
-For the Spector Integer metric, we approximated this value as 0.494225945397328.
+For the Spector Integer metric, we approximated this value as 0.5091638296249492.
 This is an artifact of the asymmetry where if you have two very similar numbers, half will be in ascending order resulting in a match distance close to 0 and half will be in descending order, resulting in a wraparound search and a match distance close to 1.
 You can very clearly see these two outcomes in \ref{fig:sphere_distnplot}.
 Averaging this out yields 0.5.
 
-The uniformified hamming had a mean distance of 0.1724647213464.
-In our sample, we observed distances as high as 0.756315.
+The uniformified hamming had a mean distance of 0.16273783884700002.
+In our sample, we observed distances as high as 0.749875.
 To check our intuition, we calculated this statistic for the raw hamming metric.
 For numerical reasons, we raised the radius of our sampling sphere to 0.25 (e.g., with a radius of 0.01, the only result between is a perfect match and with lower radii the hits become so rare as they become difficult to sample efficiently)
 in 32 dimensional euclidean space, we expect the mean distance between sampled points to be 0.341545.
 In the non-uniformified hamming metric we calculate this statistic as 0.33120625.
 The distortion of the uniformification is clearly affecting this statistic with respect to the hamming metric.
 
-We calculated an even higher value of 0.27255493763596844 for the ball sampling statistic with the streak metric.
+We calculated an even higher value of 0.2813480713989872 for the ball sampling statistic with the streak metric.
 We calculated distances as high as 0.999346.
 
-For the hash metric, we calculated the ball sampling statistic as 0.17135186630635799.
+For the hash metric, we calculated the ball sampling statistic as 0.5082513209562.
 A well-behaved hash should, given any set of operands, yield hash results uniformly distributed over the range.
-However, this doesn't appear to be the case with \texttt{combine\_hash} for tags sampled within a ball.
-As can be seen within \ref{fig:sphere_distnplot}, the majority of hash outcomes were distributed towards all zero bitstrings and or, in smaller proportion, to all one bitstrings.
-We believe this to be an artifact of the particular hash methodology employed.
+This case holds here.
+We calculated distances as high as 0.999499.
 
 \input{fig/sphere_reverse.tex}
 
@@ -56,14 +55,14 @@ The mean distance between sampled tags was 0.9932740098.
 The Spector integer metric exhibited similarly uniform outcomes, except the distribution was strongly pegged to 0 because of the metric's asymmetry.
 The mean statistic was 0.00998706165234.
 
-The hamming metric exhibited greater elasticity: we observed distances between the sampled tags as low as 0.243549.
-The mean distance between sampled tags was 0.8266405957999999.
+The hamming metric exhibited greater elasticity: we observed distances between the sampled tags as low as 0.235526.
+The mean distance between sampled tags was 0.8248383674.
 
-The hamming metric exhibited the greatest elasticity: we observed distances between the sampled tags as low as 0.0011994999999999998.
+The streak metric exhibited the greatest elasticity: we observed distances between the sampled tags as low as 0.00019998.
 With this metric, a tag can have a strong attractive interaction with a second tag that a third tag it interacts attractively strongly with has a strong repulsive attraction with.
-The mean distance between sampled tags was 0.723582315152.
+The mean distance between sampled tags was 0.7126656857120001.
 
-The hash metric exhibited the same poorly behaved non-uniform distribution as before, with a mean distance of 0.16510482108441799.
+The hash metric exhibited the same well-behaved uniform distribution as before, with a mean distance of 0.5102822773801999.
 
 \input{fig/detour_difference.tex}
 
@@ -71,7 +70,7 @@ To get a sense of the regularity, in a looses sense, of each space we uniformly 
 Then, for each metric $m$ we calculated the statistic $m(A, B) + m(B, C) - m(A, C)$.
 If the triangle inequality is respected this statistic should be greater than or equal to zero.
 Figure \ref{fig:detour_difference} plots the distribution of this statistic for each metric.
-The hamming and streak metrics show evidence of ``shortcuts'' that violate the triangle inequality.
+The hamming, hash, and streak metrics show evidence of ``shortcuts'' that violate the triangle inequality.
 It should be noted that the raw hamming metric does respect the triangle inequality.
 
 \input{fig/conceptual_geometry.tex}

@@ -1,6 +1,6 @@
-Metric,Slug,Base Metric,Dimension,Width,Sliding,Inverse,Dimension Type
-Uniformified 32-bit Hamming Metric Distance,uniformified-32bit-hamming-metric,Hamming Metric,1,32,0,0,None
-Uniformified 32-bit Approx Dual Streak Metric Distance,uniformified-32bit-approx-dual-streak-metric,Approx Dual Streak Metric,1,32,0,0,None
-Uniformified 32-bit Hash Metric Distance,uniformified-32bit-hash-metric,Hash Metric,1,32,0,0,None
-Uniformified 32-bit Symmetric Wrap Metric Distance,uniformified-32bit-symmetric-wrap-metric,Symmetric Wrap Metric,1,32,0,0,None
-Uniformified 32-bit Asymmetric Wrap Metric Distance,uniformified-32bit-asymmetric-wrap-metric,Asymmetric Wrap Metric,1,32,0,0,None
+Metric,Slug,Base Metric,Dimension,Width,Sliding,Inverse,Uniformified,Dimension Type
+Uniformified 32-bit Hamming Metric Distance,uniformified-32bit-hamming-metric,Hamming Metric,1,32,0,0,1,None
+Uniformified 32-bit Approx Dual Streak Metric Distance,uniformified-32bit-approx-dual-streak-metric,Approx Dual Streak Metric,1,32,0,0,1,None
+Uniformified 32-bit Hash Metric Distance,uniformified-32bit-hash-metric,Hash Metric,1,32,0,0,1,None
+Uniformified 32-bit Symmetric Wrap Metric Distance,uniformified-32bit-symmetric-wrap-metric,Symmetric Wrap Metric,1,32,0,0,1,None
+Uniformified 32-bit Asymmetric Wrap Metric Distance,uniformified-32bit-asymmetric-wrap-metric,Asymmetric Wrap Metric,1,32,0,0,1,None
