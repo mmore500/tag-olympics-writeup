@@ -197,8 +197,33 @@ The directional-signal task evaluates how well a representation facilitates sign
 
 \subsubsection{SignalGP}
 
-% - SignalGP
-%   - just a couple of paragraphs, no more!
+SignalGP (Signal-driven Genetic Programs) is a GP representation that enables signal-driven (i.e., event-driven)
+program execution.
+In SignalGP, programs are segmented into modules (function) that may be automatically triggered by
+exogenously- or endogenously-generated signals.
+Each module in SignalGP associates a tag (which can be used to reference the module) with a linear
+sequence of instructions.
+SignalGP makes explicit the concept of signals (events); signals comprise a tag and any signal-specific
+data.
+Because both program modules and signals have associated tags, SignalGP uses tag-based referencing to
+determine the most appropriate module to trigger in response to a signal.
+Signals trigger the module with the closest matching tag (according to a given tag-matching metric),
+using any signal-associated data as input to the triggered module.
+SignalGP can handle many signals simultaneously, processing each in parallel.
+
+% @AML: some of this paragraph is too similar to the one in the genetic regulation paper. Needs to be
+%       adjusted accordingly in future editing interations.
+The SignalGP instruction set, in addition to including traditional computational operations, allows
+programs to generate internal signals, broadcast external signals, and otherwise work in a tag-based context.
+Instructions contain arguments, which include an evolvable tag; arguments may modify the effect of an
+instruction, often specifying memory locations or fixed values.
+For example, instructions may refer to program modules using tag-based referencing, and when an instruction
+generates a signal (e.g., to be used internally or broadcast), the instruction's tag specifies the signal's
+tag.
+Additionally, SignalGP supports genetic regulation with promoter and repressor instructions
+that, when executed, allow programs to adjust how well subsequent signals match with a target function
+(targets are determined using instruction tags).
+We describe the full SignalGP instruction set used in this work in [SignalGP supplemental material].
 
 \subsubsection{Changing-signal Task}
 
