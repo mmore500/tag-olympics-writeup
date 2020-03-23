@@ -169,3 +169,43 @@ Plus, it provides an intuitive interpretation to match distances: a 0.01 distanc
 
 We implemented our experimental system using the Empirical library for scientific software development in C++, available at \url{https://github.com/devosoft/Empirical}.
 The code used to perform and analyze our experiments, our figures, data from our experiments, and a live in-browser demo of our system is available via the Open Science Framework at \url{https://osf.io/TODO/}.
+
+% @AML: Just tacking this section on to the end of the Methods for now. It can get moved around/re-organized
+%       as the rest of this paper takes shape.
+\subsection{Tag-matching in a genetic programming context}
+
+% - Lead-in text
+%   - Overview of what we did
+How does choice of tag-matching metric influence adaptive evolution in broader contexts?
+We explore the implications of different tag-matching metrics in the context of SignalGP, a tag-based genetic
+programming (GP) representation.
+GP applies natural principles to evolve computer programs rather than writing them
+by hand.
+Spector et al. introduced tag-based naming in the context of GP (both linear and tree-based GP) as a
+mechanism for associating evolvable names (tags) with program modules [citations].
+SignalGP broadened the application of tag-based naming, using tags to enable signal-driven program
+execution where tags specify the relationship between signals and signal-handlers (program modules)
+[citation].
+
+We investigate the success of five different tag-matching schemes (the integer, integer-symmetric, hash,
+hamming, and streak metrics) in the context of SignalGP on two diagnostic GP problems: the changing-signal
+task and the directional-signal task.
+The changing-signal task evaluates how well a GP representation can associate
+a set of distinct behavioral responses each with a particular environmental cue.
+The directional-signal task evaluates how well a representation facilitates signal-response plasticity
+(i.e., the ability to alter responses to repeated cues during the program's lifetime).
+
+\subsubsection{SignalGP}
+
+% - SignalGP
+%   - just a couple of paragraphs, no more!
+
+\subsubsection{Changing-signal Task}
+
+% - Diagnostic Tasks
+%   - Changing signal task
+%     - experiment
+%   - Directional signal task
+%     - experiment
+
+\subsubsection{Directional-signal Task}
