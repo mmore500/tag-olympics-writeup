@@ -246,17 +246,41 @@ or until the program expresses an incorrect response.
 During each evaluation, programs experience environmental signals in a random order; thus, the correct
 order of responses will vary and cannot be hardcoded.
 
-
-[TODO - describe experimental design, expectations]
-
-% - Diagnostic Tasks
-%   - Changing signal task
-%     - experiment
-%   - Directional signal task
-%     - experiment
+% Experiment overview
+We compared the performance of programs evolved with five different tag-matching metrics: [metrics].
+For each metric, we evolved 200 replicate populations (each with a unique random number seed) in an
+eight-signal environment ($K=8$).
+[TODO - add settings description]
+% - To select tag mutation rates for each metric, used a mutation sweep, selected most successful to
+%   be used.
+% - Outsource bulk of settings description to supplement.
 
 \subsubsection{Directional-signal Task}
 
+% Task overview
+%The directional-signal task requires programs to adjust their response to environmental signals during
+%evaluation.
+As in the changing-signal task, the directional-signal task requires that programs respond to a sequence
+of environmental cues; however, in the directional-signal task, the correct response depends on previously
+experienced signals.
+In the directional signal task, there are two possible environmental signals --- a `forward-signal'
+and a `backward-signal' (each with a distinct tag) ---  and four possible responses.
+If a program receives a forward-signal, it should express the next response, and if the program receives,
+a backward-signal, it should express the previous response.
+For example, if response three is currently required, then a forward-signal indicates that response four
+is required next, while a backward-signal would instead indicate that response two is required next.
+Because the appropriate response to both the backward- and forward-signals change over time, successful
+programs regulate which functions these signals trigger.
 
+% Evaluation overview
+We evaluate programs on all possible sequences of four forward- and backward-signals (sixteen sequences).
+For each program, we evaluate each sequence independently, and a program's fitness is equal to its aggregate
+performance across sequences.
+Otherwise, evaluation on a single sequence of signals mirrors that of the changing signal task.
 
-[TODO - describe experimental design, expectations]
+% Experiment overview
+We compared the performance of programs evolved with five different tag-matching metrics on the directional-signal
+task: [metrics].
+For each metric, we evolved 200 replicate populations (each with a unique random number seed) of 500
+programs for 5000 generations.
+[todo - put settings here].
