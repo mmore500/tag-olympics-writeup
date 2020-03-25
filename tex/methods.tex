@@ -228,8 +228,23 @@ For a more detailed description of SignalGP, see [citation].
 
 \subsubsection{Changing-signal Task}
 
-The changing-signal task requires programs to associate $K$ responses each with a distinct environmental
-signal (i.e., each with a unique tag).
+The changing-signal task requires programs to express a distinct response
+to each of $K$ environmental signal (each signal has a unique tag).
+Programs can express a response by executing one of $K$ response instructions.
+Successful programs can `hardcode' each response with the appropriate environmental signal, ensuring
+that each environmental signal's tag matches best with the function containing the correct response.
+As such, we expect the particular tag-matching metric underlying tag-based referencing to influence
+how adaptable programs are to the changing-signal task.
+
+During evaluation, we afford programs 64 time steps to execute the appropriate response instruction
+after receiving a signal.
+Once the allotted response time expires or the program expresses any response, the program's virtual
+hardware is reset (resetting all executing threads and thread-local memory), and the environment produces
+the next signal.
+Evaluation continues this way until the program correctly responds to each of the environmental signals
+or until the program expresses an incorrect response.
+During each evaluation, programs experience environmental signals in a random order; thus, the correct
+order of responses will vary and cannot be hardcoded.
 
 
 [TODO - describe experimental design, expectations]
