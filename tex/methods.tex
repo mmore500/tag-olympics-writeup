@@ -250,9 +250,14 @@ order of responses will vary and cannot be hardcoded.
 We compared the performance of programs evolved with five different tag-matching metrics: [metrics].
 For each metric, we evolved 200 replicate populations (each with a unique random number seed) in an
 eight-signal environment ($K=8$).
-[TODO - add settings description]
-% - To select tag mutation rates for each metric, used a mutation sweep, selected most successful to
-%   be used.
+[TODO - add requisite settings description]
+% @AML: streamlining necessary for presenting various mutation rates chosen
+Because each metric's ideal mutation rate potentially differs, we parameterized the tag mutation rate
+for each metric by evolving 50 replicate populations at a range of per-bit tag mutation rates
+(0.02, 0.01, 0.005, 0.002, 0.001, 0.0005, 0.0002), and we selected the most performant mutation rate
+for each metric to use for our experiments [cite - supplemental material]: Hamming, 0.01; Hash, 0.002;
+Integer, 0.02; Integer-symmetric, 0.02; Streak, 0.01.
+
 % - Outsource bulk of settings description to supplement.
 
 \subsubsection{Directional-signal Task}
@@ -284,3 +289,6 @@ task: [metrics].
 For each metric, we evolved 200 replicate populations (each with a unique random number seed) of 500
 programs for 5000 generations.
 [todo - put settings here].
+We parameterized the tag mutation rates for each metric in the same way as in the changing-signal task,
+resulting in the following mutation rates for each metric:
+Hamming, 0.001; Hash, 0.001; Integer, 0.002; Integer-symmetric, 0.0001; Streak, 0.002.
