@@ -1,4 +1,6 @@
 \section{Results and Discussion}
+% @AML: I would hesitate to call the Integer metric the Spector Integer metric. The underlying representation
+%       is not the same, resulting in different mutational properties.
 
 \subsection{Geometric Properties}
 
@@ -162,3 +164,40 @@ However, on mean degree 2 target graphs they evolve significantly poorer quality
 
 The streak metric performs favorably or equivalently compared to all other metrics across all target graph configurations.
 The streak metric yields significantly more rapid adaptive evolution than all other metrics on the regular mean degree 2 graph (non-overlapping 95\% CI).
+
+% @AML: Once flow of paper, overall message, etc is decided, we'll most likely want to change this sub-heading
+% @AML: Todo - update metric names to be consistent with rest of the paper.
+\subsection{Tag-matching in a genetic programming context}
+
+Figure/Table [X] gives the number of replicates that produced a successful SignalGP program (i.e., capable
+of achieving maximum fitness) for each tag-matching metric on both the changing- and directional-signal
+tasks.
+For each task, we compared the number of successful replicates for each metric using pairwise Fisher's
+exact tests, applying a Holm correction for multiple comparisons.
+Our complete analyses, including all statistical results, can be found in our supplemental material
+[cite - SGP github repository].
+
+We observed no difference in success between the Integer and Integer-symmetric metrics on both the
+changing- and directional-signal tasks.
+[Statement about consistency with expectations based on previous tag-matching experiments].
+
+On the changing-signal task, the Hamming and Streak metrics performed identically; however, on the directional-signal
+task, the Streak metric performed significantly better than the Hamming metric.
+[Speculation as to why].
+To assess whether the Streak metric produced solutions in fewer generations than the Hamming metric,
+we re-ran 200 replicates of each condition (with new random number seeds) until 50\% of the replicates
+found a solution.
+On the changing-signal task, we found no difference in how many generations were required for solutions
+to evolve.
+On the directional-signal task, however, we found that the Streak metric generally required fewer generations
+than the Hamming metric to yield solutions ($p < 0.0016$).
+[Statement about consistency with expectations based on previous tag-matching experiments].
+
+Surprisingly, the Hash metric performed reasonably well on both diagnostic tasks, outperforming both
+the Integer and Integer-symmetric metrics.
+[Statement about consistency with expectations based on previous tag-matching experiments].
+[Statement about how Hash metric is good at exploring lots of combinations very quickly, with a low
+enough mutation rate].
+[Of all metrics, Hash metric most susceptible to mutational meltdown at high mutation rates].
+
+[Statement about these results overall in context of other results?].
