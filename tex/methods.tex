@@ -222,7 +222,7 @@ During each evaluation, programs experience environmental signals in a random or
 % Experiment overview
 % @AML: currently, this section outsources A LOT of the configuration details to the supplement. Need to discuss what level of detail we want to go into here.
 We compared the performance of SignalGP with each of the hamming, integer, integer-symmetric, hash, and streak tag-matching metrics.
-For each metric, we evolved 200 replicate populations (each with a unique random number seed) of 500 programs in an eight-signal environment ($K=8$) for 5000 generations.
+For each metric, we evolved 200 replicate populations (each with a unique random number seed) of 500 programs in an eight-signal environment ($K=8$) for 500 generations.
 The chosen tag mutation rate (applied per-bit) differentially impacts each tag-matching metric; thus, we performed an initial search (using a wide range of mutation rates) to identify the most performant mutation rate to use for each metric.
 These data are available in our supplement [cite SignalGP supplement].
 % @AML: This could potentially get slotted into a table.
