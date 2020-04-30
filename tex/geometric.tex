@@ -1,45 +1,84 @@
-\subsection{Geometric Properties}
+\section{Geometric Analyses} \label{sec:geometric}
 
-To gain intuition for how they might affect patterns of tag connectivity, we began by surveying geometric properties of the tag matching metrics.
+In this section, we consider the geometry that tag matching metrics construct over bitstring tag space.
 
+
+Geometric constraints of tag matching metrics may affect the patterns of tag connectivity that tend to, or even can, arise under a
+In a constrained, it is possible for there to be two queries such that no operand can match both queries well.
+Likewise, it is possible for there to be two queries such that an operand must match both queries well.
+
+Structure might prove useful to facilitate modularity, where subsets of tag space tend to have associated functionality.
+However, it may also constrain the ease (or possibility) at which adaptive variation can be generated.
+
+To get at these questions, we compare distributions of two statistics measuring constraint across our five tag-matching metrics.
 \input{fig/dimensionality_measure.tex}
+
+The first statistic we calculate is similarity constraint.
+This statistic quantifies the question, "If two tags both match closely to a third tag, will they necessarily match closely with each other?"
+To compute this statistic, we randomly sampled 5000 target tags.
+Then, for each target tag we randomly sampled tags until we found two secondarily-sampled tags that were within a 0.01 match distance radius to the target.
+Finally, we computed the match distance between the pair of seconarily-sampled tags.
+Figure \ref{fig:dimensionality_measure}(a) summarizes this process.
+
+The second statistic we calculate is dissimilarity constraint.
+This statistic quantifies the question, "If a tag matches a second tag closely and a third tag poorly, will the second and third tag tend to match poorly?"
+To compute this statistic, we randomly sampled 5000 target tags.
+Then, for each target tag we randomly sampled tags until we found a secondarily-sampled tag that was within a 0.01 match distance radius of the target and a secondarily-sampled tag that was outside a 0.99 match distance radius of the target.
+Finally, we computed the match distance between the pair of secondarily-sampled tags.
+Figure \ref{fig:dimensionality_measure}(a) summarizes this process.
+
+\subsection{Similarity Constraint}
 
 \input{fig/sphere.tex}
 
-To gain a sense of the dimensionality (in a loose sense) of the different tag-matching metrics, we sampled the distribution of distances between within a 0.01 match distance radius of an arbitrary target.
-We used 5000 samples.
-Figure \ref{fig:dimensionality_measure}a provides a cartoon summary of this process.
+In a euclidean space, the similarity constraint metric would correspond to the average distance between points uniformly sampled from inside a ball (e.g., in two dimensions a circle, in three dimensions a sphere, etc.).
+Average distance between such points increases with dimensionality.
+For reference, in a one dimensional Euclidean space similarity constraint would measure approximately 0.0067.
+In a two dimensional Euclidean space, it would measure approximately  0.0091.
+In 32 dimensions, it would measure 0.0137 \citep{dunbar1997average}.
 
-In a euclidean space, this would correspond to the average distance between points uniformly sampled from inside a ball (in two dimensions, a circle, and in three dimensions, a sphere).
-This statistic asymptotically increases with dimensionality (TODO show this with mathematica, also try to calculate asymptote).
-In one dimension, this value approximates to 0.00666667 \citep{dunbar1997average}.
-In two dimensions, 0.00905415 \citep{dunbar1997average}.
-In 32 dimensions, 0.0136618 \citep{dunbar1997average}.
+Figure \ref{fig:sphere_barplot} provides our estimate of the similarity constraint statistic for each metric, with error bars representing a 95\% confidence interval.
+Figure \ref{fig:sphere_distnplot} shows the distribution of the similarity constraint statistic value among the 5000 replicate samples in greater detail.
 
-We calculated this statistic as  0.0067569292903519994 for the bidirectional integer metric, in line with expectations.
-As you can see in Figure \ref{fig:sphere_distnplot}, the distances are all bounded by the diameter of 0.02.
+For the bidirectional integer metric, we measured the similarity constraint statistic as 0.0068.
+This falls in line with expectation: this metric is essentially identical to a one-dimensional Euclidean space.
+As shown in Figure \ref{fig:sphere_distnplot}, the secondarily-sampled match distances are all bounded by the diameter of 0.02.
+This metric not only exhibits tight similarity constraint in the mean case, but also permits no outliers to the similarity constraint.
 
-However, other metrics had much higher values.
-For the Spector Integer metric, we approximated this value as 0.5091638296249492.
-This is an artifact of the asymmetry where if you have two very similar numbers, half will be in ascending order resulting in a match distance close to 0 and half will be in descending order, resulting in a wraparound search and a match distance close to 1.
-You can very clearly see these two outcomes in \ref{fig:sphere_distnplot}.
-Averaging this out yields 0.5.
+The unidirectional integer metric exhibits much looser similarity constraint in the mean case.
+We estimated this value as 0.5092.
+However, this looser similarity constraint appears to be an artifiact of averaging between two very tight constraints: a tight constraint to 0 in one case and a tight constraint to 1 in the other.
+In Figure \ref{fig:sphere_distnplot}, you can clearly see that all sampled cases fall under one of these umbrellas.
+This phenomenon results from the asymmetrical definition of the metric.
+If you sample pairs of similar values, half will be in ascending order (resulting in a match distance close to 0) and half will be in descending order, (resulting in a wraparound search and a match distance close to 1).
+Averaging these outcomes out yields the observed mean value of 0.5.
+The integer metric appears to allow for closely related tags to either very strongly match or very weakly match, but permits no intermediate outcomes.
 
-The uniformified hamming had a mean distance of 0.16273783884700002.
-In our sample, we observed distances as high as 0.749875.
-To check our intuition, we calculated this statistic for the raw hamming metric.
-For numerical reasons, we raised the radius of our sampling sphere to 0.25 (e.g., with a radius of 0.01, the only result between is a perfect match and with lower radii the hits become so rare as they become difficult to sample efficiently)
-in 32 dimensional euclidean space, we expect the mean distance between sampled points to be 0.341545.
-In the non-uniformified hamming metric we calculate this statistic as 0.33120625.
-The distortion of the uniformification is clearly affecting this statistic with respect to the hamming metric.
+The hamming metric exhibits a broader range of sampled similarity constraint values than the integer metrics.
+We estimated mean similarity constraint as 0.1627, looser than the bidirectional integer metric.
+As shown in Figure \ref{fig:sphere_distnplot}, many secondarily-sampled tag pairs are biased towards low match distances.
+However, secondarily-sampled tag pairs that break this low match distance constraint are also not uncommon.
+Among our 5,000 trials, we observed distances between secondarily-sampled tags as high as 0.7499.
 
-We calculated an even higher value of 0.2813480713989872 for the ball sampling statistic with the streak metric.
-We calculated distances as high as 0.999346.
+Why is our estimate of the hamming metric similarity constraint statistic so much higher than expected in a 32-dimensional Euclidean space?
+This phenomenon appears to be due to the normalization process we applied to map raw match distances to a uniform distribution.
+We also calculated this statistic for the raw hamming metric without normalization.
+For practical reasons, we increased the radius of our sampling sphere to 0.25.
+(Only the exact target 32-bit tag satisfies within-sphere constraint with a sampling radius of 0.01.)
+In 32-dimensional euclidean space with a sampling radius of 0.25, the expected distance between sampled points is 0.3415.
+Our estimate of the raw hamming metric's similarity constraint statistic falls nearly in line with expectation at 0.3312.
 
-For the hash metric, we calculated the ball sampling statistic as 0.5082513209562.
-A well-behaved hash should, given any set of operands, yield hash results uniformly distributed over the range.
-This case holds here.
-We calculated distances as high as 0.999499.
+The streak metric exhibited the next-loosest similarity constraint statistic with a mean value sampled at 0.2813.
+For this metric, we observed distances between secondarily-sampled tags as high as 0.9993.
+The streak metric retains some geometric constraint in the mean case, but outliers that strongly break similarity constraint are also not uncommon.
+
+Like the integer metric, the hash metric also exhibits looser similarity constraint in the mean case.
+We estimated this value as 0.5083 for the hash metric.
+However, unlike the integer metric, intermediate secondarily-sampled match distances are also are possible.
+In fact, secondarily-sampled match distances are uniformly distributed.
+This is exactly as we would expect:
+given any particular set of operands, a well-behaved hash function should yield a uniform distribution of hash results.
+The hash metric exhibits no geometric structure and total geometric flexibility.
 
 \input{fig/sphere_reverse.tex}
 
