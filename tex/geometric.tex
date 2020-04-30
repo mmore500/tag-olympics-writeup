@@ -38,7 +38,7 @@ In a two dimensional Euclidean space, it would measure approximately  0.0091.
 In 32 dimensions, it would measure 0.0137 \citep{dunbar1997average}.
 
 Figure \ref{fig:sphere_barplot} provides our estimate of the similarity constraint statistic for each metric, with error bars representing a 95\% confidence interval.
-Figure \ref{fig:sphere_distnplot} shows the distribution of the similarity constraint statistic value among the 5000 replicate samples in greater detail.
+Figure \ref{fig:sphere_distnplot} shows the distribution of the similarity constraint statistic values among the 5000 replicate samples in greater detail.
 
 For the bidirectional integer metric, we measured the similarity constraint statistic as 0.0068.
 This falls in line with expectation: this metric is essentially identical to a one-dimensional Euclidean space.
@@ -80,24 +80,23 @@ This is exactly as we would expect:
 given any particular set of operands, a well-behaved hash function should yield a uniform distribution of hash results.
 The hash metric exhibits no geometric structure and total geometric flexibility.
 
+\subsection{Dissimilarity Constraint}
+
 \input{fig/sphere_reverse.tex}
 
-We tested the elasticity of the tag-matching metrics using a similar measure.
-To gain a sense of the dimensionality (in a loose sense) of the different tag-matching metrics, we sampled the distribution of distances between a tag sampled from within a 0.01 match distance radius of an arbitrary target and a tag sampled from outside a 0.99 match distance radius of the arbitrary target.
-We used 5000 samples.
-Figure \ref{fig:dimensionality_measure}b provides a cartoon summary of this process.
+Figure \ref{fig:sphere_barplot} provides our estimate of the dissimilarity constraint statistic for each metric, with error bars representing a 95\% confidence interval.
+Figure \ref{fig:sphere_distnplot} shows the distribution of the dissimilarity constraint statistic values among the 5000 replicate samples in greater detail.
 
-We found that the bidirectional integer metric was highly inelastic: the smallest distance between the sampled tags was 0.980201.
-The mean distance between sampled tags was 0.9932740098.
-The Spector integer metric exhibited similarly uniform outcomes, except the distribution was strongly pegged to 0 because of the metric's asymmetry.
-The mean statistic was 0.00998706165234.
-
-The hamming metric exhibited greater elasticity: we observed distances between the sampled tags as low as 0.235526.
-The mean distance between sampled tags was 0.8248383674.
-
-The streak metric exhibited the greatest elasticity: we observed distances between the sampled tags as low as 0.00019998.
-With this metric, a tag can have a strong attractive interaction with a second tag that a third tag it interacts attractively strongly with has a strong repulsive attraction with.
-The mean distance between sampled tags was 0.7126656857120001.
-
-The hash metric exhibited the same well-behaved uniform distribution as before, with a mean distance of 0.5102822773801999.
+These results tell a story across metrics very to the simiarity constraint results.
+The hash metric exhibited no geometric structure.
+The streak metric exhibited some geometric structure in the mean case (mean secondarily-sampled distance 0.7127), but outcomes that strongly broke geometric constraints were also observed (we observed distances between secondarily-sampled tags as low as 0.0002).
+The hamming metric exhibited stronger geometric structure in the mean case (mean secondarily-sampled distance 0.8248) and had less extreme tail-end outcomes (we observed match distances between the secondarily-sampled tags only as low as 0.2355).
+The bidirectional integer metric was highly constrained in both the mean and tail-end cases.
+The smallest distance between secondarily-sampled tags was 0.9802.
+Again, the unidirectional integer metric exhibited a quirky result due to its noncommutative nature.
+The mean distance between secondarily-sampled tags was 0.0100.
+As shown in Figure \ref{fig:sphere_distnplot}, all secondarily-sampled distances oberved with this metric were extremely small.
+Under this metric, if you sample a tag that is close to a target it will be numerically slightly larger than the target.
+Likewise, if you sample a tag that is very far from a target, it will be numerically slightly smaller than the target (due to wraparound).
+Then, explaining this counterintuitive result, the distance from the slightly smaller to the larger tag will be small.
 
