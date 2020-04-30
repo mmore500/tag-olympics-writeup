@@ -1,6 +1,11 @@
 \documentclass[letterpaper]{article}
 
-\usepackage{natbib,alifeconf}  %% The order is important
+\usepackage[authoryear]{natbib}  %% The order is important
+
+\usepackage[resetlabels]{multibib}
+\newcites{inappendix}{Supplementary References}
+
+\usepackage{alifeconf}
 
 \usepackage{hyperref}
 
@@ -89,7 +94,15 @@ $^1$mmore500@msu.edu} % email of corresponding author
 
 \input{tex/methods.tex}
 
-\input{tex/results.tex}
+\input{tex/geometric.tex}
+
+\input{tex/variational.tex}
+
+\input{tex/evolutionary.tex}
+
+\input{tex/applied.tex}
+
+\input{tex/discussion.tex}
 
 \input{tex/conclusion.tex}
 
@@ -104,7 +117,12 @@ $^1$mmore500@msu.edu} % email of corresponding author
 
 \appendix
 
+\setcounter{secnumdepth}{2}
+
 \input{tex/supplementary.tex}
 
+\footnotesize
+\bibliographystyleinappendix{apalike}
+\bibliographyinappendix{bibl} % replace by the name of your .bib file
 
 \end{document}

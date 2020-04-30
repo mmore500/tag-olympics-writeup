@@ -1,0 +1,41 @@
+\section{Hash Metric} \label{sec:hashmetric}
+
+This metric is original to the our paper and meant to serve as a control.
+
+The an arbitrary, but determinsitic value, uniformly distributed between 0 and 1.
+
+We rely on the \texttt{hash\_combine} function, adapted from BOOST (TODO cite).
+
+for two values \texttt{v1} and \texttt{v2}, \texttt{hash\_combine} is defined as follows
+\begin{verbatim}
+unsigned int hash_combine(
+  unsigned int v1,
+  unsigned int v2
+) {
+  return v1 ^ (
+    v2 * 0x9e3779b9
+    + (v1 << 6) + (v1 >> 2)
+  );
+}
+\end{verbatim}
+
+We compute the hash value of a tag as follows
+\begin{verbatim}
+unsigned int h(unsigned char *tag) {
+  unsigned int result = tag[0];
+  for (int i = 1; i < 4; ++i){
+    result = hash_combine(result, t[i]);
+  }
+  return result;
+}
+\end{verbatim}
+where \texttt{tag} is the tag's bitstring stored as an array of bytes.
+
+To compute the metric $H$ we then call \texttt{hash\_combine} to combine the hash values of the tags $t$ and $u$
+\begin{align*}
+H(t, u) = \texttt{hash\_combine( h(}t\texttt{), h(}u\texttt{))}
+\end{align*}
+
+Note that this is not commutative.
+
+

@@ -1,0 +1,37 @@
+\section{Integer Metric}
+
+Each tag was represented as an ordered, fixed-length bitstring,
+\begin{align*}
+t = \langle t_0, t_1, t_2, \dots, t_{n-2}, t_{n-1} \rangle
+\end{align*}
+where
+\begin{align*}
+\forall i, t_i \in \{0, 1\}.
+\end{align*}
+
+This metric is inspired by \citep{spector2011tag}.
+They used positive integers between 0 and 100 to name referents.
+Queries were provided the referent that had the next-larger value, wrapping around from 100 back to 0.
+
+In this metric, we compare tags according to their value as an unsigned integer according to the following representation $f$,
+\begin{align*}
+f(t)
+= \sum_{i=0}^{n-1} t_i \times 2^i.
+\end{align*}
+
+The distance metric $I$ between two length-$n$ tags $t$ and $u$ is
+\begin{align*}
+I(t, u) =
+\begin{cases}
+  \frac{2^n - f(t) + f(u)}{2^n}, & \text{if } f(t) > f(u), \\
+  \frac{f(t) - f(u)}{2^n},         & \text{else} f(t) \leq f(u).
+\end{cases}
+\end{align*}
+
+Note that this metric is non-commutative, i.e., it is not necessarily true that $I(t, u) = I(u, t)$.
+
+Note also that this metric is one-dimensional.
+
+A algorithmic advantage of this metric is that it allows for log-time matching.
+
+

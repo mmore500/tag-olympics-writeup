@@ -1,0 +1,64 @@
+\subsection{Geometric Properties}
+
+To gain intuition for how they might affect patterns of tag connectivity, we began by surveying geometric properties of the tag matching metrics.
+
+\input{fig/dimensionality_measure.tex}
+
+\input{fig/sphere.tex}
+
+To gain a sense of the dimensionality (in a loose sense) of the different tag-matching metrics, we sampled the distribution of distances between within a 0.01 match distance radius of an arbitrary target.
+We used 5000 samples.
+Figure \ref{fig:dimensionality_measure}a provides a cartoon summary of this process.
+
+In a euclidean space, this would correspond to the average distance between points uniformly sampled from inside a ball (in two dimensions, a circle, and in three dimensions, a sphere).
+This statistic asymptotically increases with dimensionality (TODO show this with mathematica, also try to calculate asymptote).
+In one dimension, this value approximates to 0.00666667 \citep{dunbar1997average}.
+In two dimensions, 0.00905415 \citep{dunbar1997average}.
+In 32 dimensions, 0.0136618 \citep{dunbar1997average}.
+
+We calculated this statistic as  0.0067569292903519994 for the bidirectional integer metric, in line with expectations.
+As you can see in Figure \ref{fig:sphere_distnplot}, the distances are all bounded by the diameter of 0.02.
+
+However, other metrics had much higher values.
+For the Spector Integer metric, we approximated this value as 0.5091638296249492.
+This is an artifact of the asymmetry where if you have two very similar numbers, half will be in ascending order resulting in a match distance close to 0 and half will be in descending order, resulting in a wraparound search and a match distance close to 1.
+You can very clearly see these two outcomes in \ref{fig:sphere_distnplot}.
+Averaging this out yields 0.5.
+
+The uniformified hamming had a mean distance of 0.16273783884700002.
+In our sample, we observed distances as high as 0.749875.
+To check our intuition, we calculated this statistic for the raw hamming metric.
+For numerical reasons, we raised the radius of our sampling sphere to 0.25 (e.g., with a radius of 0.01, the only result between is a perfect match and with lower radii the hits become so rare as they become difficult to sample efficiently)
+in 32 dimensional euclidean space, we expect the mean distance between sampled points to be 0.341545.
+In the non-uniformified hamming metric we calculate this statistic as 0.33120625.
+The distortion of the uniformification is clearly affecting this statistic with respect to the hamming metric.
+
+We calculated an even higher value of 0.2813480713989872 for the ball sampling statistic with the streak metric.
+We calculated distances as high as 0.999346.
+
+For the hash metric, we calculated the ball sampling statistic as 0.5082513209562.
+A well-behaved hash should, given any set of operands, yield hash results uniformly distributed over the range.
+This case holds here.
+We calculated distances as high as 0.999499.
+
+\input{fig/sphere_reverse.tex}
+
+We tested the elasticity of the tag-matching metrics using a similar measure.
+To gain a sense of the dimensionality (in a loose sense) of the different tag-matching metrics, we sampled the distribution of distances between a tag sampled from within a 0.01 match distance radius of an arbitrary target and a tag sampled from outside a 0.99 match distance radius of the arbitrary target.
+We used 5000 samples.
+Figure \ref{fig:dimensionality_measure}b provides a cartoon summary of this process.
+
+We found that the bidirectional integer metric was highly inelastic: the smallest distance between the sampled tags was 0.980201.
+The mean distance between sampled tags was 0.9932740098.
+The Spector integer metric exhibited similarly uniform outcomes, except the distribution was strongly pegged to 0 because of the metric's asymmetry.
+The mean statistic was 0.00998706165234.
+
+The hamming metric exhibited greater elasticity: we observed distances between the sampled tags as low as 0.235526.
+The mean distance between sampled tags was 0.8248383674.
+
+The streak metric exhibited the greatest elasticity: we observed distances between the sampled tags as low as 0.00019998.
+With this metric, a tag can have a strong attractive interaction with a second tag that a third tag it interacts attractively strongly with has a strong repulsive attraction with.
+The mean distance between sampled tags was 0.7126656857120001.
+
+The hash metric exhibited the same well-behaved uniform distribution as before, with a mean distance of 0.5102822773801999.
+

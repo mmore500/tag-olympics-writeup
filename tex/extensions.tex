@@ -1,0 +1,156 @@
+\section{Extensions \& Future Work}
+
+
+GOOD IDEAS
+* uniformity/asymmetry
+  * promiscuity (node connectivity in small world networks distributed by power law)
+  * modularity / hierarchy (e.g., further specification Holland)
+
+
+BLAH BLAH BLAH
+In the process of preparing these experiments we generated a number of ideas that were outside the scope of the current work.
+TODO
+
+\begin{itemize}
+\item NK-fitness landscape \citep{kauffman1987towards} (note: this isn't directly symmetric tag-tag matching)
+\item full-on protein docking simulations (or at least cite the BEACON person who's working on this)
+\item Anselmo's proprietary tags (maybe if we promise to keep it proprietary?)
+\item uneven weighting of 0/1 probabilities at different locations on the bitstring (MAM)
+\end{itemize}
+
+a list of bytes, must have at least X match within each byte (personal communication with Ofria)
+\begin{itemize}
+\item min
+\item max
+\item multiplicative
+\item additive
+\end{itemize}
+
+meta... multi-receptor tags (e.g., multiple receptors you can match... variable number?) (my idea)
+\begin{itemize}
+\item multiplicative
+\item min
+\item additive distance among sub-tags
+\item max
+\end{itemize}
+
+Multi-level/hierarchical tags: i.e., you need to reference down a hierarchy. For
+example, access a member of a member of a member of a particular struct.
+\begin{itemize}
+  \item If you know how many levels, you can use different `chunks' of the tag for
+        each level.
+  \item Use the same tag at each level (let evolution work out the `chunking')
+  \item Source multiple tags from the referer (e.g., need to go down three levels?
+    be sure to get three tags, one for each level)
+\end{itemize}
+
+\subsection{Evolutionary Characteristics}
+
+find citations for this subsection in my undergraduate thesis
+
+\begin{itemize}
+  \item Question: do tag matches evolve to become more specific? i.e., become stronger over time?
+        If so, do matches lock-in early, leading to strong historical contingencies?
+  \item Question: How stable are tag-based references over time? Are stable references
+        associated with successful lineages? Does stability change over time (e.g.,
+        low stability early, increasingly higher stability over time? W/major stability
+        shake-ups when new architectures arise)
+  \item Do tags enable more complex genetic architectures over traditional reference
+        techniques?
+  \item Quantify how often perturbations (mutations) change references. Compare
+        successful lineages to general population averages (are successful lineages
+        avoiding or embracing perturbation)
+  \item Track the frequency of and effect of (deleterious, neutral, beneficial)
+        perturbations that change references. Again, are successful lineages different
+        from population averages?
+\end{itemize}
+
+\subsubsection{Duplication and Differentiation}
+
+\begin{itemize}
+  \item Question: How fast and complicated can duplication/divergence events occur?
+        Quantify how often these events occur in general vs how often they are along
+        successful lineages.
+\end{itemize}
+
+\subsubsection{Canalization}
+
+Question:
+\begin{itemize}
+\item several sets of ``related" signal/response groups... triggering the wrong signal/response pair within the group is okay... but triggering the signal/response pairs that correspond to different groups is not okay
+\item do we end up with mutations tending to cause changes that stay within the group? how much mutation until we start to see signal/response pairs from different groups triggered
+\item (side question) how strong of an effect can plasticity have on promoting canalization (e.g., select for plastic rearrangement of connections within group)
+\end{itemize}
+
+\subsubsection{Plasticity (via regulation)}
+
+Question: how fast/how complicated can we evolve plastic responses (e.g., in environment A certain signal/response pairs; in environment B certain signal/response pairs) using regulation
+
+maybe also differentiation?
+(e.g., go stably into state A or state B based on an initial environmental cue)
+
+\subsubsection{Bandwidth}
+
+Question: what is the relationship between the number of signals/responses and the evolutionary difficulty of
+\begin{itemize}
+\item evolving n connection pairs de-novo
+\item with n connection pairs evolved, evolving a n+1 connection pair
+\end{itemize}
+
+\subsubsection{Hidden Genetic Variation}
+
+Question: evolve one signal/response pair (might need multiple signal/response pairs), how much tag diversity exists in population at end of run?
+
+\subsubsection{Degeneracy}
+
+Question: how many independent but redundant cue/response tag pairs (that link the same cue and same response) arise spontaneously?
+
+\subsubsection{Robustness}
+
+\begin{itemize}
+\item plot match score versus random mutational walk like in Downing
+\item fat-tailed or thin-tailed? (e.g., gradual or walking off a cliff)
+\end{itemize}
+
+distribution of effect on match score for different mutations
+\begin{itemize}
+\item are some mutations silent?
+\item do some mutations cause extreme/catastrophic effects?
+\item e.g., how often do perturbations disrupt existing references?
+\end{itemize}
+
+\subsection{System-level Metrics}
+
+systems:
+\begin{itemize}
+\item environment matching with SignalGP
+\item DISHTINY with SignalGP
+\item lawnmower \citep{spector2011tag} / dirt-sensing, obstacle-avoiding robot \citep{spector2011tag} / even-4-parity \citep{spector2012tag}
+\item TODO more / better please
+\end{itemize}
+
+metrics:
+\begin{itemize}
+\item evolvability signatures \citep{tarapore2015evolvability}
+\item solution quality
+\item phenotypic lock-in
+\item the graph structure of gene regulatory networks that tend to evolve?
+\end{itemize}
+
+\subsection{Computational Efficiency}
+
+\begin{itemize}
+\item time to calculate distance between two tags
+\item the computational complexity of selection techniques
+\item possible optimizations that make matching better than linear?
+(not with regulation, I suspect)
+\end{itemize}
+
+\subsubsection{SignalGP Tag Extensions}
+
+\begin{itemize}
+  \item Module regulation
+  \item Allow modules to be renamed by `renaming' instructions (another form of
+        module regulation). This is sort of similar to Lee's PushGP implementation
+        that allows Push programs to label and subsequently relabel tagged things.
+\end{itemize}
