@@ -1,30 +1,50 @@
-\section{Variational Properties}
+\section{Variational Analysis} \label{sec:variational}
+
+We performed two analyses to characterize the properties of our five match distance metrics under bitwise mutation.
+Single-step mutational analysis examines the local mutational neighborhood of tag pairs.
+Then, mutational walk analysis surveys the topography of the wider mutational landscape.
+
+\subsection{Single-Step Mutations}
 
 \input{fig/mutational_step.tex}
 
-We began by analyzing the distribution of single-bit mutations on match scores under the different metrics.
-Figure \ref{fig:mutational_step} provides this analysis for two categories of tag pairs: loosely matched and tightly matched.
-To generate the loosely matched distribution we unifomormly selected from tag pairs with a match distance > 0.5, measured their match distance, applied a one-bit mutation to the second tag, and then measured their match distance again.
-To generate the tightly matched distribution we picked a target tag.
-Then, we uniformly sampled a second tag with a match distance < 0.01.
-We measured their match distance, applied a one-bit mutation to the second tag, and then measured their match distance again.
-We sampled 5000 measurements for each affinity and each metric.
+Figure \ref{fig:mutational_step} visualizes the distribution of match distance outcomes of single-bit mutations.
+We provide this analysis for two categories of tag pairs: tags that were loosely affiliated and tags that were tightly affiliated.
 
-For both tight and loose affinities, although the integer metrics exhibited no perfectly neutral mutational outcomes most mutations cause very small change in the match score.
-These are mutations to the least-significant bits of the bitstring.
-A small fraction of mutations under these metrics, affecting the more-significant bits of the bitstring, have a stronger effect.
-The integer metrics, along with the hash metric, exhibit the strongest one-step decoupling mutations under tight affinity.
-The Spector integer metric, in particular, due to its asymmetrical wraparound-search inducing effect, exhibits more frequent strong decoupling mutations than the bidirectional integer metric.
+To measure the distribution of mutational perturbations on loosely-affiliated tag pairs we began by sampling a target tag and then randomly sampled candidate tags until we found a second tag with a match distance $> 0.5$.
+We recorded the match distance between our tag pair, applied a one-bit mutation to the secondary tag, and then measured the match distance between the tag pair again.
+Mutational perturbation was calculated as the difference between the match distances.
+A negative mutational perturbation indicates a decrease in match distance and, therefore, an increase in match quality.
 
-The streak metric alone exhibits a portion of perfectly neutral outcomes under mutation.
-The streak metric exhibits a greater fraction of mutational outcomes of non-trivial magnitude than the integer metrics with loose affinity.
-Under tight affinity, the streak metric exhibits some one step strong-decoupling mutations but less intensely than the integer metrics.
+We measured the distribution of mutational perturbations on tightly-matched tag pairs similarly, except we uniformly sampled secondary candidate tags until we found a second tag with match distance $< 0.01$.
+We sampled 5000 tightly-matched measurements and 5000 loosely-matched measurements for each metric.
 
-The hamming metric exhibits more uniformity in the magnitudes of mutational effects than other metrics under both tight and loose affinities.
-The hamming metric exhibits no perfectly neutral mutational outcomes.
-(Without uniformification, all hamming metric mutations are of excactly the same magnitude with respect to match score).
+For both tightly- and loosely-affiliated tag pairs under the integer and bidirectional integer metrics, most mutations caued very small changes in match distance.
+These mutations likely the toggle least-significant bits of the tag's integer representation.
+However, under these metrics, a small fraction of mutations affecting more-significant bits of the integer representation have a much stronger effect.
+Single-step mutations occassionally occur that strongly couple loosely-affiliated tag pairs or strongly decouple tightly-affiliated tag pairs.
+In particular, the unidirectional integer metric, presumably due to its non-commutative quirks, appers to exhibit more frequent strong decoupling mutations than the bidirectional integer metric.
 
-The hash metric exhibits the greatest fraction of non-trivial mutational effects and exhibits some mutational intensities as extreme as the integer metrics.
+The streak metric is the only metric that exhibits perfectly neutral outcomes under mutation.
+These perfectly-neutral mutations presumably affect regions of the bitstring involved neither in the longest-matching streak nor in the longest-mismatching streak.
+The streak metric appears to exhibit a fatter tail of match-distance magnitude for mutations that couple loosely-affiliated tags than the integer metrics.
+In addition, the most extreme mutational outcomes that couple loosely-affiliated tags appear to be of a comparable magnitude to those under the integer metrics.
+Mechanistcally, this might be due to mutations that disrupt longest-mismatching streaks.
+However, one-step mutations that decouple tightly-affiliated tags do not appear as potent.
+This might be because achieving a very poor match requires both increasing longest-mistmatching streak length and decreasing longest-matching streak length.
+
+The hamming metric exhibits a generally uniform magnitude of match-distance changes under mutation.
+High-magnitude one-step mutations do not occur under this metric.
+(Without normalizing match distance to a uniform distribution for randomly-sampled tags, all hamming metric mutations would be of exactly the same magnitude, either increasing or decreasing the count of matching bits by 1).
+
+The hash metric exhibits the fattest tails of mutational magnitude of all metrics.
+Extreme-effect one-step mutations are plentiful under this metric.
+Interestingly, compared to other metrics, the hash metric exhibits a greater fraction of mutations that decouple tightly-affiliated tags and a greater fraction of mutations that coouple loosely-affiliated tags.
+This might be due to the hash metric's lack of geometric structure.
+Because all one-step mutations uniformly sample a new match distance, 99\% of one-step mutations on tightly-affiliated tags will result in a looser coupling.
+Similarly, approximately 75\% of one-step mutations on loosely-affiliated tags will result in a tigher coupling.
+
+\subsection{Mutational Walks}
 
 \input{fig/mutational_walk_lineplot.tex}
 \input{fig/mutational_walk_barplot.tex}
