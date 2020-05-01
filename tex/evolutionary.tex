@@ -19,7 +19,7 @@ We controlled the amount of tag-matching constraint imposed by the target graph 
 \begin{enumerate}
   \item the mean number of edges per node (graph degree), and
   \item whether edges were assigned evenly such that all nodes had identical degree (regular structure) or were assigned at random, likely causing some nodes to have high degree (irregular structure).
-\end{itemize}
+\end{enumerate}
 We tested target graphs mean degree 1 and 2 and both regular and irregular construction.
 Regular, degree 1 graphs imposed the least tag-matching constraint.
 Degree 2 graphs imposed the most tag-matching constraint.
@@ -50,6 +50,97 @@ We performed the same evolutionary experiment with 64-node target graphs and obs
 
 \subsection{Evolving a Genetic Program}
 
+% @AML: Just tacking this section on to the end of the Methods for now. It can get moved around/re-organized
+%       as the rest of this paper takes shape.
+
+% - Lead-in text
+How does choice of tag-matching metric influence adaptive evolution in broader contexts?
+We explore the implications of different tag-matching metrics using SignalGP, a tag-based genetic programming (GP) representation.
+GP applies natural principles to evolve computer programs rather than writing them by hand.
+Spector et al. introduced tag-based naming in the context of GP (both linear and tree-based GP) as a mechanism for associating evolvable names (tags) with program modules [citations].
+SignalGP broadened the application of tag-based naming, using tags to enable signal-driven program execution where tags specify the relationship between signals and signal-handlers (program modules) [citation].
+Additional work has demonstrated the use of tags for labeling and referring to positions in memory [citations].
+
+We investigate the success of five different tag-matching schemes (the integer, integer-symmetric, hash, hamming, and streak metrics) in the context of SignalGP on two diagnostic GP problems: the changing-signal
+task and the directional-signal task.
+The changing-signal task evaluates how well a GP representation can associate a set of distinct behavioral responses each with a particular environmental cue.
+The directional-signal task evaluates how well a representation facilitates signal-response plasticity (i.e., the ability to alter responses to repeated cues during the program's lifetime).
+
+\subsubsection{SignalGP}
+
+SignalGP (Signal-driven Genetic Programs) is a GP representation that enables signal-driven (i.e., event-driven) program execution.
+In SignalGP, programs are segmented into modules (functions) that may be automatically triggered by exogenously- or endogenously-generated signals.
+Each module in SignalGP associates a tag with a linear sequence of instructions.
+SignalGP makes explicit the concept of signals (events), which comprise a tag and, optionally, signal-specific data.
+Because both program modules and signals are tagged, SignalGP uses tag-based referencing to determine the most appropriate module to trigger in response to a signal.
+Signals trigger the module with the closest matching tag (according to a given tag-matching metric), using any signal-associated data as input to the triggered module.
+SignalGP can handle many signals simultaneously, processing each in parallel.
+
+% @AML: some of this paragraph is too similar to the one in the genetic regulation paper. Needs to be
+%       adjusted accordingly in future editing iterations.
+The SignalGP instruction set, in addition to including traditional computational operations, allows programs to generate internal signals, broadcast external signals, and otherwise work in a tag-based context.
+Instructions contain arguments, including an evolvable tag, that may modify the effect of an instruction, often specifying memory locations or fixed values.
+Instructions may refer to program modules using tag-based referencing; for example, signal-generating instructions (to be used either internally or broadcast externally) use their tag to specify the signal's tag.
+SignalGP also supports genetic regulation with promoter and repressor instructions that, when executed, allow programs to adjust how well subsequent signals match with a target function (specified with tag-based referencing).
+We describe provide a more detailed description of the SignalGP representation and the instruction set used in this work in [SignalGP supplemental material].
+
+\subsubsection{Changing-signal Task}
+
+The changing-signal task requires programs to express a distinct response
+to each of $K$ environmental signal (each signal has a unique tag).
+Programs can express a response by executing one of $K$ response instructions.
+Successful programs can `hardcode' each response with the appropriate environmental signal, ensuring that each environmental signal's tag best matches the function containing the correct response.
+As such, we expect the particular metric used to match tags to influence how well programs adapt to changing-signal task.
+As such, we expect that the metric used to match tags will influence GP's problem-solving success on the changing-signal task.
+
+During evaluation, we afford programs 64 time steps to express the appropriate response after receiving a signal.
+Once a program expresses a response or the allotted time expires, we reset the program's virtual hardware (resetting all executing threads and thread-local memory), and the environment produces the next signal.
+Evaluation continues until the program correctly responds to each of the $K$ environmental signals or until the program expresses an incorrect response.
+During each evaluation, programs experience environmental signals in a random order; thus, the correct \textit{order} of responses will vary and cannot be hardcoded.
+
+% Experiment overview
+% @AML: currently, this section outsources A LOT of the configuration details to the supplement. Need to discuss what level of detail we want to go into here.
+We compared the performance of SignalGP with each of the hamming, integer, integer-symmetric, hash, and streak tag-matching metrics.
+For each metric, we evolved 200 replicate populations (each with a unique random number seed) of 500 programs in an eight-signal environment ($K=8$) for 500 generations.
+The chosen tag mutation rate (applied per-bit) differentially impacts each tag-matching metric; thus, we performed an initial search (using a wide range of mutation rates) to identify the most performant mutation rate to use for each metric.
+These data are available in our supplement [cite SignalGP supplement].
+% @AML: This could potentially get slotted into a table.
+For this work, we used the following per-bit tag mutation rates: 0.01 for the hamming and streak metrics, 0.002 for the hash metric, and 0.02 for the integer and integer-symmetric metrics.
+% Mutation rates used for changing signal task:
+% - Hamming, 0.01;
+% - Hash, 0.002;
+% - Integer, 0.02;
+% - Integer-symmetric, 0.02;
+% - Streak, 0.01.
+Our supplemental material provides the full configuration details for these experiments, including a replication guide [cite - supplement].
+
+\subsubsection{Directional-signal Task}
+
+% Task overview
+As in the changing-signal task, the directional-signal task requires that programs respond to a sequence of environmental cues; in the directional-signal task, however, the correct response depends on previously experienced signals.
+In the directional signal task, there are two possible environmental signals --- a `forward-signal' and a `backward-signal' (each with a distinct tag) ---  and four possible responses.
+If a program receives a forward-signal, it should express the next response, and if the program receives, a backward-signal, it should express the previous response.
+For example, if response-three is currently required, then a subsequent forward-signal indicates that response-four is required next, while a backward-signal would instead indicate that response-two is required next.
+Because the appropriate response to both the backward- and forward-signals change over time, successful programs must regulate which functions these signals trigger.
+
+% Evaluation overview
+We evaluate programs on all possible four-signal sequences of forward- and backward-signals (sixteen total).
+For each program, we evaluate each sequence of signals independently, and a program's fitness is equal to its aggregate performance.
+Otherwise, evaluation on a single sequence of signals mirrors that of the changing signal task.
+
+% Experiment overview
+We compared the performance of SignalGP with each of the hamming, streak, integer, integer-symmetric, and hash metrics on the directional-signal diagnostic.
+For each metric, we evolved 200 replicate populations of 500 programs for 5000 generations.
+We parameterized the tag mutation rates for each metric in the same way as in the changing-signal task (data available in supplemental material), resulting in the following per-bit tag mutation rates: 0.0001 for the integer-symmetric metric, 0.001 for the hamming and hash metrics, and 0.002 for the integer and streak metrics.
+% @AML: again, we need to decide what level of configuration detail to go into here. Looks like we don't have much space. Probably need to cut down level of detail that's currently here.
+Our supplemental material gives the full configuration details for these experiments, including a replication guide [cite - supplement].
+
+% Mutation rates used for directional-signal task:
+% - Hamming, 0.001;
+% - Hash, 0.001;
+% - Integer, 0.002;
+% - Integer-symmetric, 0.0001;
+% - Streak, 0.002.
 % @AML: Once flow of paper, overall message, etc is decided, we'll most likely want to change this sub-heading
 % @AML: Todo - update metric names to be consistent with rest of the paper.
 
