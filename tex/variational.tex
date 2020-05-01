@@ -46,28 +46,26 @@ Similarly, approximately 75\% of one-step mutations on loosely-affiliated tags w
 
 \subsection{Mutational Walks}
 
-\input{fig/mutational_walk_lineplot.tex}
 \input{fig/mutational_walk_barplot.tex}
 
-Next, we performed mutational walks under each metric.
-We began with two randomly chosen equivalent tags (mutation step zero) then applied randomly chosen one-step mutations (with the possibility of back mutation allowed) 65 times to the second tag.
-We measured match distance between the two tags at each mutational step.
-We performed 1000 independent mutational walks from different starting equivalent tags.
+We analyzed 1000 replicate mutational walks.
+For each walk we first randomly generated a starting tag.
+Then, we sequentially applied 65 randomly-chosen one-step bit flip mutations, with back mutation allowed.
+At each step along the walk, we measured match distance to the original starting tag.
+Figure \ref{fig:mutational_walk_barplot} shows how match distance increases of mutational walks from initially exaclty-equivalent tags.
+Match distances from each metric along these walks are compared side-by-side for exponentially-spaced mutational steps.
 
-Figure \ref{fig:mutational_walk_lineplot} continuously depicts the distribution of match distances on mutational walks, with shaded areas indicating standard deviation, under different metrics.
-Figure \ref{fig:mutational_walk_barplot} compares match distances at exponentially increasing steps.
-Error bars indicate 95\% confidence intervals.
+Under the hash metric, equivalent tags don't necessarily exhibit low match distance.
+So, the mutational walk begins with and then maintains a mean match distance of 0.5.
 
-For the hash metric, where equivalent tags don't necessarily have low match distance, the mutational walk wanders around loose affinity.
+Under the integer metric, half of mutational steps cause a wrap around effect, immediately spiking the average match distance to 0.5.
+In Supplementary Figure \ref{fig:mutational_walk_lineplot}, you can see that the variance of match distance at a mutational step decreases as the walk proceeds away from match distances biased towards 0 or 1.
 
-The Spector Integer metric, where half of mutational steps wrap back around to 1.0 distance, immediately spikes up to an average match distance of 0.5.
-The variance decreases with mutational steps as the distribution moves away from bias towards distances of 0 and 1.
+The bidirectional integer metric proceeds away from match distance 0 the next quickest, presumably due to large-effect mutations affecting significant bits.
 
-The bidirectional integer metric experiences a greater immediate jump in variance and significantly greater mean match distance as rare mutations affecting significant bits take place (non-overlapping 95\% CI).
-
-The
-Intrestingly, contrary to as was claimed in \citep{downing2015intelligence}, the uniformified streak metric's match score under mutation actually grows significantly faster than the hamming metric's match score  (non-overlapping 95\% CI).
-
-Because the are uniformified, the distributions all devolve to having an equivalent mean and variance.
+The streak metric proceeds away from match distance 0 the second-slowest, trailed only by the hamming metric.
+(Note non-overlapping 95\% CI at mutational steps 16 and 32.)
+Interestingly, this result is directly contrary to Downing's presentation of the streak metric in \citep{downing2015intelligence}, in which he suggests that the streak metric exhibits greater robustness because its match distance diverges more slowly under a mutational walk.
+This discrepancy is presumably due to our normalization to ensure a uniform distribution of raw match scores between 0 and 1.
 
 
