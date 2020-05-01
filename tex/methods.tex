@@ -13,7 +13,7 @@ Full mathematical definitions and implementation details appear in Supplementary
   \item \textbf{Hash Metric}: calculates a deterministic, but arbitrary, match distance between using the SHA1 cryptographic hash algorithm \citep{eastlake2001us}; Supplementary Section \ref{sec:hashmetric}.
   \item \textbf{Integer Metric}: match distance accumulates scanning upward from the unsigned integer representation of the first tag until the unsigned integer representation of the second tag is reached, wrapping around to zero if necessary \citep{spector2011tag}; Supplementary Section \ref{sec:integermetric}.
   \item \textbf{Bidirectional Integer Metric}: the lesser of integer metric distance calculated scanning upwards (still wraping around to zero) and integer metric distance calculated scanning downwards (wrapping around at zero); Supplementary Section \ref{sec:integerbimetric}.
-  \item \textbf{Streak Metric}: match distance is calcualted as the ratio between the longest contiguously mismatching substring of two bitsets and the longest contiguously matching substring of those bitsets \citep{sec:downing2015intelligence}; Supplementary Section \ref{sec:streakmetric}.
+  \item \textbf{Streak Metric}: match distance is calcualted as the ratio between the longest contiguously mismatching substring of two bitsets and the longest contiguously matching substring of those bitsets \citep{downing2015intelligence}; Supplementary Section \ref{sec:streakmetric}.\footnote{Our implementation of this metric differs slightly from its original form due to a mathematical error in \citep{downing2015intelligence}.}
 \end{itemize}
 
 % TODO give intuitions for each metric
@@ -32,7 +32,7 @@ Supplementary Figure \ref{fig:uniformification} depicts the distributions of mat
 \subsection{Implementation}
 
 We implemented our experimental systems using the Empirical library for scientific software development in C++, available at \url{https://github.com/devosoft/Empirical} \citep{charles_ofria_2019_2575607}.
-The code used to perform and analyze our experiments, our figures, and data from our experiments is available via the Open Science Framework at \url{https://osf.io/gw5mc/}.
+The code used to perform and analyze our experiments, our figures, and data from our experiments is available via the Open Science Framework at \url{https://osf.io/gw5mc/} \citep{foster2017open}.
 
 % @AML: Just tacking this section on to the end of the Methods for now. It can get moved around/re-organized
 %       as the rest of this paper takes shape.
