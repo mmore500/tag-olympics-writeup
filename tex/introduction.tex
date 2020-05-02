@@ -1,71 +1,99 @@
 \section{Introduction}
 
-Computer operations specify the identities of the particular registers and memory addresses they read and act on.
-Computer programs, composed of these individual operations, often additionally specify higher-level elements such as flow markers and functions.
-We will refer to computational elements that are specified among by a computer program as operands.
-The term queries will describe sites in the computer program where a operand is specified.
-
-As instances of computer programs, genetic programs must also specify computational elements on which to act.
-Several approaches to addressing this problem have arisen.
-
-Operands may be implicitly specified according to the position of a query in a genetic program.
-Tree-based GP, which traditionally represent programs as a rooted binary trees of operations, exemplify this approach.
-An operation's inputs are simply the outputs of its child nodes.
-%Lones and Tyrell commmentary: mutational operator disaster
-%potentially restricts possible topologies?
-
-A second possibility is to enumerate all possible operands, assign each a operand unique identifier, and then encode an identifier for each query.
-However, this approach doesn't effectively support the addition or removal of operands.
-%* too many options first = miniscule probability of connecting
-%* too few options next
-
-Tag-matching constitutes a third possible solution.
-This approach encodes a tag for each query and for each available operand.
-Then, operands are specified for each query through a tag-matching process where the query tag is compared to all available operand tags and the best-matching operand is selected.
-Queries may be dereferenced prior to program evaluation (e.g., static) or during program evaluation (e.g., dynamic), potentially allowing for program state to influence which operands are specified by queries.
-This third idea is similar to the second except that it allows for the number of operands to change without the need for a complicated and potentially arbitrary mutation operator to update invalidated queries.
-
-%Duplication and deletion of genes (e.g., modules) is important in evolutionary biology in the evolution of complex features (TODO cite).
-%Genetic program representations that accommodate such events might help GP benefit from these events .
-What are the benefits of tags/tag-based referencing?
-
+Computer operations must specify the identities of registers and memory addresses they read from and act on.
+Computer programs, composed of these individual operations, apply identity-specifying information in individual operations to name higher-level abstractions such as data structures and functions.
+As instances of computer programs, digital artificial life systems must also specify computational elements on which to act.
+In terms of the abstractions particular artificial life systems represent, these computational elements range from
 \begin{itemize}
-  \item Hypothesis: Inexactness allowed by tag-based referencing makes these references
-        more robust to minor genetic perturbations, smoothing the genotype-phenotype
-        mapping relative to more traditional memory-indexing techniques (pulled from
-        2019 Tag-access memory abstract).
-  \item We don't need to know/lock-in the architecture of what our tags are referencing.
-        If a referent (e.g., module) is deleted, it doesn't invalidate any of the
-        in-program references (e.g., module calls). The same is true for creating
-        a new referent. For example, using tags to reference program modules allows
-        you to mutate the number of modules in the program without (necessarily)
-        breaking existing references.
-  \item Hypothesis: Tag-based referencing should help to enable the duplication/
-        deletion of referents (e.g., modules), which should improve capacity for
-        complexity to evolve (i.e., duplication is often cited as important in the
-        evolution of complex features).
+  \itemsep0em 
+  \item virtual hardware analogs like registers, memory addresses, stacks, or jump addresses in genetic programs \citep{spector2011tag, lalejini_tag-accessed_2019, ray1991approach, ofria2004avida},
+  \item molecules in artificial chemistries \citep{bagley1990spontaneous},
+  \item genes in artificial gene regulatory networks \citep{banzhaf2003artificial},
+  \item individual neurons or neural modules in neuroevolution \citep{reisinger2007acquiring}, or 
+  \item agents in agent-based models of complex systems \citep{riolo2001evolution}.
 \end{itemize}
+%TODO these are the same references as used below, is that bad?
 
-A fourth, intriguing approach closely related to tag-matching was developed by Lones and Tyrell in their enzyme genetic programming system, where program sub-modules are labeled according to a functional profile derived from the component's composition and interface \citep{lones2002biomimetic}.
+Many artificial life systems are conceived to study open-ended dynamics.
+As such, it is often essential to allow for the computational elements designated for particular operations to shift over time, to allow for the introduction and incorporation of novel computational objects at run time, and to allow for the removal of existing computational objects at run time.
 
-The notion of tags is not unique to genetic programming.
-Other digital evolution subdomains have also made effective use of tag-matching techniques (cite... Markov brains? neuroevolution?).
+Tag-based referencing, sometimes also termed pattern matching or inexact referencing, provides a practical and commonplace solution for specifying computational operands.
+This approach encodes a tag for each computational operand that may be selected and a tag for each querying operation.
+Operands are then selected for each query through a tag-matching process.
+An querying operation's tag is compared to available operand tags.
+Then, typically, either:
+% \begin{itemize}
+%   \itemsep0em
+%   \item
+the best-matching operand is selected,
+%   \item
+all operands with match quality exceeding a threshold are selected,or
+%  \item
+operands are selected probabilistically based on match quality.
+% \end{itemize}
+% TODO do these need citations I hope not
 
-Spector et al. pioneered the use of tag-matching schemes in genetic programming.
-In \citep{spector2011tag}, Spector et al. use an integer-based tagging and tag-matching to retrieve data items from PushGP stacks, including code modules (TODO @amlalejini is this right?).
+Inexact referencing facilitates orderly growth, shrinkage, and reconfiguration of a system's set of operands and operations.
+If an operand is deleted, it doesn't invalidate any existing operations: other well-matching operands fill its place.
+Likewise, new operations can be created or existing operations can be altered freely: arbitrary query tags may select operands. 
+% Tag-based referencing may also provide properties that affect evolvability:
+% \begin{itemize}
+%   \itemsep0em 
+%   \item bias to the tendency of queries or operands to for tight-affinity matches (i.e., tunable specificity)
+%   \item bias to the stability of certain connections under mutation (i.e., tunable robustness),
+%   \item bias to the likelihood of connections arising between subsets of queries and operands (i.e., modularity), and
+%   \item mitigation of disruption under duplication of queries and operands (i.e., gene duplication \citep{ohno2013evolution, lewis1978gene}).
+%   % found these classic gene duplication references here: https://www.sciencedirect.com/science/article/pii/S108495219990335X
+% \end{itemize}
 
-In existing work, the event-driven genetic programming representation SignalGP has used a hamming-distance-based tag-matching scheme to activate program modules in response to tagged events.
-In \citep{lalejini2018evolving}, Lalejini and Ofria demonstrate the event-driven paradigm realized with tag-matching yields better-performing evolved solutions to an environmental state tracking problem and a distributed leader-election problem.
-In \citep{lalejini2019}, Lalejini and Ofria investigate the consequences of applying a minimum match-quality cutoff threshold.
-Requiring exact or near-exact matches cripples the rate of adaptive evolution against the environmental state tracking problem, ostensibly because the probabilities of establishing event-module connections through mutation becomes miniscule.
-On the other hand, enforcing only a low match-quality quality cutoff threshold reduces the quality of evolved solutions in the presence of additional irrelevant environmental cues.
+Indeed, inexact referencing techniques find common use in agent-based modeling \citep{riolo2001evolution}, digital evolution \citep{ray1991approach, ofria2004avida}, neuroevolution \citep{reisinger2007acquiring}, artificial gene regulatory networks \citep{banzhaf2003artificial}, genetic programming \citep{spector2011tag, lalejini2018evolving}, and artificial chemistry \citep{dittrich2001artificial}.
+These systems typically either use tagging schemes based on hamming distance between bitstrings (e.g., \citep{lalejini2018evolving} or \citep{banzhaf2003artificial}) or differences between real-valued scalars (e.g., \citep{riolo2001evolution} or \citep{spector2011tag}).
+However, other tag-matching systems, such as Downing's streak metric \citep{downing2015intelligence}, have been proposed.
 
-Spector et al. use an integer-based tagging system, while Lalejini and Ofria use a hamming-distance based tagging system.
-In \citep{downing2015intelligence}, Downing proposes a tag-matching metric based on the lengths of matching and mismatching streaks between two bitstrings but does not demonstrate it in an evolving system.
-(We formally characterize these tag-matching systems in our Methods section.)
+We find that tag-matching systems vary with respect to
+\begin{enumerate}
+  \itemsep0em 
+  \item geometric structure that biases or limits the patterns of connectivity that form among queries and operands,
+  \item variational properties that influence changes to connectivity observed under mutation, and
+  \item evolutionary outcomes such as the rate of adaptive evolution and the quality of evolved solutions.
+\end{enumerate}
+%Although some work has been done comparing the , for example minimum match-quality cutoff threshold \citep{lalejini2019} and selection \citep{Moreno_2019}
+%The implications of underlying criteria determining tags' affinities have been unexplored.
+%Here, we characterize meaningful differences among tag-matching systems with respect to geometric, variational, and evolutionary properties.
+Understanding these differences will help researchers more effectively employ tag-matching schemes in artificial life systems, but also provides context for inquiry into the properties and mechanisms of tag-matching systems in nature.    
 
-Although these tag-matching systems all suffice to match queries and operands, they may vary meaningfully with respect to the graph structures of query-operand matches they can represent and do statically tend to represent.
-Here, we set out to test different properties of tag-matching systems with respect to geometrical constraint, mutational outcomes, and evolutionary dynamics.
+% of tag-matching systems.
+% Such findings will be of practical use May raise interseting evolutionary/theory questions.
+
+%In this work, we set out to characterize several tag-matching schemes between bitstring tags that have been proposed in the artificial life and genetic programming 
+
+% We overview the bitstring tag representation and the tag-matching metrics that we used in our experiments.
+% Paper layout
+
+% neuroevolution 
+
+% gene regulatory networks \citep{}
+
+% artifical life: tierra  for program flow control nops
+
+% \citep{bagley1990spontaneous} probability of reaction or reaction rate
+
+
+% Spector et al. pioneered the use of tag-matching schemes in genetic programming (GP).
+% In \citep{}, Spector et al. use an integer-based tagging and tag-matching to retrieve data items from PushGP stacks, including code modules (TODO @amlalejini is this right?). % @AML: more or less, yes that's right
+% @AML: Work in mention of tag-access memory? Want to advertise the technique so that someone else can come along and try it out in more contexts... this might not be the best place to do so, though.
+% Additional work extended the use of tags for labeling and referring to positions in memory \citep{lalejini_tag-accessed_2019} for linear GP systems.
+
+% In existing work, the event-driven genetic programming representation SignalGP has used a hamming-distance-based tag-matching scheme to activate program modules in response to tagged events.
+% In , Lalejini and Ofria demonstrate the event-driven paradigm realized with tag-matching yields better-performing evolved solutions to an environmental state tracking problem and a distributed leader-election problem.
+% In \, Lalejini and Ofria investigate the consequences of applying a .
+% Requiring exact or near-exact matches cripples the rate of adaptive evolution against the environmental state tracking problem, ostensibly because the probabilities of establishing event-module connections through mutation becomes miniscule.
+% On the other hand, enforcing only a low match-quality quality cutoff threshold reduces the quality of evolved solutions in the presence of additional irrelevant environmental cues.
+
+% Spector et al. use an integer-based tagging system, while Lalejini and Ofria use a hamming-distance based tagging system.
+% In \citep{downing2015intelligence}, Downing proposes a tag-matching metric based on the lengths of matching and mismatching streaks between two bitstrings but does not demonstrate it in an evolving system.
+% (We formally characterize these tag-matching systems in our Methods section.)
+
 
 %Metric dimensionality constrains the possible relative orderings of matches.
 %A one-dimensional metric can represent all possible query-to-single-operand lookups.
@@ -94,13 +122,13 @@ Here, we set out to test different properties of tag-matching systems with respe
 %Likewise, every individual mutation on a pair of tags matched using the hamming metric has an effect of equal magnitude on match quality.
 %However, an individual mutation on a pair of tags matched using the streak metric may have no effect on match quality (e.g., a neutral site), a slight effect on match quality (e.g., on the periphery of a matching or mismatching streak), or a severe effect on match quality (e.g., at the center of a matching or mismatching streak).
 
-The evolutionary consequences of a tag-matching scheme's underlying similarity-defining metric remain unexplored.
-Do different tag-matching metrics exhibit different rates of adaptive evolution?
-Do tag-matching metrics affect the quality of evolved solutions?
-If so, which tag-matching metrics best promote rapid adaptive evolution and high-quality evolved solutions?
-And under what circumstances?
+% The evolutionary consequences of a tag-matching scheme's underlying similarity-defining metric remain unexplored.
+% Do different tag-matching metrics exhibit different rates of adaptive evolution?
+% Do tag-matching metrics affect the quality of evolved solutions?
+% If so, which tag-matching metrics best promote rapid adaptive evolution and high-quality evolved solutions?
+% And under what circumstances?
 
-In this work, we set out to characterize several tag-matching schemes between bitstring tags that have been proposed in the artificial life and genetic programming literature.
+literature.
 
 %First, we examine geometric properties of the tag-matching schemes: how do TODO?
 
@@ -109,3 +137,81 @@ In this work, we set out to characterize several tag-matching schemes between bi
 %We run a toy target-matching evolutionary experiment to see if these geometric and variational properties have an effect in practice.
 
 %Finally, we throw the different tag-matching schemes into a to test them on diagnostic problems that weren't specifically designed for tag analysis.
+
+
+%In traditional computer programming, computational elements are  
+% what about indices
+
+
+% Mutation of names, addition or removal of modules at run time.
+% Expressed in terms of the abstractions artificial life systems: from virtual hardware stand-ins like registers, stacks, or jump addresses in genetic programs,  in artificial chemistries, genes in gene regulatory network models, individual neurons or neural modules in neuroevolution, or more-general specification of agent interactions in agent-based models of complex systems 
+% // has a ton of ciatations for agent interations in agent-based models of complex systems: https://www.sciencedirect.com/science/article/pii/S0950705116302994
+
+% In traditional computer programming, BLAH
+
+% The creation of novel elements, the extinction or removal of elements, 
+
+
+% We will refer to computational elements that are specified among by a computer program as operands.
+% The term queries will describe sites in the computer program where a operand is specified.
+
+% As instances of computer programs, genetic programs must also specify computational elements on which to act.
+% Several approaches to addressing this problem have arisen. 
+
+% % @AML: 
+% % - Some existing addressing mechanisms in GP: (1) direct addressing (enumerating all possible operands, encode in query), (2) type-based addressing (PushGP stacks), (3) probabilistic addressing (e.g., recent tangled program graph shared memory mechanisms), (4) template-based addressing (avida, tierra). 
+
+% Operands may be implicitly specified according to the position of a query in a genetic program.
+% Tree-based GP, which traditionally represent programs as a rooted binary trees of operations, exemplify this approach.
+% An operation's inputs are simply the outputs of its child nodes.
+% %Lones and Tyrell commmentary: mutational operator disaster
+% %potentially restricts possible topologies?
+
+% A second possibility is to enumerate all possible operands, assign each a operand unique identifier, and then encode an identifier for each query.
+% However, this approach doesn't effectively support the addition or removal of operands.
+% %* too many options first = miniscule probability of connecting
+% %* too few options next
+
+% Tag-matching constitutes a third possible solution.
+% This approach encodes a tag for each query and for each available operand.
+% Then, operands are specified for each query through a tag-matching process where the query tag is compared to all available operand tags and the best-matching operand is selected.
+% Queries may be dereferenced prior to program evaluation (e.g., static) or during program evaluation (e.g., dynamic), potentially allowing for program state to influence which operands are specified by queries.
+% This third idea is similar to the second except that it allows for the number of operands to change without the need for a complicated and potentially arbitrary mutation operator to update invalidated queries.
+
+% %Duplication and deletion of genes (e.g., modules) is important in evolutionary biology in the evolution of complex features (TODO cite).
+% %Genetic program representations that accommodate such events might help GP benefit from these events .
+% What are the benefits of tags/tag-based referencing?
+
+% \begin{itemize}
+%   \item Hypothesis: Inexactness allowed by tag-based referencing makes these references
+%         more robust to minor genetic perturbations, smoothing the genotype-phenotype
+%         mapping relative to more traditional memory-indexing techniques (pulled from
+%         2019 Tag-access memory abstract).
+%   \item We don't need to know/lock-in the architecture of what our tags are referencing.
+%         If a referent (e.g., module) is deleted, it doesn't invalidate any of the
+%         in-program references (e.g., module calls). The same is true for creating
+%         a new referent. For example, using tags to reference program modules allows
+%         you to mutate the number of modules in the program without (necessarily)
+%         breaking existing references.
+%   \item Hypothesis: Tag-based referencing should help to enable the duplication/
+%         deletion of referents (e.g., modules), which should improve capacity for
+%         complexity to evolve (i.e., duplication is often cited as important in the
+%         evolution of complex features).
+% \end{itemize}
+
+% A fourth, intriguing approach closely related to tag-matching was developed by Lones and Tyrell in their enzyme genetic programming system, where program sub-modules are labeled according to a functional profile derived from the component's composition and interface \citep{lones2002biomimetic}.
+
+
+
+% Operands may be implicitly specified according to the position of a query in a genetic program.
+% Tree-based GP, which traditionally represent programs as a rooted binary trees of operations, exemplify this approach.
+% An operation's inputs are simply the outputs of its child nodes.
+% %Lones and Tyrell commmentary: mutational operator disaster
+% %potentially restricts possible topologies?
+
+% A second possibility is to enumerate all possible operands, assign each a operand unique identifier, and then encode an identifier for each query.
+% However, this approach doesn't effectively support the addition or removal of operands.
+% %* too many options first = miniscule probability of connecting
+% %* too few options next
+% Tag-matching constitutes a third possible solution.
+

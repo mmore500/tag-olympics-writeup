@@ -15,9 +15,18 @@
 
 \usepackage{amsmath}
 
+\usepackage{bibspacing}
+\setlength{\bibsep}{0pt plus 0.3ex}
+
+
 \ifdefined\mydraft
 \mydraft
 \fi
+
+\usepackage[
+  subtle
+  %moderate
+]{savetrees}
 
 \graphicspath{{img/}}
 
@@ -67,16 +76,16 @@
 % output. The use of ps type I fonts should avoid this problem.
 
 
-\title{TODO Affects Evolution: Characterizing and Benchmarking Tag-Matching Schemes}
+\title{Matchmaker, Matchmaker, Make Me a Match: Geometric, Variational, and Evolutionary Implications of Criteria for Tag Affinity}
 \author{
     Matthew Andres Moreno,
 	Alexander Lalejini,
     \and Charles Ofria \\
     \mbox{}\\
     BEACON Center for the Study of Evolution in Action \\
-    Department of Computer Science and Engineering \\
-    Program in Ecology, Evolutionary Biology, and Behavior \\
-    Michigan State University, East Lansing, MI 48824 \\
+    % Department of Computer Science and Engineering \\
+    % Program in Ecology, Evolutionary Biology, and Behavior \\
+    % Michigan State University, East Lansing, MI 48824 \\
     % BEACON Center for the Study of Evolution in Action \\
     % Department of Computer Science and Engineering \\
     % Program in Ecology, Evolutionary Biology and Behavior \\
@@ -103,7 +112,7 @@
 
 \input{tex/introduction.tex}
 
-\input{tex/methods.tex}
+\input{tex/metrics.tex}
 
 \input{tex/geometric.tex}
 
@@ -114,6 +123,8 @@
 \input{tex/discussion.tex}
 
 \input{tex/conclusion.tex}
+
+\input{tex/codedata.tex}
 
 \input{tex/acknowledgements.tex}
 

@@ -1,0 +1,66 @@
+\section{Genetic Programming Experiments}
+
+\subsection{SignalGP}
+
+SignalGP (Signal-driven Genetic Programs) is a GP representation that enables signal-driven (\textit{i.e.}, event-driven) program execution.
+In SignalGP, programs are segmented into modules (functions) that may be automatically triggered by exogenously- or endogenously-generated signals.
+Each module in SignalGP associates a tag with a linear sequence of instructions.
+SignalGP makes explicit the concept of signals (events), which comprise a tag and, optionally, signal-specific data.
+Signals trigger the module with the closest matching tag (according to a given tag-matching scheme), using any signal-associated data as input to the triggered module.
+SignalGP can handle many signals simultaneously, processing each in parallel.
+
+The SignalGP instruction set, in addition to including traditional GP operations, allows programs to generate internal signals, broadcast external signals, and otherwise work in a tag-based context.
+Instructions contain arguments, including an evolvable tag, that may modify the instruction's effect, often specifying memory locations or fixed values.
+Instructions may refer to program modules using tag-based referencing; for example, an instruction may trigger the execution of a program module using the instruction's tag to specify which module to trigger.
+SignalGP also supports genetic regulation with promoter and repressor instructions that, when executed, allow programs to adjust how well subsequent signals match with a target function (specified with tag-based referencing).
+
+See \citepinappendix{lalejini2018evolving} for a more detailed description of the SignalGP representation. Additionally, see the GitHub repository for the SignalGP implementation used in this work \citepinappendix{lalejini_2020_3781295}.
+
+\subsection{Changing-signal Task Description}
+
+The changing-signal task requires programs to express a distinct response to each of $K$ environmental signal (each signal has a unique tag).
+Programs express a response by executing one of $K$ response instructions.
+Successful programs can `hardcode' each response with the appropriate environmental signal, ensuring that each environmental signal's tag best matches the function containing the correct response.
+We expect the particular metric used to match tags to influence how well programs adapt to changing-signal task.
+
+During evaluation, we afford programs 64 time steps to express the appropriate response after receiving a signal.
+Once a program expresses a response or the allotted time expires, we reset the program's virtual hardware (resetting all executing threads and thread-local memory), and the environment produces the next signal.
+Evaluation continues until the program correctly responds to each of the $K$ environmental signals or until the program expresses an incorrect response.
+During each evaluation, programs experience environmental signals in a random order; thus, the correct \textit{order} of responses will vary and cannot be hardcoded.
+
+% Experiment overview
+For each metric, we evolved 200 replicate populations (each with a unique random number seed) of 500 asexually reproducing programs in an eight-signal environment ($K=8$) for 100 generations.
+We identified the most performant tag mutation rate (from a range of possible mutation rates) for each metric to use in our experiment.
+These data (and analyses) are available online in the GitHub repository that houses these experiments \citepinappendix{lalejini_2020_3781295}.
+We used the following per-bit tag mutation rates for the changing-signal task: 0.01 for the Hamming and Streak metrics, 0.002 for the Hash metric, and 0.02 for the Integer and Bidirectional Integer metrics.
+Aside from tag mutation rate, the overall configuration used for each metric was identical.
+We limited tag variation in offspring to tag mutation operators (bit flips) by initializing populations with a common ancestor program in which all tags are identical and by disallowing mutations that would insert instructions with random tags.
+
+The full configuration details for the changing-signal task (including a guide to running these experiments on your local machine) can be found in the associated GitHub repository \citepinappendix{lalejini_2020_3781295}.
+
+\subsection{Directional-signal Task Description}
+
+% Task overview
+As in the changing-signal task, the directional-signal task requires that programs respond to a sequence of environmental cues; in the directional-signal task, however, the correct response depends on previously experienced signals.
+In the directional signal task, there are two possible environmental signals --- a `forward-signal' and a `backward-signal' (each with a distinct tag) ---  and four possible responses.
+If a program receives a forward-signal, it should express the next response, and if the program receives, a backward-signal, it should express the previous response.
+For example, if response-three is currently required, then a subsequent forward-signal indicates that response-four is required next, while a backward-signal would instead indicate that response-two is required next.
+Because the appropriate response to both the backward- and forward-signals change over time, successful programs must regulate which functions these signals trigger (rather than hardcode each response to a particular signal).
+
+% Evaluation overview
+We evaluate programs on all possible four-signal sequences of forward- and backward-signals (sixteen total).
+For each program, we evaluate each sequence of signals independently, and a program's fitness is equal to its aggregate performance.
+Otherwise, evaluation on a single sequence of signals mirrors that of the changing signal task.
+
+% Experiment overview
+We used an identical experimental design for the directional-signal task as in the changing-signal task. 
+However, we evolved programs for 5000 generations (instead of 100) and re-parameterized each metric's tag mutation rate (these data are available in the associated GitHub repository \citepinappendix{lalejini_2020_3781295}): 
+0.001 for the Hamming and Hash metrics, 0.002 for the Integer and Streak metrics, and 0.0001 for the Bidirectional Integer Metric. 
+
+The full configuration details for the directional-signal task (including a guide to running these experiments on your local machine) can be found in the associated GitHub repository \citepinappendix{lalejini_2020_3781295}.
+
+\subsection{Data analysis and Implementation}
+
+The source code for our GP experiments can be found in the following GitHub repository: \citepinappendix{lalejini_2020_3781295}. This repository additionally includes all data analysis and visualization scripts, experiment configuration details, and a guide for running our experiments locally.
+
+

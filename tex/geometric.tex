@@ -1,31 +1,26 @@
 \section{Geometric Analyses} \label{sec:geometric}
 
-In this section, we consider the geometry that tag matching metrics construct over bitstring tag space.
+In this section, we consider the geometry that tag matching metrics impose over bitstring tag space.
+Geometric constraints of tag matching metrics may affect the patterns of tag connectivity that tend to (or even are possible to) arise under a tag-matching metric.
+In metrics with strong geometric constraint, sets of tags may exist such that no single tag can simultaneously exhibit a close affinity to more than one tag in the set.
+Likewise, in metrics with strong geometric constraint, a set of tags may exist such that any tag will either match all tags in the set well or match all tags in the set poorly.
 
-
-Geometric constraints of tag matching metrics may affect the patterns of tag connectivity that tend to, or even can, arise under a
-In a constrained, it is possible for there to be two queries such that no operand can match both queries well.
-Likewise, it is possible for there to be two queries such that an operand must match both queries well.
-
-Structure might prove useful to facilitate modularity, where subsets of tag space tend to have associated functionality.
-However, it may also constrain the ease (or possibility) at which adaptive variation can be generated.
+Geometric constraint might prove useful to facilitate modularity, where subsets of tag space tend to have associated functionality.
+However, it may also restrict the generation of adaptive variation.
 
 To get at these questions, we compare distributions of two statistics measuring constraint across our five tag-matching metrics.
-\input{fig/dimensionality_measure.tex}
+% \input{fig/dimensionality_measure.tex}
 
 The first statistic we calculate is similarity constraint.
 This statistic quantifies the question, "If two tags both match closely to a third tag, will they necessarily match closely with each other?"
 To compute this statistic, we randomly sampled 5000 target tags.
 Then, for each target tag we randomly sampled tags until we found two secondarily-sampled tags that were within a 0.01 match distance radius to the target.
-Finally, we computed the match distance between the pair of seconarily-sampled tags.
-Figure \ref{fig:dimensionality_measure}(a) summarizes this process.
-
-The second statistic we calculate is dissimilarity constraint.
-This statistic quantifies the question, "If a tag matches a second tag closely and a third tag poorly, will the second and third tag tend to match poorly?"
-To compute this statistic, we randomly sampled 5000 target tags.
-Then, for each target tag we randomly sampled tags until we found a secondarily-sampled tag that was within a 0.01 match distance radius of the target and a secondarily-sampled tag that was outside a 0.99 match distance radius of the target.
 Finally, we computed the match distance between the pair of secondarily-sampled tags.
-Figure \ref{fig:dimensionality_measure}(a) summarizes this process.
+Figure \ref{fig:dimensionality_measure} summarizes this process.
+
+We also considered a second statistic, which we term dissimilarity constraint.
+This statistic quantifies the question, "If a tag matches a second tag closely and a third tag poorly, will the second and third tag tend to match poorly?"
+Analysis of this statistic, which yielded results closely mirroring the similarity constraint statistic, is provided in Supplementary Section \ref{sec:dissimilarityconstraint}.
 
 \subsection{Similarity Constraint}
 
@@ -47,7 +42,7 @@ This metric not only exhibits tight similarity constraint in the mean case, but 
 
 The unidirectional integer metric exhibits much looser similarity constraint in the mean case.
 We estimated this value as 0.5092.
-However, this looser similarity constraint appears to be an artifiact of averaging between two very tight constraints: a tight constraint to 0 in one case and a tight constraint to 1 in the other.
+However, this looser similarity constraint appears to be an artifact of averaging between two very tight constraints: a tight constraint to 0 in one case and a tight constraint to 1 in the other.
 In Figure \ref{fig:sphere_distnplot}, you can clearly see that all sampled cases fall under one of these umbrellas.
 This phenomenon results from the asymmetrical definition of the metric.
 If you sample pairs of similar values, half will be in ascending order (resulting in a match distance close to 0) and half will be in descending order, (resulting in a wraparound search and a match distance close to 1).
@@ -79,24 +74,3 @@ In fact, secondarily-sampled match distances are uniformly distributed.
 This is exactly as we would expect:
 given any particular set of operands, a well-behaved hash function should yield a uniform distribution of hash results.
 The hash metric exhibits no geometric structure and total geometric flexibility.
-
-\subsection{Dissimilarity Constraint}
-
-\input{fig/sphere_reverse.tex}
-
-Figure \ref{fig:sphere_barplot} provides our estimate of the dissimilarity constraint statistic for each metric, with error bars representing a 95\% confidence interval.
-Figure \ref{fig:sphere_distnplot} shows the distribution of the dissimilarity constraint statistic values among the 5000 replicate samples in greater detail.
-
-These results tell a story across metrics very to the simiarity constraint results.
-The hash metric exhibited no geometric structure.
-The streak metric exhibited some geometric structure in the mean case (mean secondarily-sampled distance 0.7127), but outcomes that strongly broke geometric constraints were also observed (we observed distances between secondarily-sampled tags as low as 0.0002).
-The hamming metric exhibited stronger geometric structure in the mean case (mean secondarily-sampled distance 0.8248) and had less extreme tail-end outcomes (we observed match distances between the secondarily-sampled tags only as low as 0.2355).
-The bidirectional integer metric was highly constrained in both the mean and tail-end cases.
-The smallest distance between secondarily-sampled tags was 0.9802.
-Again, the unidirectional integer metric exhibited a quirky result due to its noncommutative nature.
-The mean distance between secondarily-sampled tags was 0.0100.
-As shown in Figure \ref{fig:sphere_distnplot}, all secondarily-sampled distances oberved with this metric were extremely small.
-Under this metric, if you sample a tag that is close to a target it will be numerically slightly larger than the target.
-Likewise, if you sample a tag that is very far from a target, it will be numerically slightly smaller than the target (due to wraparound).
-Then, explaining this counterintuitive result, the distance from the slightly smaller to the larger tag will be small.
-
