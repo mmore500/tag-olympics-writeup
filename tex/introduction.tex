@@ -2,7 +2,7 @@
 
 Computer operations must specify the identities of registers and memory addresses they read from and act on.
 Computer programs, composed of these individual operations, apply identity-specifying information in individual operations to name higher-level abstractions such as data structures and functions.
-As instances of computer programs, digital artificial life systems must also specify computational elements on which to act.
+As instances of computer programs by their very nature, digital artificial life systems must also specify computational elements on which to act.
 In terms of the abstractions particular artificial life systems represent, these computational elements range from
 \begin{itemize}
   \itemsep0em 
@@ -20,22 +20,22 @@ As such, it is often essential to allow for the computational elements designate
 Tag-based referencing, sometimes also termed pattern matching or inexact referencing, provides a practical and commonplace solution for specifying computational operands.
 This approach encodes a tag for each computational operand that may be selected and a tag for each querying operation.
 Operands are then selected for each query through a tag-matching process.
-An querying operation's tag is compared to available operand tags.
+A querying operation's tag is compared to available operand tags. %fixed
 Then, typically, either:
 % \begin{itemize}
 %   \itemsep0em
 %   \item
 the best-matching operand is selected,
 %   \item
-all operands with match quality exceeding a threshold are selected,or
+all operands with match quality exceeding a threshold are selected, or
 %  \item
 operands are selected probabilistically based on match quality.
 % \end{itemize}
 % TODO do these need citations I hope not
 
 Inexact referencing facilitates orderly growth, shrinkage, and reconfiguration of a system's set of operands and operations.
-If an operand is deleted, it doesn't invalidate any existing operations: other well-matching operands fill its place.
-Likewise, new operations can be created or existing operations can be altered freely: arbitrary query tags may select operands. 
+If an operand is deleted, it does not invalidate any existing operations, as other well-matching operands will fill its place.
+Likewise, new operations can be created or existing operations can be altered freely because arbitrary query tags may select operands. 
 % Tag-based referencing may also provide properties that affect evolvability:
 % \begin{itemize}
 %   \itemsep0em 
@@ -47,7 +47,7 @@ Likewise, new operations can be created or existing operations can be altered fr
 % \end{itemize}
 
 Indeed, inexact referencing techniques find common use in agent-based modeling \citep{riolo2001evolution}, digital evolution \citep{ray1991approach, ofria2004avida}, neuroevolution \citep{reisinger2007acquiring}, artificial gene regulatory networks \citep{banzhaf2003artificial}, genetic programming \citep{spector2011tag, lalejini2018evolving}, and artificial chemistry \citep{dittrich2001artificial}.
-These systems typically either use tagging schemes based on hamming distance between bitstrings (e.g., \citep{lalejini2018evolving} or \citep{banzhaf2003artificial}) or differences between real-valued scalars (e.g., \citep{riolo2001evolution} or \citep{spector2011tag}).
+These systems typically either use tagging schemes based on hamming distance between bitstrings (\textit{e.g.}, \citep{lalejini2018evolving} or \citep{banzhaf2003artificial}) or differences between real-valued scalars (\textit{e.g.}, \citep{riolo2001evolution} or \citep{spector2011tag}).
 However, other tag-matching systems, such as Downing's streak metric \citep{downing2015intelligence}, have been proposed.
 
 We find that tag-matching systems vary with respect to
@@ -60,7 +60,7 @@ We find that tag-matching systems vary with respect to
 %Although some work has been done comparing the , for example minimum match-quality cutoff threshold \citep{lalejini2019} and selection \citep{Moreno_2019}
 %The implications of underlying criteria determining tags' affinities have been unexplored.
 %Here, we characterize meaningful differences among tag-matching systems with respect to geometric, variational, and evolutionary properties.
-Understanding these differences will help researchers more effectively employ tag-matching schemes in artificial life systems, but also provides context for inquiry into the properties and mechanisms of tag-matching systems in nature.    
+Understanding these differences will help researchers more effectively employ tag-matching schemes in artificial life systems, but also provide context for inquiry into the properties and mechanisms of tag-matching systems in nature.    
 
 % of tag-matching systems.
 % Such findings will be of practical use May raise interseting evolutionary/theory questions.
@@ -128,7 +128,7 @@ Understanding these differences will help researchers more effectively employ ta
 % If so, which tag-matching metrics best promote rapid adaptive evolution and high-quality evolved solutions?
 % And under what circumstances?
 
-literature.
+% literature.
 
 %First, we examine geometric properties of the tag-matching schemes: how do TODO?
 

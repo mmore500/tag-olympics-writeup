@@ -4,45 +4,45 @@
 % - From GP results: hash metric most susceptible to mutational meltdowns
 
 % \input{fig/conceptual_geometry.tex}
-First, we performed geometrical analyses to understand how our panel of tag-matching metrics constrain the patterns of that tend to, or even are possible to, arise.
-If two tags both closely match a third tag, will these two tags be constrained to closely match each other?
-Likewise, if a tag closely matches a second tag, will the tag be constrained to poorly match other tags the second tag poorly matches?
-
-We found that the bidirectional integer metric exhibited the tightest geometrical constraint in our analyses.
-The unidirectional integer metric also exhibits tight geometrical constraint, but quirks of its non-commutative construction allows that constraint to split across extremes of poor- and close-matching.
-Hamming and streak metrics are more loosely constrained, with the streak metric allowing for edge cases that very strongly break geometric constraint.
-Finally, the hash metric exhibits no geometrical structure or constraint.
+% First, we performed  %TODO
+% If two tags both closely match a third tag, will these two tags be constrained to closely match each other?
+% Likewise, if a tag closely matches a second tag, will the tag be constrained to poorly match other tags the second tag poorly matches?
+We used geometrical analyses to explore how tag-matching metrics constrain patterns of connectivity between tags, making some configurations unlikely or even impossible.
+The bidirectional integer metric exhibited the tightest geometrical constraint in our analyses.
+The unidirectional integer metric also exhibited tight geometrical constraint, but quirks of its non-commutative construction can allow that constraint to split across perfect- and worst-matching extremes.
+Hamming and streak metrics exhibited looser geometric constraint, with the streak metric allowing for edge cases that very strongly break constraints.
+Finally, the hash metric exhibited no geometrical constraint.
 
 Next, we analyzed the effect of bitwise mutation on match distance score under the different metrics.
 Under the hamming metric, all mutations have small effects on match distance score.
-In contrast, under the integer metrics, rare mutations have strong effects on match distance score.
-The streak metric also exhibited strong-effect mutations, particularly on coupling loosely-affiliated tags.
-The hash metric exhibited the fattest tails of mutational effect, with strong-effect mutations occuring frequently.
-Interestingly, the hash metric also exhibited sign-outcome frequencies that differed from the other metrics.
-Mutations that decoupled tightly-matching tags and mutations that coupled loosely-matching tags were more frequent.
+In contrast, under the integer metrics, rare mutations can have strong effects on match distance score.
+The streak metric also exhibited strong-effect mutations, particularly with respect to coupling loosely-affiliated tags.
+The hash metric exhibited the fattest tails of mutational magnitude, with strong-effect mutations occurring frequently.
+Interestingly, the hash metric also exhibited sign-outcome frequencies that differed from the other metrics: mutations that decoupled tightly-matching tags and mutations that coupled loosely-matching tags were more frequent compared to other metrics.
 
-On mutational walks from an identical tag pair, the hamming metric exhibited the greatest robustness to mutation, followed by the streak metric.
+The hamming metric exhibited the greatest robustness to mutation along mutational walks, followed by the streak metric.
 The integer metrics, in particular the unidirectional integer metric, exhibited less robustness.
 The streak metric, where all one-step mutations scramble match distance, exhibited the least robustness.
 
-In evolutionary experiments, we found that evidence that problem domain constraint network tag construct structure differentially influenced performance of tag-matching metrics. 
-In target-matching evolutionary experiments, this corresponded to degree and regularity of the target graphs.
-In the genetic programming experiments, this corresponded to additional constraints on the patterns of connectivity due to upregulation and downregulation of modules.
+In evolutionary experiments, we found that network constraint (the number of tags a query or operand needs to simultaneously establish affinity with) differentially influenced performance of tag-matching metrics. 
+In target-matching evolutionary experiments, netwowrk constraint corresponded to degree and regularity of the target graphs.
+In the genetic programming experiments, this corresponded to the interconnectedness of module interaction networks that were selected for.
 
-In target-matching evolutionary experiments, we found that the hash metric enabled rapid adaptive evolution towards targets with low tag-matching constraint.
+In target-matching evolutionary experiments, we found that the hash metric enabled rapid adaptive evolution toward targets with low network constraint.
 This rapid evolution may be due to the hash metric's ability to rapidly generate variation.
-In cases with high tag-matching constraint, however, the hash metric yielded poor-quality solutions.
-The integer metrics also yielded poor-quality solutions for targets with tag-matching constraint.
+In cases with high network constraint, however, the hash metric yielded poor-quality solutions.
+The integer metrics also yielded poor-quality solutions for target graphs with network constraint.
 In some more-constrained cases, the streak metric enabled more rapid adaptive evolution than the hamming metric.
 
-In evolutionary experiments to evolve genetic programs, we found that the hamming and streak metrics yielded successful solutions the most frequently.
+In genetic programming evolutionary experiments, we found that the hamming and streak metrics yielded successful solutions the most frequently.
 The hash metric had the next best performance, yielding more solutions than the integer metrics, which performed comparably.
-Interestingly, on the directional signal task, which tends to evolve networks with more tag-matching constraints (high-degree regulation/activation interaction network) we found evidence that the streak metric enabled more rapid adaptive evolution than the hamming metric.
+On the directional signal task, which tends to require denser interaction networks, we found evidence that the streak metric enabled more rapid adaptive evolution than the hamming metric.
 
-The streak metric seems to offer variational and geometric properties that are in many ways intermediate between the hash metric and the integer and hamming metrics.
-It exhibits low, but some, geometric constraint.
-Many mutations are neutral (like the integer metrics) but extreme-effect mutations also occur.
-However, it is unclear exactly why it enabled more rapid adaptive evolution on the genetic programming problem.
+Relative to the other metrics, the streak metric tends to offer intermediate variational and geometric properties.
+It exhibits some, but not strict, geometric constraint.
+Many mutations are neutral or near-neutral (like the integer and hamming metrics) but a fat tail of extreme-effect mutations also occur (like the hash metric).
+The streak metric exhibits robustness under mutational walks that falls between the hamming and integer metrics. 
+However, it is unclear exactly why the streak metric enabled rapid adaptive evolution on the directional signal task.
 
 
 

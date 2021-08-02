@@ -1,33 +1,32 @@
 \section{Variational Analysis} \label{sec:variational}
 
-We performed two analyses to characterize the properties of our five match distance metrics under bitwise mutation.
-Single-step mutational analysis examines the local mutational neighborhood of tag pairs.
-Then, mutational walk analysis surveys the topography of the wider mutational landscape.
+For each tag-matching metric, we performed single-step mutational analyses to examine the local mutational neighborhood of loosely-affiliated and tightly-affiliated tag pairs and a mutational walk analysis to survey the broader mutational landscape.
 
 \subsection{Single-Step Mutations}
 
 \input{fig/mutational_step.tex}
 
-Figure \ref{fig:mutational_step} visualizes the distribution of match distance outcomes of single-bit mutations.
-We provide this analysis for two categories of tag pairs: tags that were loosely affiliated and tags that were tightly affiliated.
+Figure \ref{fig:mutational_step} visualizes the distribution of changes to match distance from single-bit mutations.
 
-To measure the distribution of mutational perturbations on loosely-affiliated tag pairs we began by sampling a target tag and then randomly sampled candidate tags until we found a second tag with a match distance $> 0.5$.
+The distribution of mutational perturbations on loosely-affiliated tag pairs reflects the effects of one-step mutations on tags without pre-existing affinity.
+To measure the distribution of mutational perturbations on loosely-affiliated tag pairs We began by sampling a target tag and then randomly sampled candidate tags until we found a second tag with a match distance $> 0.5$.
 We recorded the match distance between our tag pair, applied a one-bit mutation to the secondary tag, and then measured the match distance between the tag pair again.
+We repeated this process to generate 5000 samples.
 Mutational perturbation was calculated as the difference between the match distances.
 A negative mutational perturbation indicates a decrease in match distance and, therefore, an increase in match quality.
 
 We measured the distribution of mutational perturbations on tightly-matched tag pairs similarly, except we uniformly sampled secondary candidate tags until we found a second tag with match distance $< 0.01$.
-We sampled 5000 tightly-matched measurements and 5000 loosely-matched measurements for each metric.
+This distribution reflects the effects of one-step mutations on tags with pre-existing affinity.
 
 For both tightly- and loosely-affiliated tag pairs under the integer and bidirectional integer metrics, most mutations caused very small changes in match distance.
-These mutations likely the toggle least-significant bits of the tag's integer representation.
+These mutations toggle least-significant bits of the tag's integer representation.
 However, under these metrics, a small fraction of mutations affecting more-significant bits of the integer representation have a much stronger effect.
-Single-step mutations occassionally occur that strongly couple loosely-affiliated tag pairs or strongly decouple tightly-affiliated tag pairs.
-In particular, the unidirectional integer metric, presumably due to its non-commutative quirks, appears to exhibit more frequent strong decoupling mutations than the bidirectional integer metric.
+Single-step mutations occasionally occur that strongly couple loosely-affiliated tag pairs or strongly decouple tightly-affiliated tag pairs.
+In particular, the unidirectional integer metric appears to exhibit more frequent strong decoupling mutations than the bidirectional integer metric, presumably due to its non-commutative quirks.
 
-The streak metric is the only metric that exhibits perfectly neutral outcomes under mutation.
-These perfectly-neutral mutations presumably affect regions of the bitstring involved neither in the longest-matching streak nor in the longest-mismatching streak.
-The streak metric appears to exhibit a fatter tail of match-distance magnitude for mutations that couple loosely-affiliated tags than the integer metrics.
+The streak metric exhibits a large fraction of perfectly neutral outcomes under mutation.
+These perfectly-neutral mutations presumably affect regions of the bitstring neither involved in the longest-matching streak nor in the longest-mismatching streak.
+The streak metric exhibits a fatter tail of mutational magnitude for mutations that couple loosely-affiliated tags than the integer metrics. %TODO - consider word change for 'fatter'
 In addition, the most extreme mutational outcomes that couple loosely-affiliated tags appear to be of a comparable magnitude to those under the integer metrics.
 Mechanistically, this might be due to mutations that disrupt longest-mismatching streaks.
 However, one-step mutations that decouple tightly-affiliated tags do not appear as potent.
@@ -35,7 +34,7 @@ This might be because achieving a very poor match requires both increasing longe
 
 The hamming metric exhibits a generally uniform magnitude of match-distance changes under mutation.
 High-magnitude one-step mutations do not occur under this metric.
-(Without normalizing match distance to a uniform distribution for randomly-sampled tags, all hamming metric mutations would be of exactly the same magnitude, either increasing or decreasing the count of matching bits by 1).
+(Without normalizing match distance to a uniform distribution for randomly-sampled tags, all hamming metric mutations would be of exactly the same magnitude, either increasing or decreasing the count of matching bits by 1.)
 
 The hash metric exhibits the fattest tails of mutational magnitude of all metrics.
 Extreme-effect one-step mutations are plentiful under this metric.
@@ -48,24 +47,23 @@ Similarly, approximately 75\% of one-step mutations on loosely-affiliated tags w
 
 \input{fig/mutational_walk_barplot.tex}
 
-We analyzed 1000 replicate mutational walks.
-For each walk we first randomly generated a starting tag.
+Figure \ref{fig:mutational_walk_barplot} shows how match distance increases of mutational walks from initially exactly-equivalent tags.
+%Match distances from each metric along these walks are compared side-by-side for exponentially-spaced mutational steps.
+To conduct a mutational walk, we first randomly generated a starting tag.
 Then, we sequentially applied 65 randomly-chosen one-step bit flip mutations, with back mutation allowed.
 At each step along the walk, we measured match distance to the original starting tag.
-Figure \ref{fig:mutational_walk_barplot} shows how match distance increases of mutational walks from initially exaclty-equivalent tags.
-Match distances from each metric along these walks are compared side-by-side for exponentially-spaced mutational steps.
+We analyzed 1000 replicate mutational walks for each metric.
 
-Under the hash metric, equivalent tags don't necessarily exhibit low match distance.
+Under the hash metric, bitwise equivalent tags do not exhibit low match distance.
 So, the mutational walk begins with and then maintains a mean match distance of 0.5.
-
 Under the integer metric, half of mutational steps cause a wrap around effect, immediately spiking the average match distance to 0.5.
-In Supplementary Figure \ref{fig:mutational_walk_lineplot}, you can see that the variance of match distance at a mutational step decreases as the walk proceeds away from match distances biased towards 0 or 1.
+% Supplementary Figure \ref{fig:mutational_walk_lineplot} shows match distance variance decreasing as the walk proceeds away from match distances biased towards 0 or 1 \cite{Moreno_Ofria_2020}.
+The bidirectional integer metric proceeds away from match distance 0 the next quickest, presumably due to large-effect mutations affecting significant bits. %TODO - added 'to' after '0' - confirm that sentence is correct
+% - @AML: 'away from match distance 0 to the next quickest' => to what? I think 'to' breaks the sentence, removing.
 
-The bidirectional integer metric proceeds away from match distance 0 the next quickest, presumably due to large-effect mutations affecting significant bits.
-
-The streak metric proceeds away from match distance 0 the second-slowest, trailed only by the hamming metric.
-(Note non-overlapping 95\% CI at mutational steps 16 and 32.)
-Interestingly, this result is directly contrary to Downing's presentation of the streak metric in \citep{downing2015intelligence}, in which he suggests that the streak metric exhibits greater robustness because its match distance diverges more slowly under a mutational walk.
+The streak metric proceeds away from match distance 0 the second-slowest, trailed only by the hamming metric. %TODO - added 'to' after '0' - confirm that sentence is correct
+% @AML: see above comment about 'to'
+Interestingly, this result contradicts Downing's presentation of the streak metric in \citep{downing2015intelligence}, in which he suggests that the streak metric exhibits greater robustness because its match distance diverges more slowly under a mutational walk.
 This discrepancy is presumably due to our normalization to ensure a uniform distribution of raw match scores between 0 and 1.
 
 
