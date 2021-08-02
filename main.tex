@@ -1,11 +1,55 @@
-\documentclass[letterpaper]{article}
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a general template file for the LaTeX package SVJour3
+% for Springer journals.          Springer Heidelberg 2010/09/16
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article. Delete % signs as needed.
+%
+% This template includes a few options for different layouts and
+% content for various journals. Please consult a previous issue of
+% your journal as needed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% First comes an example EPS file -- just ignore it and
+% proceed on the \documentclass line
+% your LaTeX will extract the file if required
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave
+newpath
+  20 20 moveto
+  20 220 lineto
+  220 220 lineto
+  220 20 lineto
+closepath
+2 setlinewidth
+gsave
+  .4 setgray fill
+grestore
+stroke
+grestore
+\end{filecontents*}
+%
+\RequirePackage{fix-cm}
+
+\documentclass[smallextended]{svjour3}
+
+\smartqed  % flush right qed marks, e.g. at end of proof
+%
+\usepackage{graphicx}
 
 \usepackage[authoryear]{natbib}  %% The order is important
 
 \usepackage[resetlabels]{multibib}
 \newcites{inappendix}{Supplementary References}
 
-\usepackage{alifeconf}
+% \usepackage{alifeconf}
 
 \usepackage{hyperref}
 
@@ -23,10 +67,10 @@
 \mydraft
 \fi
 
-\usepackage[
-  %subtle
-  moderate
-]{savetrees}
+% \usepackage[
+%   %subtle
+%   moderate
+% ]{savetrees}
 
 \graphicspath{{img/}}
 
@@ -77,21 +121,48 @@
 
 
 \title{Matchmaker, Matchmaker, Make Me a Match: Geometric, Variational, and Evolutionary Implications of Criteria for Tag Affinity}
+\titlerunning{Matchmaker, Matchmaker, Make Me a Match}
 \author{
-    Matthew Andres Moreno,
-	Alexander Lalejini,
+    Matthew Andres Moreno
+	  \and Alexander Lalejini
     \and Charles Ofria \\
-    \mbox{}\\
-    BEACON Center for the Study of Evolution in Action \\
-    % Department of Computer Science and Engineering \\
-    % Program in Ecology, Evolutionary Biology, and Behavior \\
-    % Michigan State University, East Lansing, MI 48824 \\
-    % BEACON Center for the Study of Evolution in Action \\
-    % Department of Computer Science and Engineering \\
-    % Program in Ecology, Evolutionary Biology and Behavior \\
-    % Michigan State University, East Lansing, MI 48824 \\
-    mmore500@msu.edu
-} % email of corresponding author
+}
+
+\authorrunning{Moreno et al.} % if too long for running head
+
+\institute{%
+  M. A. Moreno \at
+  BEACON Center for the Study of Evolution in Action \\
+  Department of Computer Science and Engineering \\
+  Program in Ecology, Evolutionary Biology, and Behavior \\
+  Michigan State University, East Lansing, MI \\
+  \email{mmore500@msu.edu}
+\and
+  A. Lalejini \at
+  University of Michigan, Ann Arbor, MI \\
+\and
+  C. Ofria \at
+  BEACON Center for the Study of Evolution in Action \\
+  Department of Computer Science and Engineering \\
+  Program in Ecology, Evolutionary Biology, and Behavior \\
+  Michigan State University, East Lansing, MI \\
+}
+
+\date{Received: date / Accepted: date}
+
+
+\institute{F. Author \at
+              first address \\
+              Tel.: +123-45-678910\\
+              Fax: +123-45-678910\\
+              \email{fauthor@example.com}           %  \\
+%             \emph{Present address:} of F. Author  %  if needed
+           \and
+           S. Author \at
+              second address
+}
+
+\date{Received: date / Accepted: date}
 
 % For several authors from the same institution use the same number to
 % refer to one address.

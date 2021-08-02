@@ -1,0 +1,14 @@
+\begin{thebibliography}{}
+
+\bibitem[Lalejini, 2020]{lalejini_2020_3781295}
+Lalejini, A. (2020).
+\newblock {Exploring tag-matching metrics in SignalGP GitHub repository}.
+\newblock https://doi.org/10.5281/zenodo.3781295.
+
+\bibitem[Lalejini and Ofria, 2018]{lalejini2018evolving}
+Lalejini, A. and Ofria, C. (2018).
+\newblock Evolving event-driven programs with signalgp.
+\newblock In {\em Proceedings of the Genetic and Evolutionary Computation
+  Conference}, pages 1135--1142.
+
+\end{thebibliography}
