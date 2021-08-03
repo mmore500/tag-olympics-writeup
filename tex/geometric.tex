@@ -91,3 +91,17 @@ As shown in Figure \ref{fig:sphere_distnplot}, all secondarily-sampled distances
 Under this metric, if you sample a tag that is close to a target it will be numerically slightly larger than the target.
 Likewise, if you sample a tag that is very far from a target, it will be numerically slightly smaller than the target (due to wraparound).
 Then, explaining this counterintuitive result, the distance from the slightly smaller to the larger tag will be small.
+
+\subsection{Detour Difference}
+
+\input{fig/detour_difference.tex}
+
+To get a sense of the regularity, in a looses sense, of each space we uniformly sampled triplets of points $A$, $B$, and $C$.
+Then, for each metric $m$ we calculated the statistic $m(A, B) + m(B, C) - m(A, C)$.
+If the triangle inequality is respected this statistic should be greater than or equal to zero.
+Figure \ref{fig:detour_difference} plots the distribution of this statistic for each metric.
+The hamming, hash, and streak metrics show evidence of ``shortcuts'' that violate the triangle inequality.
+It should be noted that the raw hamming metric does respect the triangle inequality.
+
+
+
