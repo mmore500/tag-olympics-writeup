@@ -65,3 +65,29 @@ However, unlike the integer metric, secondarily-sampled match distances are unif
 % This is exactly as we would expect:
 % given any particular set of operands, a well-behaved hash function should yield a uniform distribution of hash results.
 As expected, the hash metric exhibits no geometric structure.
+
+\subsection{Dissimilarity Constraint} \label{sec:dissimilarityconstraint}
+
+\input{fig/sphere_reverse.tex}
+% \input{fig/dissimilaritystatistic.tex}
+
+To compute this statistic, we randomly sampled 5000 target tags.
+Then, for each target tag we randomly sampled tags until we found a secondarily-sampled tag that was within a 0.01 match distance radius of the target and a secondarily-sampled tag that was outside a 0.99 match distance radius of the target.
+Finally, we computed the match distance between the pair of secondarily-sampled tags.
+Figure \ref{fig:dissimilarity_statistic} summarizes this process.
+
+Supplementary Figure \ref{fig:sphere_barplot} provides our estimate of the dissimilarity constraint statistic for each metric, with error bars representing a 95\% confidence interval.
+Supplementary Figure \ref{fig:sphere_distnplot} shows the distribution of the dissimilarity constraint statistic values among the 5000 replicate samples in greater detail.
+
+These results tell a story across metrics very to the simiarity constraint results.
+The hash metric exhibited no geometric structure.
+The streak metric exhibited some geometric structure in the mean case (mean secondarily-sampled distance 0.7127), but outcomes that strongly broke geometric constraints were also observed (we observed distances between secondarily-sampled tags as low as 0.0002).
+The hamming metric exhibited stronger geometric structure in the mean case (mean secondarily-sampled distance 0.8248) and had less extreme tail-end outcomes (we observed match distances between the secondarily-sampled tags only as low as 0.2355).
+The bidirectional integer metric was highly constrained in both the mean and tail-end cases.
+The smallest distance between secondarily-sampled tags was 0.9802.
+Again, the unidirectional integer metric exhibited a quirky result due to its noncommutative nature.
+The mean distance between secondarily-sampled tags was 0.0100.
+As shown in Figure \ref{fig:sphere_distnplot}, all secondarily-sampled distances oberved with this metric were extremely small.
+Under this metric, if you sample a tag that is close to a target it will be numerically slightly larger than the target.
+Likewise, if you sample a tag that is very far from a target, it will be numerically slightly smaller than the target (due to wraparound).
+Then, explaining this counterintuitive result, the distance from the slightly smaller to the larger tag will be small.

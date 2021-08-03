@@ -1,20 +1,26 @@
 \begin{figure*}
 \begin{center}
 
-\begin{minipage}{0.15\linewidth}
+\begin{minipage}{\linewidth}
 \begin{subfigure}[b]{\linewidth}
-\includegraphics[width=\linewidth]{dimensionality-statistic}
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=0.5\linewidth,trim=5cm 5cm 5cm 5cm, clip]{dimensionality-statistic}
+\end{center}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
 \caption{
 Sampling process used to evaluate similarity constraint.
 }
 \label{fig:dimensionality_measure}
+\end{minipage}
 \end{subfigure}
-\end{minipage}%
-\begin{minipage}{0.35\textwidth}
+\end{minipage}
 \begin{subfigure}[b]{\linewidth}
-\centering
+\begin{minipage}{0.6\linewidth}
 \includegraphics[width=\linewidth]{sphere/bitweight=0dot5+seed=1+title=dimensionality_barplot+_data_hathash_hash=c0f6c5cf854ff253+_script_fullcat_hash=03ce1e318a24a109+ext=}
-\begin{minipage}{0.8\textwidth}
+\end{minipage}
+\begin{minipage}{0.35\linewidth}
 \caption{
 Mean similarity constraint.
 Error bars represent 95\% confidence intervals.
@@ -22,8 +28,7 @@ Error bars represent 95\% confidence intervals.
 \label{fig:sphere_barplot}
 \end{minipage}
 \end{subfigure}
-\end{minipage}%
-\begin{minipage}{0.5\linewidth}
+\begin{minipage}{\linewidth}
 \begin{subfigure}[b]{\linewidth}
 \centering
 \includegraphics[width=\linewidth]{sphere/bitweight=0dot5+seed=1+title=dimensionality_distnplot+_data_hathash_hash=c0f6c5cf854ff253+_script_fullcat_hash=03ce1e318a24a109+ext=}

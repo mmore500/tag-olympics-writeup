@@ -1,7 +1,5 @@
 \section{Evolutionary Analysis}
 
-\input{fig/evocomposite.tex}
-
 We performed experiments to characterize the evolution of tag-mediated connectivity networks under our five tag-matching metrics.
 Our experiments compared scenarios with selection for more-constrained networks, where individual tags needed to ensure simultaneously tight affinity with several other tags, and scenarios with selection for less-constrained networks, where individual tags only needed to ensure tight affinity with one other tag. 
 First, we evolved sets of tags to match explicitly specified graphs, which allowed us to directly control the level of network constraint selected for.
@@ -11,7 +9,9 @@ In the first, the changing-signal task, programs with sparse interactions betwee
 In the second, the directional-signal task, programs with dense interactions between modules are known to evolve.
 SignalGP experiments also allowed us to investigate if tag-matching metrics exhibited different performance characteristics in a more generalized, complex domain.
 
-\subsection{Target Graph Matching Task}
+\subsection{Graph Matching Task}
+
+\input{fig/evo_graph_matching.tex}
 
 In this evolutionary experiment, we evolved genomes consisting of 32 bitstring tags to establish a pattern of connectivity mirroring that of a randomly-generated target bipartite graph.
 Each bitstring tag in a genome corresponded to a node in the target graph.
@@ -55,6 +55,8 @@ The streak metric facilitates slightly faster adaptive evolution than the hammin
 We performed the same evolutionary experiment with 64-node target graphs and observed qualitatively similar results (\href{doi.org/10.17605/OSF.IO/GW5MC}{Supplementary Figures \ref{fig:evolve_bests64}, \ref{fig:evolve_big_mutsweep}} \cite{Moreno_Ofria_2020}).
 
 \subsection{Changing-signal Task}
+
+\input{fig/evo_changing_signal.tex}
 
 % % @AML: I don't like this heading. 
 % \subsection{Evolving tag-based genetic programs}
@@ -114,6 +116,8 @@ The capacity to quickly generate large amounts of phenotypic variation allows ev
 % @AML: I don't like this heading, either.
 % \subsection{Evolving tag-based genetic programs in a high-constraint environment}
 \subsection{Directional-signal Task}
+
+\input{fig/evo_directional_signal.tex}
 
 As in the changing-signal task, the directional-signal task requires that programs respond to a sequence of environmental cues. 
 In the directional-signal task, however, the correct response to signal depends on the history previously experienced signals.
