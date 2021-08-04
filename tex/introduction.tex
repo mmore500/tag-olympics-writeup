@@ -2,65 +2,67 @@
 
 Computer operations must specify the identities of registers and memory addresses they read from and act on.
 Computer programs, composed of these individual operations, apply identity-specifying information in individual operations to name higher-level abstractions such as data structures and functions.
-As instances of computer programs by their very nature, digital artificial life systems must also specify computational elements on which to act.
-In terms of the abstractions particular artificial life systems represent, these computational elements range from
+As instances of computer programs by their very nature, genetic programs and digital artificial life systems must also specify computational elements on which to act.
+These computational elements range from
 \begin{itemize}
-  \itemsep0em 
-  \item virtual hardware analogs like registers, memory addresses, stacks, or jump addresses in genetic programs \citep{spector2011tag, lalejini_tag-accessed_2019, ray1991approach, ofria2004avida},
+  \item program modules in genetic programs \citep{spector2011tag}
+  \item virtual hardware analogs like registers, memory addresses, stacks, or jump addresses in genetic programs \citep{lalejini_tag-accessed_2019,ray1991approach,ofria2004avida},
   \item molecules in artificial chemistries \citep{bagley1990spontaneous},
   \item genes in artificial gene regulatory networks \citep{banzhaf2003artificial},
   \item individual neurons or neural modules in neuroevolution \citep{reisinger2007acquiring}, or 
   \item agents in agent-based models of complex systems \citep{riolo2001evolution}.
 \end{itemize}
-%TODO these are the same references as used below, is that bad?
 
 Many artificial life systems are conceived to study open-ended dynamics.
 As such, it is often essential to allow for the computational elements designated for particular operations to shift over time, to allow for the introduction and incorporation of novel computational objects at run time, and to allow for the removal of existing computational objects at run time.
+Likewise, dynamic reorganization of code modules can facilitate hierarchical problem-solving in genetic programming \citep{Kinnear:Koza:1994:adf}.
 
 Tag-based referencing, sometimes also termed pattern matching or inexact referencing, provides a practical and commonplace solution for specifying computational operands.
 This approach encodes a tag for each computational operand that may be selected and a tag for each querying operation.
 Operands are then selected for each query through a tag-matching process.
-A querying operation's tag is compared to available operand tags. %fixed
+A querying operation's tag is compared to available operand tags.
 Then, typically, either:
-% \begin{itemize}
-%   \itemsep0em
-%   \item
-the best-matching operand is selected,
-%   \item
-all operands with match quality exceeding a threshold are selected, or
-%  \item
-operands are selected probabilistically based on match quality.
-% \end{itemize}
-% TODO do these need citations I hope not
+\begin{itemize}
+  \item the best-matching operand is selected (e.g., \citep{spector2012tag}),
+  \item all operands with match quality exceeding a threshold are selected (e.g., \citep{riolo2001evolution}),
+  \item operands are activated to continuously-varying degrees based on match qualities (e.g., \citep{banzhaf2003artificial}), or
+  \item operands are selected probabilistically based on match quality (e.g., \citep{seiden1992simulation}).
+\end{itemize}
 
 Inexact referencing facilitates orderly growth, shrinkage, and reconfiguration of a system's set of operands and operations.
 If an operand is deleted, it does not invalidate any existing operations, as other well-matching operands will fill its place.
 Likewise, new operations can be created or existing operations can be altered freely because arbitrary query tags may select operands. 
-% Tag-based referencing may also provide properties that affect evolvability:
-% \begin{itemize}
-%   \itemsep0em 
-%   \item bias to the tendency of queries or operands to for tight-affinity matches (i.e., tunable specificity)
-%   \item bias to the stability of certain connections under mutation (i.e., tunable robustness),
-%   \item bias to the likelihood of connections arising between subsets of queries and operands (i.e., modularity), and
-%   \item mitigation of disruption under duplication of queries and operands (i.e., gene duplication \citep{ohno2013evolution, lewis1978gene}).
-%   % found these classic gene duplication references here: https://www.sciencedirect.com/science/article/pii/S108495219990335X
-% \end{itemize}
 
-Indeed, inexact referencing techniques find common use in agent-based modeling \citep{riolo2001evolution}, digital evolution \citep{ray1991approach, ofria2004avida}, neuroevolution \citep{reisinger2007acquiring}, artificial gene regulatory networks \citep{banzhaf2003artificial}, genetic programming \citep{spector2011tag, lalejini2018evolving}, and artificial chemistry \citep{dittrich2001artificial}.
-These systems typically either use tagging schemes based on hamming distance between bitstrings (\textit{e.g.}, \citep{lalejini2018evolving} or \citep{banzhaf2003artificial}) or differences between real-valued scalars (\textit{e.g.}, \citep{riolo2001evolution} or \citep{spector2011tag}).
-However, other tag-matching systems, such as Downing's streak metric \citep{downing2015intelligence}, have been proposed.
+Indeed, inexact referencing techniques find common use in agent-based modeling \citep{riolo2001evolution}, neuroevolution \citep{reisinger2007acquiring}, artificial gene regulatory networks \citep{banzhaf2003artificial}, genetic programming \citep{spector2011tag, lalejini2018evolving}, artificial chemistry \citep{dittrich2001artificial}, and artificial immunology \citep{timmis2008theoretical}.
+These systems typically either use tagging schemes based on
+\begin{itemize}
+    \item on hamming distance between bitstrings (\textit{e.g.}, \cite{lalejini2018evolving} or \cite{banzhaf2003artificial}) or 
+    \item differences between real-valued scalars (\textit{e.g.}, \cite{riolo2001evolution} or \cite{spector2011tag}).
+\end{itemize}    
+However, other nonlinear tag-matching systems, such as Downing's streak metric \citep{downing2015intelligence} and de Boer's adjacency match metric \citep{DEBOER1991381}, have been proposed.
 
-We find that tag-matching systems vary with respect to
+Although some efforts have been made to distinguish certain tag-matching criteria in terms of narrative explanations of their evolutionary properties and appeals to biological analogy \citep{downing2015intelligence,scherer2004activation}, no work has yet provided systematic, quantitative, or empirical insight into the ramifications of tag-matching criteria.
+We hypothesize that properties of tag-matching criteria could potentially affect evolvability through mechanisms including
+\begin{itemize}
+  \item bias of certain queries or operands against tight-affinity matches (i.e., tunable specificity)
+  \item bias to the stability of certain connections under mutation (i.e., tunable robustness),
+  \item bias to the likelihood of connections arising between subsets of queries and operands (i.e., modularity), and
+  \item mitigation of disruption under duplication of queries and operands (i.e., gene duplication \citep{ohno2013evolution, lewis1978gene}).
+  % found these classic gene duplication references here: https://www.sciencedirect.com/science/article/pii/S108495219990335X
+\end{itemize}
+
+In this work, we show how tag-matching systems vary with respect to
 \begin{enumerate}
-  \itemsep0em 
   \item geometric structure that biases or limits the patterns of connectivity that form among queries and operands,
   \item variational properties that influence changes to connectivity observed under mutation, and
   \item evolutionary outcomes such as the rate of adaptive evolution and the quality of evolved solutions.
 \end{enumerate}
+Understanding these differences will help researchers more effectively employ tag-matching schemes in artificial life systems, but also provide context for inquiry into the properties and mechanisms of tag-matching systems in nature.   
+
 %Although some work has been done comparing the , for example minimum match-quality cutoff threshold \citep{lalejini2019} and selection \citep{Moreno_2019}
 %The implications of underlying criteria determining tags' affinities have been unexplored.
 %Here, we characterize meaningful differences among tag-matching systems with respect to geometric, variational, and evolutionary properties.
-Understanding these differences will help researchers more effectively employ tag-matching schemes in artificial life systems, but also provide context for inquiry into the properties and mechanisms of tag-matching systems in nature.    
+
 
 % of tag-matching systems.
 % Such findings will be of practical use May raise interseting evolutionary/theory questions.

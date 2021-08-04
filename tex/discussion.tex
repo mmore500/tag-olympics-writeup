@@ -25,7 +25,7 @@ The integer metrics, in particular the unidirectional integer metric, exhibited 
 The streak metric, where all one-step mutations scramble match distance, exhibited the least robustness.
 
 In evolutionary experiments, we found that network constraint (the number of tags a query or operand needs to simultaneously establish affinity with) differentially influenced performance of tag-matching metrics. 
-In target-matching evolutionary experiments, netwowrk constraint corresponded to degree and regularity of the target graphs.
+In target-matching evolutionary experiments, network constraint corresponded to degree and regularity of the target graphs.
 In the genetic programming experiments, this corresponded to the interconnectedness of module interaction networks that were selected for.
 
 In target-matching evolutionary experiments, we found that the hash metric enabled rapid adaptive evolution toward targets with low network constraint.
@@ -33,6 +33,8 @@ This rapid evolution may be due to the hash metric's ability to rapidly generate
 In cases with high network constraint, however, the hash metric yielded poor-quality solutions.
 The integer metrics also yielded poor-quality solutions for target graphs with network constraint.
 In some more-constrained cases, the streak metric enabled more rapid adaptive evolution than the hamming metric.
+
+% hash metric may not have done as well in GP due to duplication and differentiation
 
 In genetic programming evolutionary experiments, we found that the hamming and streak metrics yielded successful solutions the most frequently.
 The hash metric had the next best performance, yielding more solutions than the integer metrics, which performed comparably.
