@@ -1,36 +1,219 @@
 \section{Tags and Tag-Matching Metrics}
 
-In all experiments, we used ordered, fixed-length, 32-bit bitstrings as tags.
-In experiments where mutations are applied to tags, individual bits are toggled stochastically at a uniform per-bit rate.
+\input{fig/uniformification.tex}
+
+In all experiments, we used 32-bit bitstrings as tags.
+Formally, we define a tag $t$ as a fixed-length binary vector,
+\begin{align*}
+t = \langle t_0, t_1, t_2, \dots, t_{n-2}, t_{n-1} \rangle
+\end{align*}
+where
+\begin{align*}
+\forall i, t_i \in \{0, 1\} \text{ and } n=32.
+\end{align*}
+
+In experiments where mutations were applied to tags, individual bits were toggled stochastically at a uniform per-bit rate.
 
 We call an algorithm used to calculate the match quality between two tags a tag-matching metric.
 A tag-matching metric takes two tags as operands and calculates a match distance between them.
-We compared five tag-matching metrics, described below.
-Full mathematical definitions and implementation details appear in \href{doi.org/10.17605/OSF.IO/GW5MC}{supplementary material} \citep{Moreno_Ofria_2020}.
+Low match distance indicates a ``good'' or ``strong'' match.
+High match distance indicates a ``poor'' or ``weak'' match.
 
-\begin{itemize}
-  \itemsep0em
-  \item \textbf{Hamming Metric}: calculates match distance according to the number of mismatching bits between tags \citep{lalejini2019else, hamming1950error}; \href{doi.org/10.17605/OSF.IO/GW5MC}{Supplementary Section \ref{sec:hammingmetric}}.
-  \item \textbf{Hash Metric}: calculates a deterministic, but arbitrary, match distance between using the SHA1 cryptographic hash algorithm \citep{eastlake2001us}; \href{doi.org/10.17605/OSF.IO/GW5MC}{Supplementary Section \ref{sec:hashmetric}}.
-  \item \textbf{Integer Metric}: match distance accumulates scanning upward from the unsigned integer representation of the first tag until the unsigned integer representation of the second tag is reached, wrapping around to zero if necessary \citep{spector2011tag}; \href{doi.org/10.17605/OSF.IO/GW5MC}{Supplementary Section \ref{sec:integermetric}}.
-  \item \textbf{Bidirectional Integer Metric}: the lesser of integer metric distance calculated scanning upwards (still wrapping around to zero) and integer metric distance calculated scanning downwards (wrapping around at zero); \href{doi.org/10.17605/OSF.IO/GW5MC}{Supplementary Section \ref{sec:integerbimetric}}.
-  \item \textbf{Streak Metric}: match distance is calculated as the ratio between the longest contiguously mismatching substring of two bitsets and the longest contiguously matching substring of those bitsets \citep{downing2015intelligence}; \href{doi.org/10.17605/OSF.IO/GW5MC}{Supplementary Section \ref{sec:streakmetric}}.\footnote{Our implementation of this metric differs slightly from its original form due to a mathematical error in \citep{downing2015intelligence}.}
-\end{itemize}
-
+We compared five tag-matching metrics: hamming, hash, integer, bidirectional integer, and streak.
 The hamming and bidirectional integer metrics are included because of their ubiquity in artificial life systems.
 The integer metric is included due to its use in seminal work exploring tag-matching in genetic programs \citep{spector2011tag, spector2011s,spector2012tag}.
 The streak metric was proposed to model large-effect mutations in biology but, to our knowledge, has not yet been formally studied in an evolving system.
 The hash metric is introduced in this work in order to investigate the implications of a completely geometrically-unstructured tag-matching scheme.
+Table \ref{tab:metrics} compares summary descriptions for each metric.
 
-For consistency of implementation and interpretation, we bound all metrics' tag-matching distances between 0 (a perfect match) and 1 (a worst match).
-We then normalized metrics' match distances so that the distances between pairs of randomly generated tags would follow a uniform distribution between 0 and 1.
-This allows for an intuitive, consistent interpretation of match distances across all tag-matching metrics.
+% Full mathematical definitions and implementation details appear in \href{doi.org/10.17605/OSF.IO/GW5MC}{supplementary material} \citep{Moreno_Ofria_2020}.
+
+\begin{table}[]
+\begin{tabularx}{\textwidth}{l|X}
+\textbf{Metric}       & \textbf{Description}                                                                                                                                        \\ \hline
+Hamming               & fraction of positions within \texttt{tag\_0} and \texttt{tag\_1} with mismatching bits                                                                         \\ \hline
+Hash                  & SHA1 cryptographic hash of  concatenation of \texttt{tag\_0} and \texttt{tag\_1} \citep{eastlake2001us}                         \\ \hline
+Integer               & value added to the unsigned integer representation of \texttt{tag\_0} to reach representation of \texttt{tag\_1}, wrapping around if necessary \\ \hline
+Bidirectional Integer & lesser of integer metric distances \texttt{d(tag\_0, tag\_1)} and \texttt{d(tag\_1, tag\_0)}                                                                \\ \hline
+Streak                & ratio of lengths of contiguously matching and mismatching substrings \\ \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l|X|X}
+\hline
+\textbf{Metric}       & \textbf{Commutative?} & \textbf{Multidimensional?} \\ \hline
+Hamming               & yes                   & yes                        \\ \hline
+Hash                  & no                    & yes                        \\ \hline
+Integer               & no                    & no                         \\ \hline
+Bidirectional Integer & yes                   & no                         \\ \hline
+Streak                & yes                   & yes                       
+\end{tabularx}
+
+\caption{
+Surveyed tag-matching metrics. A matching metric is commutative if \texttt{d(tag\_0, tag\_1) = d(tag\_1, tag\_0)} for all tags.
+A matching metric is considered multidimensional if position within matching space is not represented by a scalar value. 
+}
+\label{tab:metrics}
+
+\end{table}
+
+Sections \ref{sec:hamming}, \ref{sec:hash}, \ref{sec:integer}, \ref{sec:bidirectionalinteger}, and \ref{sec:streak} provide formal definitions for each metric.
+
+\subsection{Hamming Metric} \label{sec:hamming}
+
+The hamming metric computes match distance as the fraction of positions between tags $t$ and $u$ with mismatching bits.
+Formally, for $n$-bit bitstring tags,
+\begin{align*}
+d(t, u)
+= \frac{
+  \#\{ i : t_i \neq u_i, i=0, \dots ,n-1\}
+}{
+  n
+}.
+\end{align*}
+
+This metric is based on \cite{lalejini2019else}, originally after \cite{hamming1950error}.
+
+\subsection{Hash Metric} \label{sec:hash}
+
+The hash metric calculates match distance via a cryptographic hash of tags $t$ and $u$.
+First, we \texttt{memcpy} $t$ and $u$ into a double-width bitstring $v$ such that
+\begin{align*}
+v = \langle t_0, t_1, t_2, \dots, t_{n-2}, t_{n-1}, u_0, u_1, u_2, \dots, u_{n-2}, u_{n-1} \rangle
+\end{align*}
+
+Then, we use the OpenSSL library to generate a \texttt{std::string} digest of $v$.
+We then apply \texttt{std::hash} to map this digest to a \texttt{std::size\_t}, $v'$.
+Finally, we compute the matching distance as
+\begin{align*}
+d(t, u) = \frac{v'}{\texttt{static\_cast<double>(std::numeric\_limits<std::size\_t>::max())}}.
+\end{align*}
+
+To our knowledge, the hash metric is original to this work.
+The metric produces an arbitrary, but deterministic, match distance between any two tags.
+In other words, the tag matching space is completely unstructured.
+We include it primarily to serve as a control.
+
+\subsection{Integer Metric} \label{sec:integer}
+
+The integer metric computes match distance between tags $t$ and $u$ by counting upwards from $t$ until $u$ is reached.
+If necessary, the counting process wraps around at $2^n$.
+
+To accomplish this, the integer metric must interpret bitstring tags $t$ and $u$ as unsigned integers.
+We use a standard representation,
+\begin{align*}
+f(t)
+= \sum_{i=0}^{n-1} t_i \times 2^i.
+\end{align*}
+
+Formally, the integer metric computes distance between $n$-bit bitstring tags as,
+\begin{align*}
+d(t, u) =
+\begin{cases}
+  \frac{2^n - f(t) + f(u)}{2^n}, & \text{if } f(t) > f(u), \\
+  \frac{f(t) - f(u)}{2^n},         & \text{otherwise}.
+\end{cases}
+\end{align*}
+
+Inclusion of this metric is motivated by \cite{spector2011tag}, who used positive integers between 0 and 100 to name referents.
+Queries matched to the referent that had the next-larger value, wrapping around from 100 back to 0.
+
+\section{Bidirectional Integer Metric} \label{sec:bidirectionalinteger}
+
+The bidirectional integer metric computes match distance between tags $t$ and $u$ by counting from $t$ to $u$.
+The count from $t$ to $u$ ascends or descends, whichever is shorter.
+If necessary, the count wraps around at $0$ and $2^n$.
+
+The binteger metric interprets bitstring tags $t$ and $u$ as unsigned integers using the same mapping, $f$, as the integer metric.
+
+Formally, the bidirectional integer metric computes distance between $n$-bit bitstring tags as,
+\begin{align*}
+d(t, u) =
+\min
+\begin{cases}
+  \frac{2^n - \max\big(f(t), f(u)\big) + \min\big(f(t), f(u)\big)}{2^n}, \\
+  \frac{\max\big(f(t), f(u)\big) - \min\big(f(t), f(u)\big)}{2^n}.
+\end{cases}
+\end{align*}
+
+We included this metric to contrast with the integer metric. In particular, we wished to shed light on any consequences of its asymmetry and discontinuity.
+In figure axes and legends with tight space constraints, we refer to this metric as ``Integer (bi)''.
+
+\subsection{Streak Metric} \label{sec:streak}
+
+The streak metric computes match distance between bitstring tags $t$ and $u$ as a ratio of lengths of contiguously matching and mismatching substrings within those tags.
+
+Formally, we can compute the greatest contiguously-matching length of $n$-long bitstrings $t$ and $u$ as,
+\begin{align*}
+m(t, u) = \max\Big(\{i - j \forall i, j \in 0..n-1 \mid \forall q \in i..j, t_q = u_q \}\Big).
+\end{align*}
+
+Likewise, the greatest contiguously-mismatching length can be computed as,
+\begin{align*}
+n(t, u) = \max\Big(\{i - j \forall i, j \in 0..n-1 \mid \forall q \in i..j, t_q \neq u_q \}\Big).
+\end{align*}
+
+As proposed in \cite{downing2015intelligence}, the streak metric computes distance between $n$-bit bitstring tags $t$ and $u$ as,
+\begin{align*}
+d'(t, u)
+= \frac{p'(n(t,u))}{p'(m(t,u)) + p'(n(t,u))}.
+\end{align*}
+where $p(k)$ approximates the probability of a contiguous $k$-bit match between two bitstrings.
+\cite{downing2015intelligence} derives
+\begin{align*}
+p'(k)
+= \frac{n - k + 1}{2^k}.
+\end{align*}
+
+However, this formula is subtly flawed.
+For instance, the probability of a $0$-bit match according to this formula would be computed as $p'(0) = \frac{n - 0 + 1}{2^0} = n + 1$.
+This is clearly impossible --- it would imply $p'(0) > 1 \forall n > 0$.
+
+Although correct probabilities can be calculated via dynamic programming, $p'$ provides a useful approximation.
+For computational efficiency and consistency with the existing literature, we use the math proposed in \citep{downing2015intelligence} but clamp edge cases between 0.0 and 1.0.
+This yields the corrected streak metric $d$ used in this work,
+\begin{align*}
+d(t, u) = \max\Big( \min( d'(t, u), 1), 0 \Big).
+\end{align*}
+
+Downing's presentation of the streak metric motivates it by analogy to the biochemistry of enzyme biochemistry. 
+In motivating the metric, Downing reports mutational walk experiments that show it to exhibit greater robustness compared to integer and hamming metrics.
+However, it is not demonstrated in an evolving system.
+To our knowledge, no further work on this metric has been published.
+(Although, through personal communication, we learned of some unpublished work applying the metric in a neuroevolution system.)
+
+\subsection{Match Distance Normalization}
+
+For consistency of implementation and interpretation, all metrics' formulas return tag-matching distances between 0.0 (a ``perfect'' match) and 1.0 (a ``worst'' match).
+
+However, the distribution of tag-match distances within this range may vary substantially between metrics.
+For example, the probability of a match distance <1/32 is 1/32 under the hash metric but $1/2^32$ under the hamming metric.
+
+In order to ensure an intuitive interpretation of match distances that was consistent across all tag-matching metrics, we normalized metrics' match distances so that the distances between pairs of randomly generated tags would follow a uniform distribution between 0.0 and 1.0.
+In this discussion, we refer to match distance before normalization as ``raw.''
+
 For example, two tags with a 0.01 match distance are better-matched than 99\% of randomly-generated tag pairs.
 Additionally, in situations where raw match distance plays a mechanistic role (for example, probabilistic matching or threshold-based cutoffs), this transformation ensures consistency across metrics.
 
-To accomplish this normalization to a uniform distribution, we sampled 10,000 randomly generated bitstring tag pairs to approximate metrics' raw distribution of match distances.
-Then, for all further match distance calculations made using each metric, we calculated corrected distance for a raw distance $r$ as its percentile ranking among the initially-sampled match distances divided by one hundred.
-If the exact raw distance $r$ wasn't present in the set of initially sampled match distance, we linearly interpolated between the next-greater and next-lower match distances' percentile rankings.
-\href{doi.org/10.17605/OSF.IO/GW5MC}{Supplementary Figure \ref{fig:uniformification}} depicts the distributions of match distances between randomly sampled bitstring pairs for each metric before and after this normalization process.
+We performed this normalization independently for each tag-matching metric.
+We the following Monte Carlo approximation method.
+\begin{enumerate}
+\item We sampled 10,000 pairs of randomly-generated tags.
+\item We calculated raw match distance between each pair of generated tags using the chosen tag-matching metric.
+\item We agglomerated these 10,000 sampled raw match distances into a list and sorted in ascending order.
+\item To ensure coverage of the entire $[0.0,1.0]$ interval of valid tag match scores, we prepended the sorted list of raw match distances with 0.0 and 1.0.
+\item We associated each list entry with its percentile ranking within the list.
+\begin{enumerate}
+    \item i.e., the best-matching 0.0 match distance was associated with the percentile ranking 0.0,
+    \item the median match distance was associated with the percentile ranking 0.5, and
+    \item the worst-matching 1.0 match distance was associated with the percentile ranking 1.0.
+\end{enumerate}
+\item For subsequent tag match distance calculations during the experiment, we performed a lookup on this list.
+\begin{itemize}
+    \item If a single exactly-identical raw match distance existed in the list, we returned its percentile ranking as the normalized match distance.
+    \item If two or more exactly-identical raw match distances existed in the list, we returned the mean percentile ranking of these entries as the normalized match distance.
+    \item If no exactly-identical raw match distance existed in the list, we linearly interpolated between the next-largest and next-smallest list entries' percentile rankings. 
+\end{itemize}
+\end{enumerate}
+Figure \ref{fig:uniformification} compares the distribution of match distances between randomly-sampled tags before and after this normalization process across tag-matching metrics.
 
-
+All work reported here employed match distance normalization.

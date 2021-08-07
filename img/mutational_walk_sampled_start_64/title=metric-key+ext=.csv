@@ -1,0 +1,6 @@
+Metric,Slug,Base Metric,Dimension,Width,Sliding,Inverse,Uniformified,Dimension Type
+Uniformified 64-bit Hamming Metric Distance,uniformified-64bit-hamming-metric,Hamming Metric,1,64,0,0,1,None
+Uniformified 64-bit Approx Dual Streak Metric Distance,uniformified-64bit-approx-dual-streak-metric,Approx Dual Streak Metric,1,64,0,0,1,None
+Uniformified 64-bit Hash Metric Distance,uniformified-64bit-hash-metric,Hash Metric,1,64,0,0,1,None
+Uniformified 64-bit Symmetric Wrap Metric Distance,uniformified-64bit-symmetric-wrap-metric,Symmetric Wrap Metric,1,64,0,0,1,None
+Uniformified 64-bit Asymmetric Wrap Metric Distance,uniformified-64bit-asymmetric-wrap-metric,Asymmetric Wrap Metric,1,64,0,0,1,None
