@@ -15,7 +15,7 @@ However, under the integer metric the $v = 1$ would satisfy these criteria.
 Stated more generally, in metrics with strong geometric constraints, there may commonly exist pairs of tags such that any third tag must either match both closely or match neither closely.
 
 Geometric constraint seems likely to profoundly influence evolution in tag-matching systems.
-However, understanding how these implications ultimately play out is a difficult problem. 
+However, understanding how these implications ultimately play out is a difficult problem.
 Geometric constraint might prove useful to facilitate modularity, where subsets of tag space tend to have associated functionality \citep{holland1990concerning}.
 However, it may also restrict the generation of adaptive variation.
 
@@ -43,7 +43,7 @@ For reference, in a one-dimensional Euclidean space similarity constraint would 
 In a two dimensional Euclidean space, it would measure approximately  0.0091.
 In 32 dimensions, it would measure 0.0137 \citep{dunbar1997average}.
 So, in some sense, this similarity constraint metric can be interpreted as an indirect measure of dimensionality.
-However, as we'll see in Section \ref{sec:detourdistance}, the hamming, hash, and streak metric impose a decidedly non-Euclidean geometry.
+However, as we'll see in Section \ref{sec:detour_difference}, the hamming, hash, and streak metric impose a decidedly non-Euclidean geometry.
 
 \subsubsection{Bidirectional Integer Metric}
 
@@ -75,9 +75,9 @@ We also calculated this statistic for the raw hamming metric without normalizati
 (Only the exact target 32-bit tag itself falls within a sampling radius of 0.01.)
 The \textit{a priori} expected distance between sampled points within a 32-dimensional ball with radius 0.25 is 0.3415.
 Our estimate of similarity constraint for the raw hamming metric falls nearly in line with expectation at 0.3312.
- 
+
 \subsubsection{Streak Metric}
- 
+
 The streak metric exhibited the next-loosest similarity constraint statistic with a mean value sampled at 0.2813.
 For this metric, we observed distances between secondarily-sampled tags as high as 0.9993.
 The streak metric retains some geometric constraint in the mean case, but allows for outliers that strongly break similarity constraint.
@@ -145,7 +145,7 @@ Then, explaining this counterintuitive result, the distance from the slightly sm
 
 \input{fig/detour_difference.tex}
 
-Similarity constraint and dissimilarity constraint quantify the geometric constraint imposed under preexisting strong matching and strong mismatching, respectively. 
+Similarity constraint and dissimilarity constraint quantify the geometric constraint imposed under preexisting strong matching and strong mismatching, respectively.
 To complement these measures, we set out to characterize the regularity, in a loose sense, of each space more broadly.
 This led us to our ``detour difference'' measure, which quantifies how tag matching spaces respect the triangle inequality.
 
