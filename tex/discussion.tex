@@ -24,27 +24,32 @@ The hamming metric exhibited the greatest robustness to mutation along mutationa
 The integer metrics, in particular the unidirectional integer metric, exhibited less robustness.
 The streak metric, where all one-step mutations scramble match distance, exhibited the least robustness.
 
-In evolutionary experiments, we found that network constraint (the number of tags a query or operand needs to simultaneously establish affinity with) differentially influenced performance of tag-matching metrics. 
-In target-matching evolutionary experiments, network constraint corresponded to degree and regularity of the target graphs.
-In the genetic programming experiments, this corresponded to the interconnectedness of module interaction networks that were selected for.
+In evolutionary experiments, we found that network constraint (the number of tags a query or operand needs to simultaneously establish affinity with) influenced the relative performance of tag-matching metrics. 
+% In target-matching evolutionary experiments, network constraint corresponded to degree and regularity of the target graphs.
+% In the genetic programming experiments, network constraint corresponded to the interconnectedness of module interaction networks that were selected for.
 
 In target-matching evolutionary experiments, we found that the hash metric enabled rapid adaptive evolution toward targets with low network constraint.
 This rapid evolution may be due to the hash metric's ability to rapidly generate variation.
-In cases with high network constraint, however, the hash metric yielded poor-quality solutions.
+Under high network constraint, however, the hash metric yielded poor-quality solutions.
 The integer metrics also yielded poor-quality solutions for target graphs with network constraint.
 In some more-constrained cases, the streak metric enabled more rapid adaptive evolution than the hamming metric.
-
-% hash metric may not have done as well in GP due to duplication and differentiation
+ 
 
 In genetic programming evolutionary experiments, we found that the hamming and streak metrics yielded successful solutions the most frequently.
-The hash metric had the next best performance, yielding more solutions than the integer metrics, which performed comparably.
 On the directional signal task, which tends to require denser interaction networks, we found evidence that the streak metric enabled more rapid adaptive evolution than the hamming metric.
 
+The hash metric had the next best performance in SignalGP experiments, yielding more solutions than the integer metrics, which performed comparably.
+Although the hash metric performed best in low-constraint target-matching experiments, it was outperformed in low-constraint SignalGP experiments. 
+This may be due to the presence of duplication and differentiation processes across SignalGP lineages, where instruction and module count can grow over time. 
+
+\input{fig/conceptual_geometry.tex}
+
 Relative to the other metrics, the streak metric tends to offer intermediate variational and geometric properties.
+Figure \ref{fig:conceptual_geometry} depicts a schematic summary of this observation.
 It exhibits some, but not strict, geometric constraint.
 Many mutations are neutral or near-neutral (like the integer and hamming metrics) but a fat tail of extreme-effect mutations also occur (like the hash metric).
-The streak metric exhibits robustness under mutational walks that falls between the hamming and integer metrics. 
-However, it is unclear exactly why the streak metric enabled rapid adaptive evolution on the directional signal task.
-
+The streak metric exhibits robustness under mutational walks that falls between the hamming and integer metrics.
+These mechanistic observations offer a potential explanation for the streak metric's strong performance facilitating adaptive evolution under high-constraint conditions.
+However, whether these mechanistic explanations are sufficiently complete --- especially with respect to the streak metric's outperformance of the hamming metric under high-constraint conditions --- is unclear.
 
 
