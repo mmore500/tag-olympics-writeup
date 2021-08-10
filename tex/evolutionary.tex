@@ -1,6 +1,6 @@
 \section{Evolutionary Analysis} \label{sec:evolutionary}
 
-Sections \label{sec:geometric} and \label{sec:variational} reported how each tag-matching metric induced constraints on tag-match affinities and the distribution of mutational outcomes.
+Sections \ref{sec:geometric} and \ref{sec:variational} reported how each tag-matching metric induced constraints on tag-match affinities and the distribution of mutational outcomes.
 We now move on to investigate whether --- and how ---  these geometric and variational properties affect evolution of tag-mediated connectivity in various scenarios.
 
 We begin with a toy problem, presented in Section \ref{sec:graph-matching}, which allowed us to systematically vary the level of network constraint selected for.
@@ -47,7 +47,7 @@ We controlled the degree of tag-matching constraint imposed by the target graph 
 We tested target graphs mean degree 1 and 2 and both regular and irregular construction.
 
 Irregular, degree 2 graphs imposed the most tag-matching constraint.
-High-degree nodes in these graphs were exceptionally constrained by many simultaneous connection criteria. 
+High-degree nodes in these graphs were exceptionally constrained by many simultaneous connection criteria.
 Figure \ref{fig:irregular_degree_2} shows an example irregular, degree 2 graph.
 
 Regular, degree 1 graphs imposed the least tag-matching constraint.
@@ -137,7 +137,7 @@ We observed no adaptive difference  between the integer and bidirectional intege
 
 \input{fig/evo_directional_signal.tex}
 
-As in the changing-signal task, the directional-signal task requires that programs respond to a sequence of environmental cues. 
+As in the changing-signal task, the directional-signal task requires that programs respond to a sequence of environmental cues.
 In the directional-signal task, however, the correct response to signal depends on the history previously experienced signals.
 In the directional-signal task, there are two possible environmental signals --- a ``forward signal'' and a ``backward signal'' (each with a distinct tag) ---  and a cycle of four possible responses.
 If a program receives a forward-signal, it should express the next response in the cycle.
@@ -154,11 +154,11 @@ For each program, we evaluate each sequence of signals independently, and a prog
 Otherwise, evaluation on a single sequence of signals mirrors that of the changing signal task.
 
 % Experiment overview
-We used an identical experimental design for the directional-signal task as in the changing signal task. 
+We used an identical experimental design for the directional-signal task as in the changing signal task.
 However, we evolved programs for 5,000 generations (instead of 100) and re-parameterized each metric's tag mutation rate:
 \begin{itemize}
-\item 0.001 for the hamming and hash metrics, 
-\item 0.002 for the integer and streak metrics, and 
+\item 0.001 for the hamming and hash metrics,
+\item 0.002 for the integer and streak metrics, and
 \item 0.0001 for the bidirectional integer metric.
 \end{itemize}
 Full configuration details for this experiment, including a guide for replication, appears in Supplemental Section \ref{sec:gpsupplement}.
@@ -193,4 +193,3 @@ Again, the hash metric outperformed both the integer metrics ($p < 3\times10^{-5
 % [Statement about consistency with expectations based on previous tag-matching experiments].
 % Seems largely consistent with mean-degree-2 results (for later updates) in graph matching evolution experiment.
 % More work to be done, but these data indicate that streak metric can be used for best/consistent performance in GP.
-
