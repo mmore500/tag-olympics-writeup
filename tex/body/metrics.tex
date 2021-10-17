@@ -16,13 +16,13 @@ In experiments where mutations were applied to tags, individual bits were toggle
 
 We call an algorithm used to calculate the match quality between two tags a tag-matching metric.
 A tag-matching metric takes two tags as operands and calculates a match distance between them.
-Low match distance indicates a ``good'' or ``strong'' match (i.e., high affinity).
-High match distance indicates a ``poor'' or ``weak'' match (i.e., low affinity).
+Low match distance indicates a ``good'' or ``strong'' match.
+High match distance indicates a ``poor'' or ``weak'' match.
 
 We compared five tag-matching metrics: hamming, hash, integer, bidirectional integer, and streak.
 The hamming and bidirectional integer metrics are included because of their ubiquity in artificial life systems.
 The integer metric is included due to its use in seminal work exploring tag-matching in genetic programs \citep{spector2011tag, spector2011s,spector2012tag}.
-The streak metric was proposed to model large-effect mutations in biology \citep{downing2015intelligence} but, to our knowledge, has not yet been formally studied in an evolving system.
+The streak metric was proposed to model large-effect mutations in biology but, to our knowledge, has not yet been formally studied in an evolving system.
 The hash metric is introduced in this work in order to investigate the implications of a completely geometrically-unstructured tag-matching scheme.
 Table \ref{tab:metrics} compares summary descriptions for each metric.
 
@@ -49,8 +49,7 @@ Streak                & yes                   & yes
 \end{tabularx}
 
 \caption{
-Surveyed tag-matching metrics. 
-A matching metric is commutative if \texttt{d(tag\_0, tag\_1) = d(tag\_1, tag\_0)} for all tags where \texttt{d} specifies the distance between two tags according to the given matching metric.
+Surveyed tag-matching metrics. A matching metric is commutative if \texttt{d(tag\_0, tag\_1) = d(tag\_1, tag\_0)} for all tags.
 A matching metric is considered multidimensional if position within matching space is not represented by a scalar value. 
 }
 \label{tab:metrics}
@@ -187,7 +186,7 @@ To our knowledge, no further work on this metric has been published.
 For consistency of implementation and interpretation, all metrics' formulas return tag-matching distances between 0.0 (a ``perfect'' match) and 1.0 (a ``worst'' match).
 
 However, the distribution of tag-match distances within this range may vary substantially between metrics.
-For example, the probability of a match distance less than $1/32$ is 1/32 under the hash metric but $1/2^{32}$ under the hamming metric.
+For example, the probability of a match distance <1/32 is 1/32 under the hash metric but $1/2^32$ under the hamming metric.
 
 In order to ensure an intuitive interpretation of match distances that was consistent across all tag-matching metrics, we normalized metrics' match distances so that the distances between pairs of randomly generated tags would follow a uniform distribution between 0.0 and 1.0.
 In this discussion, we refer to match distance before normalization as ``raw.''

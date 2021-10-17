@@ -164,26 +164,23 @@
 % allocated, place \setlength\titlebox{<new height>} after the
 % \documentclass line where <new height> is 2.25in
 
-
+% pragma once, adapted from https://tex.stackexchange.com/a/195173
+\makeatletter
+\let\pragma@iinput=\@iinput
+\def\@iinput#1{\xdef\@pragmafile{#1}\pragma@iinput{#1}}
+\def\@pragmafile{default}
+\def\pragmaonce{%
+   \csname pragma@\@pragmafile\endcsname
+   \global\expandafter\let \csname pragma@\@pragmafile\endcsname = \endinput
+}
+\makeatother
 
 \begin{document}
 \maketitle
 
 \input{tex/abstract.tex}
 
-\input{tex/introduction.tex}
-
-\input{tex/metrics.tex}
-
-\input{tex/geometric.tex}
-
-\input{tex/variational.tex}
-
-\input{tex/evolutionary.tex}
-
-\input{tex/discussion.tex}
-
-\input{tex/conclusion.tex}
+\input{tex/body.tex}
 
 % \input{tex/codedata.tex}
 
@@ -203,7 +200,7 @@
 \setcounter{secnumdepth}{2}
 
 
-\input{tex/supplementary.tex}
+\input{tex/supplement.tex}
 
 \footnotesize
 \bibliographystyleinappendix{apalike}

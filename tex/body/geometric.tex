@@ -4,13 +4,13 @@ In this section, we consider the geometry that tag matching metrics impose over 
 These geometries may affect the patterns of connectivity between tagged components that tend to (or even are possible to) arise.
 
 As an example of potential geometric constraint, consider the bitstring tags $t = \langle 0, 0, ... 0 \rangle$ and $u = \langle 1, 1, ... 1 \rangle$ under the hamming metric.
-No third tag $v$ could simultaneously exhibit a tag match distance $< 0.5$ to both tags.
+No third tag $v$ could simultaneously exhibit a tag match distance < 0.5 to both tags.
 However, under the hash metric no such pair of tags exists --- how well a third tag $v$ matches to $t$ and how well it matches to $u$ is always entirely independent.
 Stated more generally, in metrics with strong geometric constraints, there may commonly exist pairs of tags such that no single third tag can simultaneously exhibit a close affinity to both.
 
 As another example of potential geometric constraint, consider the bitstring tags $t = \langle 0, 0, ... 0 \rangle$ and $u = \langle 0, 0, ... 1 , 0 \rangle$ under the bidirectional integer metric.
 (Here, the tag $t$ would correspond to the integer 0 and the tag $u$ would correspond to the integer 1.)
-No third tag $v$ could simultaneously exhibit a match distance $> 0.9$ to $t$ and $< 0.1$ to $u$.
+No third tag $v$ could simultaneously exhibit a match distance > 0.9 to $t$ and < 0.1 to $u$.
 However, under the integer metric the $v = 1$ would satisfy these criteria.
 Stated more generally, in metrics with strong geometric constraints, there may commonly exist pairs of tags such that any third tag must either match both closely or match neither closely.
 
@@ -20,7 +20,7 @@ Geometric constraint might prove useful to facilitate modularity, where subsets 
 However, it may also restrict the generation of adaptive variation.
 
 We begin by comparing distributions of two statistics measuring constraint across our five tag-matching metrics: similarity constraint and dissimilarity constraint.
-\textit{Similarity constraint}, presented in Section \ref{sec:dissimilarityconstraint} quantifies the question, ``If two tags both match closely to a third tag, will they necessarily match closely with each other?"
+\textit{Similarity constraint}, presented in Section \ref{sec:dissimilarityconstraint} quantifies the question, "If two tags both match closely to a third tag, will they necessarily match closely with each other?"
 In contrast, \textit{dissimilarity constraint} quantifies the question, ``If a certain tag matches a second tag closely and a third tag poorly, will the second and third tag tend to match poorly?"
 
 Finally, in Section
@@ -43,7 +43,7 @@ For reference, in a one-dimensional Euclidean space similarity constraint would 
 In a two dimensional Euclidean space, it would measure approximately  0.0091.
 In 32 dimensions, it would measure 0.0137 \citep{dunbar1997average}.
 So, in some sense, this similarity constraint metric can be interpreted as an indirect measure of dimensionality.
-However, as we'll see in Section \ref{sec:detour_difference}, the hamming, hash, and streak metric each impose a decidedly non-Euclidean geometry.
+However, as we'll see in Section \ref{sec:detour_difference}, the hamming, hash, and streak metric impose a decidedly non-Euclidean geometry.
 
 \subsubsection{Bidirectional Integer Metric}
 
@@ -158,8 +158,9 @@ Then, for each metric $m$ we calculated the $m(A, B) + m(B, C) - m(A, C)$.
 Figure \ref{fig:detour_difference_cartoon} provides a schematic of this process.
 
 Figure \ref{fig:detour_difference_distribution} plots the distribution of the detour difference statistic for each metric.
-The hamming, hash, and streak metrics show evidence of ``shortcuts'' that violate the triangle inequality.\footnote{
+The hamming, hash, and streak metrics show evidence of ``shortcuts'' that violate the triangle inequality.
+\footnote{
 The raw hamming metric does respect the triangle inequality, so presumably this result is due to the normalization.
 }
 Surprisingly, given results from the similarity and dissimilarity constraint measures, the distributions of detour difference for these three metrics appear very similar.
-This suggests that geometric differences between these metrics are especially accentuated in contexts of preexisting strong matching and mismatching constraint.
+This suggests that geometric differences between these metrics are specially accentuated in contexts of preexisting strong matching and mismatching constraint.
