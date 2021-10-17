@@ -61,7 +61,7 @@ All treatments' optimal mutation rates fall within the range of mutation rates s
 In this case, peak performance was observed on the lowest sampled mutation rate.
 }
 
-We ran 100 replicate 512-generation evolutionary runs for each mutation rate/target graph/tag-matching metric combination.
+We ran 100 replicate 512-generation evolutionary runs for each combination of mutation rate, target graph, and tag-matching metric.
 These runs had a well-mixed population of size 500 and used tournament selection with tournament size 7.
 Figure \ref{fig:evolve_bests} plots population-maximum fitness over the course of these evolutionary runs.
 We performed the same evolutionary experiment with larger 64-node target graphs and observed qualitatively similar results (Supplementary Figures \ref{fig:evolve_bests64} and \ref{fig:evolve_big_mutsweep}).
