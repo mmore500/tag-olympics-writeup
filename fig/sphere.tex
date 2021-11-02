@@ -10,7 +10,10 @@
 \end{minipage}%
 \begin{minipage}{0.5\textwidth}
 \caption{
-Sampling process used to evaluate similarity constraint.
+Sampling process used to measure similarity constraint.
+First, a constraining tag $R$ was randomly sampled.
+Then, tags were randomly drawn until two tags $S_1$ and $S_2$ with distance to $R$ less than 0.01 were obtained.
+Finally, similarity constraint was measured as the distance $d$ between $S_1$ and $S_2$.
 }
 \label{fig:dimensionality_measure}
 \end{minipage}
@@ -43,6 +46,8 @@ Distribution of sampled similarity constraint values, where each horizontal sliv
 
 \caption{
 Similarity constraint of tag-matching metrics.
+Figure \ref{fig:dimensionality_measure} summarizes the sampling process used to measure similarity constraint.
+Figures \ref{fig:sphere_barplot} and  \label{fig:sphere_distnplot} compare distributions of similarity constraint across metrics.
 }
 \label{fig:sphere}
 

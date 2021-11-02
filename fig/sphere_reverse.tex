@@ -9,7 +9,12 @@
 \end{minipage}
 \begin{minipage}{0.5\linewidth}
 \caption{
-A schematic depicting the process used to generate the dissimilarity statistic for each metric.
+Sampling process used to measure dissimilarity constraint.
+Sampling process used to evaluate similarity 
+First, a constraining tag $R$ was randomly sampled.
+Then, tags were randomly drawn until a tag $S_1$ with distance to $R$ less than 0.01 was obtained.
+Next, tags were randomly drawn until a tag $S_1$ with distance to $R$ more than 0.99 was obtained.
+Finally, dissimilarity constraint was measured as the distance $d$ between $S_1$ and $S_2$.
 }
 \label{fig:dissimilarity_statistic}
 \end{minipage}
@@ -22,7 +27,7 @@ A schematic depicting the process used to generate the dissimilarity statistic f
 \end{minipage}
 \begin{minipage}{0.35\linewidth}
 \caption{
-Mean statistic values for each metric.
+Mean dissimilarity constraint values for each metric.
 Error bars represent 95\% confidence intervals.
 }
 \label{fig:sphere_reverse_distnplot}
@@ -33,13 +38,15 @@ s
 \centering
 \includegraphics[width=\columnwidth]{img/sphere_reverse/bitweight=0dot5+seed=1+title=dimensionality_distnplot+_data_hathash_hash=93f97a11cb443d35+_script_fullcat_hash=03ce1e318a24a109+ext=}
 \caption{
-Statistic distribution, where each horizontal bar sliver represents one independent observation.
+Distribution of sampled dissimilarity constraint values, where each horizontal bar sliver represents one independent observation.
 }
 \label{fig:sphere_reverse_barplot}
 \end{subfigure}
 
 \caption{
 Dissimilarity constraint of tag-matching metrics.
+Figure \ref{fig:dissimilarity_statistic} summarizes the sampling process used to measure similarity constraint.
+Figures \ref{fig:sphere_reverse_barplot} and  \label{fig:sphere_reverse_distnplot} compare distributions of similarity constraint across metrics.
 }
 \label{fig:sphere_reverse}
 
