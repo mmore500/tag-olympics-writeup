@@ -20,10 +20,9 @@ Geometric constraint might prove useful to facilitate modularity, where subsets 
 However, it may also restrict the generation of adaptive variation.
 
 We begin by comparing distributions of two statistics measuring constraint across our five tag-matching metrics: similarity constraint and dissimilarity constraint.
-\textit{Similarity constraint}, presented in Section \ref{sec:dissimilarityconstraint} quantifies the question, "If two tags both match closely to a third tag, will they necessarily match closely with each other?"
-In contrast, \textit{dissimilarity constraint} quantifies the question, ``If a certain tag matches a second tag closely and a third tag poorly, will the second and third tag tend to match poorly?"
-
-Finally, in Section
+\textit{Similarity constraint}, presented in Section \ref{sec:similarityconstraint} quantifies the question, "If two tags both match closely to a third tag, will they necessarily match closely with each other?"
+In contrast, \textit{dissimilarity constraint} in Section \ref{sec:dissimilarity_statistic} quantifies the question, ``If a certain tag matches a second tag closely and a third tag very poorly, will the second and third tag tend to match very poorly?"
+Finally, \textit{detour difference} in Section \ref{sec:detour_difference} broadens beyond strong-match and strong-mismatch contexts to quantify the question, ``How does a randomly-chosen waypoint affect distance between a pre-existing start and end tag?''
 
 \subsection{Similarity Constraint} \label{sec:similarityconstriant}
 
@@ -67,7 +66,7 @@ The hamming metric exhibits a broader range of sampled similarity constraint val
 We estimated mean similarity constraint as 0.1627, looser than the bidirectional integer metric.
 As shown in Figure \ref{fig:sphere_distnplot}, many secondarily-sampled tag pairs are biased towards low match distances.
 However, secondarily-sampled tag pairs that break this constraint are also not uncommon.
-Among our 5000 trials, we observed distances between secondarily-sampled tags as high as 0.7499.
+Among our 5,000 trials, we observed distances between secondarily-sampled tags as high as 0.7499.
 
 Why is our estimate of the hamming metric similarity constraint so much higher than the expected value of 0.0137 in a 32-dimensional Euclidean space?
 This phenomenon appears to be due to the normalization process we applied to map raw match distances to a uniform distribution.
@@ -103,7 +102,7 @@ Figure \ref{fig:dissimilarity_statistic} summarizes this process.
 Figure \ref{fig:sphere_barplot} provides our estimate of the dissimilarity constraint statistic for each metric, with error bars representing a 95\% confidence interval.
 Figure \ref{fig:sphere_distnplot} shows the distribution of the dissimilarity constraint statistic values among the 5,000 replicate samples in greater detail.
 
-These results tell a similarity to similarity constraint.
+These results tell a similar story to our similarity constraint findings.
 
 \subsubsection{Hash Metric}
 The hash metric exhibited no geometric structure --- $S_1$ and $S_2$ were uniformly likely to exhibit any match distance between 0 and 1.
