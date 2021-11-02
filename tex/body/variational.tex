@@ -24,7 +24,7 @@ To measure this effect of mutation on loosely-affiliated tag pairs, we
     \item randomly sampled a target tag $R$,
     \item randomly sampled candidate tags until we found a second tag $S$ with a match distance $> 0.5$,
     \item recorded match distance $d$ between $R$ and $S$,
-    \item applied a one-bit mutation to the secondary tag $S$, yielding a mutated variant $S'$, 
+    \item applied a one-bit mutation to the secondary tag $S$, yielding a mutated variant $S'$,
     \item measured the match distance $d$ between $R$ and $S'$,
     \item and then calculated change in match distance under mutation $p = d' - d$.
 \end{itemize}
@@ -77,11 +77,11 @@ Similarly, approximately 75\% of one-step mutations on loosely-affiliated tags w
 
 We performed single-step mutational analyses to characterize the broader mutational landscapes induced by each tag-matching metric.
 
-To conduct a mutational walk, we 
+To conduct a mutational walk, we
 \begin{itemize}
     \item randomly generated a starting tag,
     \item then sequentially applied 65 randomly-chosen one-step bit flip mutations (with back mutation allowed),
-    \item while measuring match distance to the original starting tag at each step along the walk.    
+    \item while measuring match distance to the original starting tag at each step along the walk.
 \end{itemize}
 We analyzed 1,000 replicate mutational walks for each metric.
 
@@ -93,9 +93,11 @@ Due to the hash metric's lack of geometric structure the hash metric, bitwise eq
 So, as expected, throughout the entire mutational walk this metric maintains a constant mean match distance of 0.5.
 
 \subsubsection{Integer Metric and Bidirectional Integer Metric}
+\label{sec:mutation_integer}
 
-The unsigned representation of the integer and bidirectional integer metrics (Section \ref{sec:integer} induces an exponential distribution of mutational effect across bits: mutating the most-significant bit has $2^n$-larger effect on the bitstring's integer value compared to the least-significant bit.
-Such large-effect mutations provides a reasonable explanation for the bidirectional integer metric's rapid increase in match distance under mutation relative to the hamming and streak metrics. 
+The binary representation of the integer and bidirectional integer metrics (Section \ref{sec:integer}) induces a long-tailed distribution of mutational effect sizes.
+Under this distribution, value changes of each binary order of magnitude are equally likely (corresponding to the ).
+Occasional large-effect mutations provides a reasonable explanation for the bidirectional integer metric's rapid increase in match distance under mutation relative to the hamming and streak metrics.
 The integer metric experiences even more rapid dilation of match distance under mutation.
 Under this metric, half of first mutational steps cause a wraparound effect, immediately spiking the average match distance to 0.5.
 Supplementary Figure \ref{fig:mutational_walk_lineplot} shows match distance variance decreasing as the mutational walk proceeds away from match distances biased to 0 or 1.
@@ -120,5 +122,3 @@ This experiment was conducted exactly as before, except instead of starting with
 As shown in Supplementary Figure \ref{fig:mutational_walk_sampled_start_barplot}, this experiment confirmed greater robustness of the hamming metric under mutation.
 The streak metric's match distance was significantly greater than the hamming metric between mutational steps 2 and 16 (non-overlapping 95\% CI).
 Our result remained consistent when replicating the experiment with 64-bit tags (Supplementary Figure \ref{fig:mutational_walk_sampled_start_64_barplot}).
-
-
