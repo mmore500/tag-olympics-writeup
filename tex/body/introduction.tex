@@ -10,7 +10,7 @@ These computational elements range from
   \item virtual hardware analogs like registers, memory addresses, stacks, or jump addresses in genetic programs \citep{lalejini_tag-accessed_2019,ray1991approach,ofria2004avida},
   \item molecules in artificial chemistries \citep{bagley1990spontaneous},
   \item genes in artificial gene regulatory networks \citep{banzhaf2003artificial},
-  \item individual neurons or neural modules in neuroevolution \citep{reisinger2007acquiring}, or 
+  \item individual neurons or neural modules in neuroevolution \citep{reisinger2007acquiring}, or
   \item agents in agent-based models of complex systems \citep{riolo2001evolution}.
 \end{itemize}
 
@@ -32,14 +32,14 @@ Then, typically, either:
 
 Inexact referencing facilitates orderly growth, shrinkage, and reconfiguration of a system's set of operands and operations.
 If an operand is deleted, it does not invalidate any existing operations, as other well-matching operands will fill its place.
-Likewise, new operations can be created or existing operations can be altered freely because arbitrary query tags may select operands. 
+Likewise, new operations can be created or existing operations can be altered freely because arbitrary query tags may select operands.
 
 Indeed, inexact referencing techniques find common use in agent-based modeling \citep{riolo2001evolution}, neuroevolution \citep{reisinger2007acquiring}, artificial gene regulatory networks \citep{banzhaf2003artificial}, genetic programming \citep{spector2011tag, lalejini2018evolving}, artificial chemistry \citep{dittrich2001artificial}, and artificial immunology \citep{timmis2008theoretical}.
 These systems typically either use tagging schemes based on
 \begin{itemize}
-    \item on hamming distance between bitstrings (\textit{e.g.}, \cite{lalejini2018evolving} or \cite{banzhaf2003artificial}) or 
+    \item on hamming distance between bitstrings (\textit{e.g.}, \cite{lalejini2018evolving} or \cite{banzhaf2003artificial}) or
     \item differences between real-valued scalars (\textit{e.g.}, \cite{riolo2001evolution} or \cite{spector2011tag}).
-\end{itemize}    
+\end{itemize}
 However, other nonlinear tag-matching systems, such as Downing's streak metric \citep{downing2015intelligence} and de Boer's adjacency match metric \citep{DEBOER1991381}, have been proposed.
 
 Although some efforts have been made to distinguish certain tag-matching criteria in terms of narrative explanations of their evolutionary properties and appeals to biological analogy \citep{downing2015intelligence,scherer2004activation}, no work has yet provided systematic, quantitative, or empirical insight into the ramifications of tag-matching criteria.
@@ -58,7 +58,7 @@ In this work, we show how tag-matching systems vary with respect to
   \item variational properties that influence changes to connectivity observed under mutation (Section \ref{sec:variational}), and
   \item evolutionary outcomes such as the rate of adaptive evolution and the quality of evolved solutions (Section \ref{sec:evolutionary}.
 \end{enumerate}
-Understanding these differences will help researchers more effectively employ tag-matching schemes in artificial life systems, but also provide context for inquiry into the properties and mechanisms of tag-matching systems in nature.   
+Understanding these differences will help researchers more effectively employ tag-matching schemes in artificial life systems, but also provide context for inquiry into the properties and mechanisms of tag-matching systems in nature.
 Each of the techniques compared were incorporated into the Empirical C++ library \citep{charles_ofria_2019_2575607} as part of the MatchBin tool suite.
 
 %Although some work has been done comparing the , for example minimum match-quality cutoff threshold \citep{lalejini2019} and selection \citep{Moreno_2019}
@@ -69,12 +69,12 @@ Each of the techniques compared were incorporated into the Empirical C++ library
 % of tag-matching systems.
 % Such findings will be of practical use May raise interseting evolutionary/theory questions.
 
-%In this work, we set out to characterize several tag-matching schemes between bitstring tags that have been proposed in the artificial life and genetic programming 
+%In this work, we set out to characterize several tag-matching schemes between bitstring tags that have been proposed in the artificial life and genetic programming
 
 % We overview the bitstring tag representation and the tag-matching metrics that we used in our experiments.
 % Paper layout
 
-% neuroevolution 
+% neuroevolution
 
 % gene regulatory networks \citep{}
 
@@ -143,27 +143,27 @@ Each of the techniques compared were incorporated into the Empirical C++ library
 %Finally, we throw the different tag-matching schemes into a to test them on diagnostic problems that weren't specifically designed for tag analysis.
 
 
-%In traditional computer programming, computational elements are  
+%In traditional computer programming, computational elements are
 % what about indices
 
 
 % Mutation of names, addition or removal of modules at run time.
-% Expressed in terms of the abstractions artificial life systems: from virtual hardware stand-ins like registers, stacks, or jump addresses in genetic programs,  in artificial chemistries, genes in gene regulatory network models, individual neurons or neural modules in neuroevolution, or more-general specification of agent interactions in agent-based models of complex systems 
+% Expressed in terms of the abstractions artificial life systems: from virtual hardware stand-ins like registers, stacks, or jump addresses in genetic programs,  in artificial chemistries, genes in gene regulatory network models, individual neurons or neural modules in neuroevolution, or more-general specification of agent interactions in agent-based models of complex systems
 % // has a ton of ciatations for agent interations in agent-based models of complex systems: https://www.sciencedirect.com/science/article/pii/S0950705116302994
 
 % In traditional computer programming, BLAH
 
-% The creation of novel elements, the extinction or removal of elements, 
+% The creation of novel elements, the extinction or removal of elements,
 
 
 % We will refer to computational elements that are specified among by a computer program as operands.
 % The term queries will describe sites in the computer program where a operand is specified.
 
 % As instances of computer programs, genetic programs must also specify computational elements on which to act.
-% Several approaches to addressing this problem have arisen. 
+% Several approaches to addressing this problem have arisen.
 
-% % @AML: 
-% % - Some existing addressing mechanisms in GP: (1) direct addressing (enumerating all possible operands, encode in query), (2) type-based addressing (PushGP stacks), (3) probabilistic addressing (e.g., recent tangled program graph shared memory mechanisms), (4) template-based addressing (avida, tierra). 
+% % @AML:
+% % - Some existing addressing mechanisms in GP: (1) direct addressing (enumerating all possible operands, encode in query), (2) type-based addressing (PushGP stacks), (3) probabilistic addressing (e.g., recent tangled program graph shared memory mechanisms), (4) template-based addressing (avida, tierra).
 
 % Operands may be implicitly specified according to the position of a query in a genetic program.
 % Tree-based GP, which traditionally represent programs as a rooted binary trees of operations, exemplify this approach.
@@ -218,4 +218,3 @@ Each of the techniques compared were incorporated into the Empirical C++ library
 % %* too many options first = miniscule probability of connecting
 % %* too few options next
 % Tag-matching constitutes a third possible solution.
-
