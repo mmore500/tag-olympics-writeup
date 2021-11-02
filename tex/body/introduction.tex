@@ -14,9 +14,11 @@ These computational elements range from
   \item agents in agent-based models of complex systems \citep{riolo2001evolution}.
 \end{itemize}
 
-Many artificial life systems are conceived to study open-ended dynamics.
-As such, it is often essential to allow for the computational elements designated for particular operations to shift over time, to allow for the introduction and incorporation of novel computational objects at run time, and to allow for the removal of existing computational objects at run time.
-Likewise, dynamic reorganization of code modules can facilitate hierarchical problem-solving in genetic programming \citep{Kinnear:Koza:1994:adf}.
+In genetic programming, it is often essential for operations to shift which computational elements they act on.
+This capability can tweak the semantics of existing evolved code, critical in particular for duplication and divergence processes commonly highlighted in discussions of evolvability \citep{altenberg1994evolution}.
+This capability also allows for incorporation of new computational elements and for removal of existing computational elements.
+In genetic programming, dynamic reorganization of code modules can facilitate hierarchical problem-solving in genetic programming \citep{Kinnear:Koza:1994:adf}.
+Similarly, reorganization and extension of existing computational elements is critical in the context of artificial life, where novelty and change are often of key interest \citep{taylor2016open}.
 
 Tag-based referencing, sometimes also termed pattern matching or inexact referencing, provides a practical and commonplace solution for specifying computational operands.
 This approach encodes a tag for each computational operand that may be selected and a tag for each querying operation.
@@ -52,14 +54,16 @@ We hypothesize that properties of tag-matching criteria could potentially affect
   % found these classic gene duplication references here: https://www.sciencedirect.com/science/article/pii/S108495219990335X
 \end{itemize}
 
-In this work, we show how tag-matching systems vary with respect to
+In this work, we show how tag-matching systems differ with respect to
 \begin{enumerate}
   \item geometric structure that biases or limits the patterns of connectivity that form among queries and operands (Section \ref{sec:geometric}),
   \item variational properties that influence changes to connectivity observed under mutation (Section \ref{sec:variational}), and
   \item evolutionary outcomes such as the rate of adaptive evolution and the quality of evolved solutions (Section \ref{sec:evolutionary}.
 \end{enumerate}
-Understanding these differences will help researchers more effectively employ tag-matching schemes in artificial life systems, but also provide context for inquiry into the properties and mechanisms of tag-matching systems in nature.
-Each of the techniques compared were incorporated into the Empirical C++ library \citep{charles_ofria_2019_2575607} as part of the MatchBin tool suite.
+Understanding the implications of tag-matching rules will directly enable more effective genetic programming practice.
+To a more theoretical bent, such work also provides a foundation for inquiry into the properties and mechanisms of tag-matching systems in nature.
+
+In support of further investigations, all tag-matching techniques compared here were incorporated into the open-source Empirical C++ library \citep{charles_ofria_2019_2575607} as interchangeable components of the MatchBin tool suite.
 
 %Although some work has been done comparing the , for example minimum match-quality cutoff threshold \citep{lalejini2019} and selection \citep{Moreno_2019}
 %The implications of underlying criteria determining tags' affinities have been unexplored.
