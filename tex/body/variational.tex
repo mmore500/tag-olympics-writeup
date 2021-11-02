@@ -1,7 +1,14 @@
 \section{Variational Analysis} \label{sec:variational}
 
 In Section \ref{sec:geometric} we investigated how existing tag-match relationships to a common tag influenced the distribution of match distances.
-This section, in contrast, focuses on how individual bit-flip mutations --- and cumulative sequences of bit-flip mutations --- affect a single tag-matching relationship.
+This section, in contrast, focuses on how individual mutations and cumulative sequences of mutations affect a single tag-matching relationship.
+Here, we use bit flip mutation operator.
+This approach enables straightforward, direct comparison between metrics.
+However, as a result, these analyses do not explore alternate, more semantic approaches to mutation --- especially pertinent for integer tagging schemes where a tag's integer value can be directly manipulated, for example by adding or subtracting a normally-distributed amount.\footnote{
+Although not universal, use of bit flip mutation operators with integer representations is not entirely uncommon.
+See e.g., \cite{downing2015intelligence}.
+}
+Any extrapolation of these results to systems with different mutation operators should be made with carefully consideration, and may merit additional experimentation or analysis.
 
 In Section \ref{sec:single_step}, we report two single-step mutational analyses: one that examines the local mutational neighborhoods of loosely-affiliated and a second that examines the local mutational neighborhoods of tightly-affiliated tag pairs.
 In Section \ref{sec:mutational_walks}, we perform mutational walk analysis to survey the broader mutational landscape.
