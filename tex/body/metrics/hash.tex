@@ -1,0 +1,16 @@
+\subsection{Hash Metric} \label{sec:hash}
+
+The hash metric calculates match distance via a cryptographic hash of tags $t$ and $u$.
+First, we concatenate $t$ and $u$ into a double-width bitstring $v$ such that
+\begin{align*}
+v = \langle t_0, t_1, t_2, \dots, t_{n-2}, t_{n-1}, u_0, u_1, u_2, \dots, u_{n-2}, u_{n-1} \rangle
+\end{align*}
+
+Then, we use the OpenSSL library to generate a \texttt{std::string} digest of $v$.
+We then apply \texttt{std::hash} to map this digest to a \texttt{std::size\_t}, $v'$.
+Finally, we perform a floating point division to compute the matching distance as $d(t, u) = v' / \hat{V}$ where $\hat{V}$  denotes the maximum representable \texttt{std::size\_t} value.
+
+To our knowledge, the hash metric is original to this work.
+The metric produces an arbitrary, but deterministic, match distance between any two tags.
+In other words, the tag matching space is completely unstructured.
+We include it primarily to serve as a control.

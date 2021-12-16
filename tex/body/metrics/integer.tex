@@ -1,0 +1,23 @@
+\subsection{Integer Metric} \label{sec:integer}
+
+The integer metric computes match distance between tags $t$ and $u$ by counting upwards from $t$ until $u$ is reached.
+If necessary, the counting process wraps around at $2^n$.
+
+To accomplish this, the integer metric must interpret bitstring tags $t$ and $u$ as unsigned integers.
+We use a standard representation,
+\begin{align*}
+f(t)
+= \sum_{i=0}^{n-1} t_i \times 2^i.
+\end{align*}
+
+Formally, the integer metric computes distance between $n$-bit bitstring tags as,
+\begin{align*}
+d(t, u) =
+\begin{cases}
+  \frac{2^n - f(t) + f(u)}{2^n}, & \text{if } f(t) > f(u), \\
+  \frac{f(t) - f(u)}{2^n},         & \text{otherwise}.
+\end{cases}
+\end{align*}
+
+Inclusion of this metric is motivated by \cite{spector2011tag}, who used positive integers between 0 and 100 to name referents.
+Queries matched to the referent that had the next-larger value, wrapping around from 100 back to 0.

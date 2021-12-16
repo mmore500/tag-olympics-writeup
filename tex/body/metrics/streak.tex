@@ -1,0 +1,44 @@
+
+
+\subsection{Streak Metric} \label{sec:streak}
+
+The streak metric computes match distance between bitstring tags $t$ and $u$ as a ratio of lengths of contiguously matching and mismatching substrings within those tags.
+
+Formally, we can compute the greatest contiguously-matching length of $n$-long bitstrings $t$ and $u$ as,
+\begin{align*}
+m(t, u) = \max\Big(\{i - j \forall i, j \in 0..n-1 \mid \forall q \in i..j, t_q = u_q \}\Big).
+\end{align*}
+
+Likewise, the greatest contiguously-mismatching length can be computed as,
+\begin{align*}
+n(t, u) = \max\Big(\{i - j \forall i, j \in 0..n-1 \mid \forall q \in i..j, t_q \neq u_q \}\Big).
+\end{align*}
+
+As proposed in \cite{downing2015intelligence}, the streak metric computes distance between $n$-bit bitstring tags $t$ and $u$ as,
+\begin{align*}
+d'(t, u)
+= \frac{p'(n(t,u))}{p'(m(t,u)) + p'(n(t,u))}.
+\end{align*}
+where $p(k)$ approximates the probability of a contiguous $k$-bit match between two bitstrings.
+\cite{downing2015intelligence} derives
+\begin{align*}
+p'(k)
+= \frac{n - k + 1}{2^k}.
+\end{align*}
+
+However, this formula is subtly flawed.
+For instance, the probability of a $0$-bit match according to this formula would be computed as $p'(0) = \frac{n - 0 + 1}{2^0} = n + 1$.
+This is clearly impossible --- it would imply $p'(0) > 1 \forall n > 0$.
+
+Although correct probabilities can be calculated via dynamic programming, $p'$ provides a useful approximation.
+For computational efficiency and consistency with the existing literature, we use the math proposed in \citep{downing2015intelligence} but clamp edge cases between 0.0 and 1.0.
+This yields the corrected streak metric $d$ used in this work,
+\begin{align*}
+d(t, u) = \max\Big( \min( d'(t, u), 1), 0 \Big).
+\end{align*}
+
+Downing's presentation of the streak metric motivates it by analogy to the biochemistry of enzyme biochemistry.
+In motivating the metric, Downing reports mutational walk experiments that show it to exhibit greater robustness compared to integer and hamming metrics.
+However, it is not demonstrated in an evolving system.
+To our knowledge, no further work on this metric has been published.
+(Although, through personal communication, we learned of some unpublished work applying the metric in a neuroevolution system.)

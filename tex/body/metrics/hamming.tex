@@ -1,0 +1,14 @@
+\subsection{Hamming Metric} \label{sec:hamming}
+
+The hamming metric computes match distance as the fraction of positions between tags $t$ and $u$ with mismatching bits.
+Formally, for $n$-bit bitstring tags,
+\begin{align*}
+d(t, u)
+= \frac{
+  \#\{ i : t_i \neq u_i, i=0, \dots ,n-1\}
+}{
+  n
+}.
+\end{align*}
+
+This metric is based on \cite{lalejini2019else}, originally after \cite{hamming1950error}.

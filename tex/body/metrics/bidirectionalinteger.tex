@@ -1,0 +1,20 @@
+\section{Bidirectional Integer Metric} \label{sec:bidirectionalinteger}
+
+The bidirectional integer metric computes match distance between tags $t$ and $u$ by counting from $t$ to $u$.
+The count from $t$ to $u$ ascends or descends, whichever is shorter.
+If necessary, the count wraps around at $0$ and $2^n$.
+
+The binteger metric interprets bitstring tags $t$ and $u$ as unsigned integers using the same mapping, $f$, as the integer metric.
+
+Formally, the bidirectional integer metric computes distance between $n$-bit bitstring tags as,
+\begin{align*}
+d(t, u) =
+\min
+\begin{cases}
+  \frac{2^n - \max\big(f(t), f(u)\big) + \min\big(f(t), f(u)\big)}{2^n}, \\
+  \frac{\max\big(f(t), f(u)\big) - \min\big(f(t), f(u)\big)}{2^n}.
+\end{cases}
+\end{align*}
+
+We included this metric to contrast with the integer metric. In particular, we wished to shed light on any consequences of its asymmetry and discontinuity.
+In figure axes and legends with tight space constraints, we refer to this metric as ``Integer (bi)''.
