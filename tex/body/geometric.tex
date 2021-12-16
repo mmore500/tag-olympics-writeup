@@ -1,30 +1,31 @@
 \section{Geometric Analyses} \label{sec:geometric}
 
 In this section, we consider the geometry that tag matching metrics impose over bitstring tag space.
-These geometries may affect the patterns of connectivity between tagged components that tend to (or even are possible to) arise.
+These geometries may affect the patterns of connectivity between tagged components that tend to arise, or are even possible at all.
 
-As an example of potential geometric constraint, consider the bitstring tags $t = \langle 0, 0, ... 0 \rangle$ and $u = \langle 1, 1, ... 1 \rangle$ under the hamming metric.
-No third tag $v$ could simultaneously exhibit a tag match distance < 0.5 to both tags.
-However, under the hash metric no such pair of tags exists --- how well a third tag $v$ matches to $t$ and how well it matches to $u$ is always entirely independent.
-Stated more generally, in metrics with strong geometric constraints, there may commonly exist pairs of tags such that no single third tag can simultaneously exhibit a close affinity to both.
+As an illustrative example of potential geometric constraint, consider the bitstring tags $t = \langle 0, 0, \ldots, 0 \rangle$ and $u = \langle 1, 1, \ldots, 1 \rangle$ under the hamming metric.
+No third tag $v$ could simultaneously exhibit a tag match distance $<0.5$ to both tags.
+Stated more generally, geometric constraint within a metric may enable tag pairs such that no single third tag can simultaneously exhibit a close affinity to both.
 
-As another example of potential geometric constraint, consider the bitstring tags $t = \langle 0, 0, ... 0 \rangle$ and $u = \langle 0, 0, ... 1 , 0 \rangle$ under the bidirectional integer metric.
-(Here, the tag $t$ would correspond to the integer 0 and the tag $u$ would correspond to the integer 1.)
-No third tag $v$ could simultaneously exhibit a match distance > 0.9 to $t$ and < 0.1 to $u$.
-However, under the integer metric the $v = 1$ would satisfy these criteria.
-Stated more generally, in metrics with strong geometric constraints, there may commonly exist pairs of tags such that any third tag must either match both closely or match neither closely.
+As another example of potential geometric constraint, consider the bitstring tags $t = \langle 0, 0, \ldots, 0 \rangle$ and $u = \langle 0, 0, \ldots, 1 , 0 \rangle$ under the bidirectional integer metric.
+(Here, the tag $t$ would correspond to the integer 0 and the tag $u$ would correspond to the integer 2.)
+No third tag $v$ could simultaneously exhibit a match distance $>0.9$ to $t$ and $<0.1$ to $u$.
+Stated more generally, geometric constraint may also enable tag pairs such that any third tag must either match both closely or match neither closely.
+
+Geometric constraint varies by metric.
+For example, under the hash metric no pair of tags exists with either aspect of geometric constraint described above --- how well a third tag $v$ matches to $t$ and how well it matches to $u$ is always entirely independent.
 
 Geometric constraint seems likely to profoundly influence evolution in tag-matching systems.
-However, understanding how these implications ultimately play out is a difficult problem.
-Geometric constraint might prove useful to facilitate modularity, where subsets of tag space tend to have associated functionality \citep{holland1990concerning}.
-However, it may also restrict the generation of adaptive variation.
+However, it is not obvious how to predict \textit{a priori} how these implications ultimately play out.
+Geometric constraint might prove useful to facilitate modularity by allowing subsets of tag space to correspond to associated functionality \citep{holland1990concerning}.
+However, it may also hinder generation of adaptive variation.
 
-We begin by comparing distributions of two statistics measuring constraint across our five tag-matching metrics: similarity constraint and dissimilarity constraint.
-\textit{Similarity constraint}, presented in Section \ref{sec:similarityconstraint} quantifies the question, "If two tags both match closely to a third tag, will they necessarily match closely with each other?"
-In contrast, \textit{dissimilarity constraint} in Section \ref{sec:dissimilarity_statistic} quantifies the question, ``If a certain tag matches a second tag closely and a third tag very poorly, will the second and third tag tend to match very poorly?"
+To study geometric constraint, we begin by comparing distributions of two statistics measuring constraint across our five tag-matching metrics: similarity constraint and dissimilarity constraint.
+\textit{Similarity constraint}, presented in Section \ref{sec:similarityconstraint} quantifies the question, ``If two tags both match closely to a third tag, will they necessarily match closely with each other?''
+In contrast, \textit{dissimilarity constraint} in Section \ref{sec:dissimilarityconstraint} quantifies the question, ``If a certain tag matches a second tag closely and a third tag very poorly, will the second and third tag tend to match very poorly?''
 Finally, \textit{detour difference} in Section \ref{sec:detour_difference} broadens beyond strong-match and strong-mismatch contexts to quantify the question, ``How does a randomly-chosen waypoint affect distance between a pre-existing start and end tag?''
 
-\subsection{Similarity Constraint} \label{sec:similarityconstriant}
+\subsection{Similarity Constraint} \label{sec:similarityconstraint}
 
 \input{fig/sphere.tex}
 
@@ -58,7 +59,7 @@ We estimated this value as 0.5092.
 However, this looser similarity constraint appears to be an artifact of averaging between two very tight constraints: a tight constraint to 0 in one case and a tight constraint to 1 in the other.
 Figure \ref{fig:sphere_distnplot} confirms that all sampled match distances fall under one of these cases.
 Because of the asymmetrical definition of the integer metric, half of pairs of similar scalar values will be in ascending order (resulting in a match distance close to 0) and half will be in descending order (resulting in wraparound search and a match distance close to 1).
-The integer metric appears to allow for tags closely related to a third tag either very strongly match or very weakly match, but permits no intermediate outcomes.
+The integer metric appears to allow for a pair of tags closely related to a third tag either very strongly match or very weakly match, but permits no intermediate outcomes.
 
 \subsubsection{Hamming Metric}
 
@@ -118,8 +119,7 @@ We observed distances between secondarily-sampled tags as low as 0.0002.
 
 The hamming metric exhibited stronger geometric structure in the mean case than the streak metric.
 Mean secondarily-sampled distance was 0.8248.
-
-This hamming metric also exhibited less extreme tail-end outcomes than the streak metric.
+The hamming metric also exhibited less extreme tail-end outcomes than the streak metric.
 We observed match distances between the secondarily-sampled tags only as low as 0.2355.
 
 \subsubsection{Bidirectional Integer Metric}
@@ -131,7 +131,7 @@ The smallest distance between secondarily-sampled tags observed was 0.9802.
 
 Again, the unidirectional integer metric exhibited a quirky result due to its noncommutative nature.
 The mean distance between secondarily-sampled tags was 0.0100.
-That is, instead of a bias against close matches as we would expect, secondarily-sampled tags were much closer together than expected under arbitrary sampling.
+That is, instead of observing poor matches as we would expect, secondarily-sampled tags were much closer together than expected under arbitrary sampling.
 As shown in Figure \ref{fig:sphere_distnplot}, \textit{all} secondarily-sampled distances observed with this metric were extremely small.
 So, although in the opposite way from what we would expect, match distances were still tightly constrained.
 
@@ -148,7 +148,7 @@ Similarity constraint and dissimilarity constraint quantify the geometric constr
 To complement these measures, we set out to characterize the regularity, in a loose sense, of each space more broadly.
 This led us to our ``detour difference'' measure, which quantifies tag matching spaces' respect for the triangle inequality.
 
-Intuitively, detour difference is a measure of how adding a randomly-chosen waypoint affects total distance between a pre-existing start and end.
+Intuitively, detour difference is a measure of how adding a randomly-chosen waypoint affects total distance between pre-existing start and end points.
 Under the triangle inequality, the direct route is always shortest.
 So, if the triangle inequality is respected, detour difference should always be non-negative.
 
@@ -157,9 +157,9 @@ Then, for each metric $m$ we calculated the $m(A, B) + m(B, C) - m(A, C)$.
 Figure \ref{fig:detour_difference_cartoon} provides a schematic of this process.
 
 Figure \ref{fig:detour_difference_distribution} plots the distribution of the detour difference statistic for each metric.
-The hamming, hash, and streak metrics show evidence of ``shortcuts'' that violate the triangle inequality.
-\footnote{
+The hamming, hash, and streak metrics show evidence of ``shortcuts'' that violate the triangle inequality.%
+\footnote{%
 The raw hamming metric does respect the triangle inequality, so presumably this result is due to the normalization.
 }
-Surprisingly, given results from the similarity and dissimilarity constraint measures, the distributions of detour difference for these three metrics appear very similar.
+Surprisingly, given divergent results from the similarity and dissimilarity constraint measures, the distributions of detour difference for these three metrics appear very similar.
 This suggests that geometric differences between these metrics are specially accentuated in contexts of preexisting strong matching and mismatching constraint.

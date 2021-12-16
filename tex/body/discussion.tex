@@ -9,7 +9,7 @@
 % Likewise, if a tag closely matches a second tag, will the tag be constrained to poorly match other tags the second tag poorly matches?
 We used geometrical analyses to explore how tag-matching metrics constrain patterns of connectivity between tags, making some configurations unlikely or even impossible.
 The bidirectional integer metric exhibited the tightest geometrical constraint in our analyses.
-The unidirectional integer metric also exhibited tight geometrical constraint, but quirks of its non-commutative construction can allow that constraint to split across perfect- and worst-matching extremes.
+The unidirectional integer metric also exhibited tight geometrical constraint, but quirks of its non-commutative construction allowed that constraint to split across perfect- and worst-matching extremes.
 Hamming and streak metrics exhibited looser geometric constraint, with the streak metric allowing for edge cases that very strongly break constraints.
 Finally, the hash metric exhibited no geometrical constraint.
 
@@ -36,15 +36,15 @@ In some more-constrained cases, the streak metric enabled more rapid adaptive ev
 
 
 In genetic programming evolutionary experiments, we found that the hamming and streak metrics yielded successful solutions the most frequently.
-On the directional signal task, which tends to require denser interaction networks, we found evidence that the streak metric enabled more rapid adaptive evolution than the hamming metric.
+On the directional signal task, which tends to require denser (more constrained) interaction networks, we found evidence that the streak metric enabled more rapid adaptive evolution than the hamming metric.
 
-The hash metric had the next best performance in SignalGP experiments, yielding more solutions than the integer metrics, which performed comparably.
+The hash metric had the next-best performance in SignalGP experiments, yielding more solutions than the integer metrics, which performed comparably poorly.
 Although the hash metric performed best in low-constraint target-matching experiments, it was outperformed in low-constraint SignalGP experiments.
 This may be due to the presence of duplication and differentiation processes across SignalGP lineages, where instruction and module count can grow over time.
 
 \input{fig/conceptual_geometry.tex}
 
-Relative to the other metrics, the streak metric tends to offer intermediate variational and geometric properties.
+Relative to the other metrics, the streak metric appears to offer intermediate variational and geometric properties.
 Figure \ref{fig:conceptual_geometry} depicts a schematic summary of this observation.
 It exhibits some, but not strict, geometric constraint.
 Many mutations are neutral or near-neutral (like the integer and hamming metrics) but a fat tail of extreme-effect mutations also occur (like the hash metric).
