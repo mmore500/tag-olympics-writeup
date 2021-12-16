@@ -1,0 +1,27 @@
+\begin{table}[]
+\begin{tabularx}{\textwidth}{l|X}
+\textbf{Metric}       & \textbf{Description}                                                                                                                                        \\ \hline
+Hamming               & fraction of positions within \texttt{tag\_0} and \texttt{tag\_1} with mismatching bits                                                                         \\ \hline
+Hash                  & SHA1 cryptographic hash of  concatenation of \texttt{tag\_0} and \texttt{tag\_1} \citep{eastlake2001us}                         \\ \hline
+Integer               & value added to the unsigned integer representation of \texttt{tag\_0} to reach representation of \texttt{tag\_1}, wrapping around if necessary \\ \hline
+Bidirectional Integer & lesser of integer metric distances \texttt{d(tag\_0, tag\_1)} and \texttt{d(tag\_1, tag\_0)}                                                                \\ \hline
+Streak                & ratio of lengths of contiguously matching and mismatching substrings \\ \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{l|X|X}
+\hline
+\textbf{Metric}       & \textbf{Commutative?} & \textbf{Multidimensional?} \\ \hline
+Hamming               & yes                   & yes                        \\ \hline
+Hash                  & no                    & yes                        \\ \hline
+Integer               & no                    & no                         \\ \hline
+Bidirectional Integer & yes                   & no                         \\ \hline
+Streak                & yes                   & yes
+\end{tabularx}
+
+\caption{
+Surveyed tag-matching metrics. A matching metric is commutative if \texttt{d(tag\_0, tag\_1) = d(tag\_1, tag\_0)} for all tags.
+A matching metric is considered multidimensional if position within matching space is not represented by a scalar value.
+}
+\label{tab:metrics}
+
+\end{table}
