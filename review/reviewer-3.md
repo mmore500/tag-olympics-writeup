@@ -15,10 +15,10 @@ Note the leading "-" in front of deleted text and the leading "+" in front of in
 --- a/source.tex
 +++ b/source.tex
 @@ -1,3 +1,3 @@
- unchanged text
+unchanged text
 -deleted text
 +inserted text
- more unchanged text
+more unchanged text
 ```
 
 These diffs are syntax highlighted for easy skimmability on the rendered version of our notes linked above.
@@ -49,7 +49,7 @@ We also provide some links so that diffs may be viewed directly on GitHub.
 >
 > Given that you've only looked at a small number of problems, it's unclear whether the observations will generalise.
 > I suspect, as with most things, there is going to be a degree of No Free Lunch here, i.e. different representations/metrics will work well for different problems.
-> Maybe something worth discussing. 
+> Maybe something worth discussing.
 > That said, I like your brief point about tuning tag systems in the conclusions; perhaps this could be emphasised a bit more, since you have shown that getting the right setup for a particular problem is important.
 >
 > Typos etc:
