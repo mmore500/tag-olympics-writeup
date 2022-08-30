@@ -22,7 +22,7 @@ Finally, dissimilarity constraint was measured as the distance $d$ between $S_1$
 
 \begin{subfigure}[b]{\linewidth}
 \begin{minipage}{0.6\linewidth}
-\includegraphics[width=\linewidth]{img/sphere_reverse/bitweight=0dot5+seed=1+title=dimensionality_barplot+_data_hathash_hash=93f97a11cb443d35+_script_fullcat_hash=03ce1e318a24a109+ext=}
+\includegraphics[width=\linewidth]{img/sphere_reverse/bitweight=0dot5+seed=1+title=dimensionality_barplot+_data_hathash_hash=93f97a11cb443d35+_script_fullcat_hash=a3db428966bb187a+ext=}
 \end{minipage}
 \begin{minipage}{0.35\linewidth}
 \caption{
@@ -34,11 +34,10 @@ Error bars represent 95\% confidence intervals.
 \end{subfigure}
 \begin{subfigure}[b]{\columnwidth}
 \centering
-\includegraphics[width=\columnwidth]{img/sphere_reverse/bitweight=0dot5+seed=1+title=dimensionality_distnplot+_data_hathash_hash=93f97a11cb443d35+_script_fullcat_hash=bea2a31376bf6bd0+ext=}
+\includegraphics[width=\columnwidth]{img/sphere_reverse/bitweight=0dot5+seed=1+title=dimensionality_distnplot+viz=hist+_data_hathash_hash=93f97a11cb443d35+_script_fullcat_hash=cda229fb13f5a152+ext=}
 \caption{
-Distributions of sampled dissimilarity constraint values.
-Each visualization arranges individually sampled observations (thin horizontal bars) vertically in descending order.
-The $y$ axis can be interpreted as ranging form the \nth{0} percentile of outcomes (bottom) to \nth{100} percentile (top) with horizontal bar width showing dissimilarity constraint at a certain percentile.
+Frequency of sampled dissimilarity constraint values in each match distance decile.
+Error bars are 95\% confidence intervals calculated using the Wilson score method with continuity correction \citep{newcombe1998two}.
 }
 \label{fig:sphere_reverse_barplot}
 \end{subfigure}
