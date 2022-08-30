@@ -74,4 +74,13 @@ We performed this normalization independently for each tag-matching metric using
 \end{enumerate}
 Figure \ref{fig:uniformification} compares the distribution of match distances between randomly-sampled tags before and after this normalization process across tag-matching metrics.
 
+Error in the Monte Carlo approximation of the percentile of any raw match score is distributed binomially.
+With 10,000 samples, absolute error at the 50th percentile can be bounded below 1\% with 95\% confidence and below 1.2\% with 99\% confidence.
+% https://www.wolframalpha.com/input?i=binomial+distribution%2810000%2C+0.5%29+percentile
+Absolute error at the 1st percentile can be bounded below 0.17\% with 95\% confidence and below 0.24\% with 99\% confidence.
+% https://www.wolframalpha.com/input?i=binomial+distribution%2810000%2C+0.99%29+percentile
+(With five independent uniformification processes, 99\% confidence per metric translates to 95\% confidence over all metrics under Bonferroni correction.)
+
 All work reported here employed match distance normalization.
+Because the match distance lookup table was generated deterministically as a static object, the same table was consistently used for all experiments with each metric.
+Note that match distance normalization has no effect in experiments where tag-matching is performed exclusively by relative ordering (i.e., evolutionary experiments with the graph-matching and changing-signal tasks introduced later on).
