@@ -39,7 +39,7 @@ Sections \ref{sec:hamming}, \ref{sec:hash}, \ref{sec:integer}, \ref{sec:bidirect
 \input{tex/body/metrics/bidirectionalinteger.tex}
 \input{tex/body/metrics/streak.tex}
 
-\subsection{Match Distance Normalization}
+\subsection{Match Distance Uniformification}
 \label{sec:uniformification}
 
 For consistency of implementation and interpretation, all metrics output tag-matching distances between 0.0 (a ``perfect'' match) and 1.0 (a ``worst'' match).
@@ -48,12 +48,13 @@ However, the distribution of tag-match distances within this range may vary subs
 For example, the probability of a match distance $<1/32$ is $1/32$ under the hash metric but $1/2^{32}$ under the hamming metric.
 
 In order to ensure an intuitive interpretation of match distances that was consistent across all tag-matching metrics, we normalized metrics' match distances so that the distances between pairs of randomly generated tags would follow a uniform distribution between 0.0 and 1.0.
-In this discussion, we refer to match distance before normalization as ``raw.''
+We call this process ``uniformification.''
+In this discussion, we refer to match distance before uniformification as ``raw.''
 
-For example, two tags with a 0.01 normalized match distance would be better-matched than 99\% of randomly-generated tag pairs.
+For example, two tags with a 0.01 uniformified match distance would be better-matched than 99\% of randomly-generated tag pairs.
 Additionally, in situations where raw match distance plays a mechanistic role (for example, probabilistic matching or threshold-based cutoffs), this transformation ensures consistency across metrics.
 
-We performed this normalization independently for each tag-matching metric using the following Monte Carlo approximation method.
+We performed this uniformification independently for each tag-matching metric using the following Monte Carlo approximation method.
 \begin{enumerate}
 \item We sampled 10,000 pairs of randomly-generated tags.
 \item We calculated raw match distance between each pair of generated tags using the chosen tag-matching metric.
@@ -67,12 +68,12 @@ We performed this normalization independently for each tag-matching metric using
 \end{enumerate}
 \item For subsequent tag match distance calculations during the experiment, we performed a lookup on this list.
 \begin{itemize}
-    \item If a single exactly-identical raw match distance existed in the list, we returned its percentile ranking as the normalized match distance.
-    \item If two or more exactly-identical raw match distances existed in the list, we returned the mean percentile ranking of these entries as the normalized match distance.
+    \item If a single exactly-identical raw match distance existed in the list, we returned its percentile ranking as the uniformified match distance.
+    \item If two or more exactly-identical raw match distances existed in the list, we returned the mean percentile ranking of these entries as the uniformified match distance.
     \item If no exactly-identical raw match distance existed in the list, we linearly interpolated between the next-largest and next-smallest list entries' percentile rankings.
 \end{itemize}
 \end{enumerate}
-Figure \ref{fig:uniformification} compares the distribution of match distances between randomly-sampled tags before and after this normalization process across tag-matching metrics.
+Figure \ref{fig:uniformification} compares the distribution of match distances between randomly-sampled tags before and after this uniformification process across tag-matching metrics.
 
 Error in the Monte Carlo approximation of the percentile of any raw match score is distributed binomially.
 With 10,000 samples, absolute error at the 50th percentile can be bounded below 1\% with 95\% confidence and below 1.2\% with 99\% confidence.
@@ -81,6 +82,6 @@ Absolute error at the 1st percentile can be bounded below 0.17\% with 95\% confi
 % https://www.wolframalpha.com/input?i=binomial+distribution%2810000%2C+0.99%29+percentile
 (With five independent uniformification processes, 99\% confidence per metric translates to 95\% confidence over all metrics under Bonferroni correction.)
 
-All work reported here employed match distance normalization.
+All work reported here employed match distance uniformification.
 Because the match distance lookup table was generated deterministically as a static object, the same table was consistently used for all experiments with each metric.
-Note that match distance normalization has no effect in experiments where tag-matching is performed exclusively by relative ordering (i.e., evolutionary experiments with the graph-matching and changing-signal tasks introduced later on).
+Note that match distance uniformification has no effect in experiments where tag-matching is performed exclusively by relative ordering (i.e., evolutionary experiments with the graph-matching and changing-signal tasks introduced later on).

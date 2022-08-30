@@ -114,8 +114,8 @@ It is significantly slower to diverge than the integer metrics and the hash metr
 The streak metric diffuses away from zero match distance second-slowest, trailed only by the hamming metric.
 
 Interestingly, this result contradicts Downing's presentation of the streak metric in \citep{downing2015intelligence}, in which he suggests that the streak metric exhibits \textit{greater} robustness because its match distance diverges more slowly under a mutational walk.
-This discrepancy presumably arises due to our normalization to ensure a uniform distribution of raw match scores between 0 and 1 (Section \ref{sec:uniformification}).
-We believe that our result under normalization is more representative because match distance corresponds to the probability that arbitrary tags would match more strongly by chance --- which directly relates to how effectively a operand tag competes to be the ``best'' match for a query.
+This discrepancy presumably arises due to our uniformification to ensure a uniform distribution of raw match scores between 0 and 1 (Section \ref{sec:uniformification}).
+We believe that our result under uniformification is more representative because match distance corresponds to the probability that arbitrary tags would match more strongly by chance --- which directly relates to how effectively a operand tag competes to be the ``best'' match for a query.
 
 To compare mutational landscapes between the streak and integer metrics under more realistic circumstances (i.e., where tags do not begin exactly perfectly-matched), we performed a secondary mutational walk experiment.
 This experiment was conducted exactly as before, except instead of starting with exactly-identical tags it started with a pair of tags that was randomly sampled for match distance $<0.01$.

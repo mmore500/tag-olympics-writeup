@@ -70,8 +70,8 @@ However, secondarily-sampled tag pairs that break this constraint are also not u
 Among our 5,000 trials, we observed distances between secondarily-sampled tags as high as 0.7499.
 
 Why is our estimate of the hamming metric similarity constraint so much higher than the expected value of 0.0137 in a 32-dimensional Euclidean space?
-This phenomenon appears to be due to the normalization process we applied to map raw match distances to a uniform distribution.
-We also calculated this statistic for the raw hamming metric without normalization, increasing the radius of our sampling ball to 0.25.
+This phenomenon appears to be due to the uniformification process we applied to map raw match distances to a uniform distribution.
+We also calculated this statistic for the raw hamming metric without uniformification, increasing the radius of our sampling ball to 0.25.
 (Only the exact target 32-bit tag itself falls within a sampling radius of 0.01.)
 The \textit{a priori} expected distance between sampled points within a 32-dimensional ball with radius 0.25 is 0.3415.
 Our estimate of similarity constraint for the raw hamming metric falls nearly in line with expectation at 0.3312.
@@ -159,7 +159,7 @@ Figure \ref{fig:detour_difference_cartoon} provides a schematic of this process.
 Figure \ref{fig:detour_difference_distribution} plots the distribution of the detour difference statistic for each metric.
 The hamming, hash, and streak metrics show evidence of ``shortcuts'' that violate the triangle inequality.%
 \footnote{%
-The raw hamming metric does respect the triangle inequality, so presumably this result is due to the normalization.
+The raw hamming metric does respect the triangle inequality, so presumably this result is due to the uniformification.
 }
 For the hamming, streak, and hash metrics the most extreme shortening detours observed were -0.76, -0.91, and -0.94, respectively.
 The integer and bidirectional integer metrics only exhibited shortening detours up to -0.02, which were due to minor stochastic imperfections of the uniformification process.
