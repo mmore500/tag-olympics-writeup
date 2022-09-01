@@ -30,6 +30,7 @@ Note again that generalization to systems with alternate mutation operators (inc
 
 \input{fig/graph_layouts.tex}
 \input{fig/evo_graph_matching.tex}
+\input{tab/evo_graph_mut.tex}
 
 In this evolutionary experiment, we evolved genomes consisting of 32 bit tags to establish a pattern of connectivity exactly mirroring that of a randomly-generated target bipartite graph.
 Each bitstring tag in a genome corresponded to a node in the target graph.
@@ -63,6 +64,7 @@ Supplementary Figure \ref{fig:evolve_mutsweep} shows the rate each metric's rate
 All treatments' optimal mutation rates fall within the range of mutation rates surveyed, except for the hash metric on the regular target graphs.
 In this case, peak performance was observed on the lowest sampled mutation rate.
 }
+Table \ref{fig:evo_graph_mut} provides the best-performing mutation rate for each metric across target graph configurations.
 
 We ran 100 replicate 512-generation evolutionary runs for each mutation rate/target graph/tag-matching metric combination.
 These runs had a well-mixed population of size 500 and used tournament selection with tournament size 7.
