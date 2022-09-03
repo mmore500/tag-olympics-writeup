@@ -15,9 +15,12 @@ Formally, the integer metric computes distance between $n$-bit bitstring tags as
 d(t, u) =
 \begin{cases}
   \frac{2^n - f(t) + f(u)}{2^n}, & \text{if } f(t) > f(u), \\
-  \frac{f(t) - f(u)}{2^n},         & \text{otherwise}.
+  \frac{f(u) - f(t)}{2^n},         & \text{otherwise}.
 \end{cases}
 \end{align*}
 
 Inclusion of this metric is motivated by \cite{spector2011tag}, who used positive integers between 0 and 100 to name referents.
 Queries matched to the referent that had the next-larger value, wrapping around from 100 back to 0.
+
+Like the hash metric, this metric is not commutative.
+We adopt the convention of using the query tag as $t$ and the operand tag as $u$.

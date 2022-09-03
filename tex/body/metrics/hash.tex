@@ -14,3 +14,8 @@ v = \langle t_0, t_1, t_2, \dots, t_{n-2}, t_{n-1}, u_0, u_1, u_2, \dots, u_{n-2
 Then, we use the OpenSSL library to generate a \texttt{std::string} digest of $v$.
 We then apply \texttt{std::hash} to map this digest to a \texttt{std::size\_t}, $v'$.
 Finally, we perform a floating point division to compute the matching distance as $d(t, u) = v' / \hat{V}$ where $\hat{V}$  denotes the maximum representable \texttt{std::size\_t} value.
+
+Note that this metric is not commutative.
+As noted above, however, tag-matching systems inherently distinguish queries and operands.
+So, an ordering within each pair of tags processed in a tag-matching system will be well-defined.
+We use the convention of ordering the operand tag after the query tag when concatenating the tags' bit representations.
