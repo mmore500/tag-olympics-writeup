@@ -41,11 +41,9 @@ The probability of a $0$-bit match according to this formula would be computed a
 The actual can probability be achieved using a lookup table computed using dynamic programming.
 
 However, the formula Downing presented provides a useful approximation to the probability of a $k$ bit match.
-For computational efficiency and consistency with the existing literature we use clamp edge cases between 0 and 1 to yield the corrected streak metric $S$.
+For computational efficiency and consistency with the existing literature we simply clamp edge cases between 0 and 1 to yield the corrected streak metric $S$.
 
 \begin{align*}
 S(t, u) =
 \max( \min( S'(t, u), 1), 0)
 \end{align*}
-
-

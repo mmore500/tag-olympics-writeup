@@ -20,19 +20,19 @@ f(t)
 = \sum_{i=0}^{n-1} t_i \times 2^i.
 \end{align*}
 
-The distance metric $I$ between two length-$n$ tags $t$ and $u$ is
+The integer distance metric $I$ between two length-$n$ tags $t$ and $u$ is
 \begin{align*}
 I(t, u) =
 \begin{cases}
   \frac{2^n - f(t) + f(u)}{2^n}, & \text{if } f(t) > f(u), \\
-  \frac{f(t) - f(u)}{2^n},         & \text{else} f(t) \leq f(u).
+  \frac{f(u) - f(t)}{2^n},         & \text{else} f(t) \leq f(u).
 \end{cases}
 \end{align*}
+
+The division by $2^n$ is performed to ensure a match distance between 0 and 1.
 
 Note that this metric is non-commutative, i.e., it is not necessarily true that $I(t, u) = I(u, t)$.
 
 Note also that this metric is one-dimensional.
 
 A algorithmic advantage of this metric is that it allows for log-time matching.
-
-

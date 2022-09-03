@@ -9,9 +9,8 @@ where
 \forall i, t_i \in \{0, 1\}.
 \end{align*}
 
-This metric is based on the work of \citep{lalejini2019else}, originally after TODO hamming cite(?).
-
-In this metric, we compare tags according to their bitwise hamming distance.
+This metric's inclusion is inspired by Lalejini's SignalGP system, where it is used to match incoming signals to GP modules \citep{lalejini2018evolving, lalejini2019else}.
+This metric compares tags according to their bitwise hamming distance \citep{hamming1950error}.
 Mathematically speaking for tags $t$ and $u$ we compute the distance according to the metric $M$ as,
 \begin{align*}
 M(t, u)
@@ -23,5 +22,3 @@ M(t, u)
 \end{align*}
 
 This metric is commutative and $n$-dimensional.
-
-
