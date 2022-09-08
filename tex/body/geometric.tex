@@ -3,7 +3,7 @@
 In this section, we consider the geometry that tag matching metrics impose over bitstring tag space.
 These geometries may affect the patterns of connectivity between tagged components that tend to arise, or are even possible at all.
 
-As an illustrative example of potential geometric constraint, consider the bitstring tags $t = \langle 0, 0, \ldots, 0 \rangle$ and $u = \langle 1, 1, \ldots, 1 \rangle$ under the hamming metric.
+As an illustrative example of potential geometric constraint, consider the bitstring tags $t = \langle 0, 0, \ldots, 0 \rangle$ and $u = \langle 1, 1, \ldots, 1 \rangle$ under the Hamming metric.
 No third tag $v$ could simultaneously exhibit a tag match distance $<0.5$ to both tags.
 Stated more generally, geometric constraint within a metric may enable tag pairs such that no single third tag can simultaneously exhibit a close affinity to both.
 
@@ -43,7 +43,7 @@ For reference, in a one-dimensional Euclidean space similarity constraint would 
 In a two dimensional Euclidean space, it would measure approximately  0.0091.
 In 32 dimensions, it would measure 0.0137 \citep{dunbar1997average}.
 So, in some sense, this similarity constraint metric can be interpreted as an indirect measure of dimensionality.
-However, as we'll see in Section \ref{sec:detour_difference}, the hamming, hash, and streak metric impose a decidedly non-Euclidean geometry.
+However, as we'll see in Section \ref{sec:detour_difference}, the Hamming, hash, and streak metric impose a decidedly non-Euclidean geometry.
 
 \subsubsection{Bidirectional Integer Metric}
 
@@ -63,18 +63,18 @@ The integer metric appears to allow for a pair of tags closely related to a thir
 
 \subsubsection{Hamming Metric}
 
-The hamming metric exhibits a broader range of sampled similarity constraint values than the integer metrics.
+The Hamming metric exhibits a broader range of sampled similarity constraint values than the integer metrics.
 We estimated mean similarity constraint as 0.1627, looser than the bidirectional integer metric.
 As shown in Figure \ref{fig:sphere_distnplot}, many secondarily-sampled tag pairs are biased towards low match distances.
 However, secondarily-sampled tag pairs that break this constraint are also not uncommon.
 Among our 5,000 trials, we observed distances between secondarily-sampled tags as high as 0.7499.
 
-Why is our estimate of the hamming metric similarity constraint so much higher than the expected value of 0.0137 in a 32-dimensional Euclidean space?
+Why is our estimate of the Hamming metric similarity constraint so much higher than the expected value of 0.0137 in a 32-dimensional Euclidean space?
 This phenomenon appears to be due to the uniformification process we applied to map raw match distances to a uniform distribution.
-We also calculated this statistic for the raw hamming metric without uniformification, increasing the radius of our sampling ball to 0.25.
+We also calculated this statistic for the raw Hamming metric without uniformification, increasing the radius of our sampling ball to 0.25.
 (Only the exact target 32-bit tag itself falls within a sampling radius of 0.01.)
 The \textit{a priori} expected distance between sampled points within a 32-dimensional ball with radius 0.25 is 0.3415.
-Our estimate of similarity constraint for the raw hamming metric falls nearly in line with expectation at 0.3312.
+Our estimate of similarity constraint for the raw Hamming metric falls nearly in line with expectation at 0.3312.
 
 \subsubsection{Streak Metric}
 
@@ -117,9 +117,9 @@ We observed distances between secondarily-sampled tags as low as 0.0002.
 
 \subsubsection{Hamming Metric}
 
-The hamming metric exhibited stronger geometric structure in the mean case than the streak metric.
+The Hamming metric exhibited stronger geometric structure in the mean case than the streak metric.
 Mean secondarily-sampled distance was 0.8248.
-The hamming metric also exhibited less extreme tail-end outcomes than the streak metric.
+The Hamming metric also exhibited less extreme tail-end outcomes than the streak metric.
 We observed match distances between the secondarily-sampled tags only as low as 0.2355.
 
 \subsubsection{Bidirectional Integer Metric}
@@ -157,11 +157,11 @@ Then, for each metric $m$ we calculated the $m(A, B) + m(B, C) - m(A, C)$.
 Figure \ref{fig:detour_difference_cartoon} provides a schematic of this process.
 
 Figure \ref{fig:detour_difference_distribution} plots the distribution of the detour difference statistic for each metric.
-The hamming, hash, and streak metrics show evidence of ``shortcuts'' that violate the triangle inequality.%
+The Hamming, hash, and streak metrics show evidence of ``shortcuts'' that violate the triangle inequality.%
 \footnote{%
-The raw hamming metric does respect the triangle inequality, so presumably this result is due to the uniformification.
+The raw Hamming metric does respect the triangle inequality, so presumably this result is due to the uniformification.
 }
-For the hamming, streak, and hash metrics the most extreme shortening detours observed were -0.76, -0.91, and -0.94, respectively.
+For the Hamming, streak, and hash metrics the most extreme shortening detours observed were -0.76, -0.91, and -0.94, respectively.
 The integer and bidirectional integer metrics only exhibited shortening detours up to -0.02, which were due to minor stochastic imperfections of the uniformification process.
 
 Surprisingly, given divergent results from the similarity and dissimilarity constraint measures, the distributions of detour difference for these three metrics appear similar.

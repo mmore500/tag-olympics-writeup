@@ -28,8 +28,8 @@ Again, for consistency, we restrict closeness values between 0 and 1.
 A closeness of 0 corresponds to the ``worst'' possible match.
 A closeness of 1 corresponds to the ``best'' possible match.
 
-We compared five tag-matching metrics: hamming, hash, integer, bidirectional integer, and streak.
-The hamming and bidirectional integer metrics are included because of their ubiquity in artificial life systems.
+We compared five tag-matching metrics: Hamming, hash, integer, bidirectional integer, and streak.
+The Hamming and bidirectional integer metrics are included because of their ubiquity in artificial life systems.
 The integer metric is included due to its use in seminal work exploring tag-matching in genetic programs \citep{spector2011tag, spector2011s,spector2012tag}.
 The streak metric was proposed to model large-effect mutations observed in biology but, to our knowledge, has not yet been formally studied in an evolving system.
 The hash metric is introduced in this work in order to investigate the implications of a completely geometrically-unstructured tag-matching scheme.
@@ -53,7 +53,7 @@ Sections \ref{sec:hamming}, \ref{sec:hash}, \ref{sec:integer}, \ref{sec:bidirect
 For consistency of implementation and interpretation, all metrics output tag-matching distances between 0.0 (a ``perfect'' match) and 1.0 (a ``worst'' match).
 
 However, the distribution of tag-match distances within this range may vary substantially between metrics.
-For example, the probability of a match distance $<1/32$ is $1/32$ under the hash metric but $1/2^{32}$ under the hamming metric.
+For example, the probability of a match distance $<1/32$ is $1/32$ under the hash metric but $1/2^{32}$ under the Hamming metric.
 
 In order to ensure an intuitive interpretation of match distances that was consistent across all tag-matching metrics, we normalized metrics' match distances so that the distances between pairs of randomly generated tags would follow a uniform distribution between 0.0 and 1.0.
 We call this process ``uniformification.''

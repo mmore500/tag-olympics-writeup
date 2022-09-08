@@ -60,9 +60,9 @@ This might be because achieving a very poor match requires both increasing longe
 
 \subsubsection{Hamming Metric}
 
-The hamming metric exhibits a generally uniform magnitude of match-distance changes under mutation.
+The Hamming metric exhibits a generally uniform magnitude of match-distance changes under mutation.
 High-magnitude one-step mutations do not occur under this metric.
-(Without normalizing match distance to a uniform distribution for randomly-sampled tags, all hamming metric mutations would be of exactly the same magnitude, either increasing or decreasing the count of matching bits by 1.)
+(Without normalizing match distance to a uniform distribution for randomly-sampled tags, all Hamming metric mutations would be of exactly the same magnitude, either increasing or decreasing the count of matching bits by 1.)
 
 \subsubsection{Hash Metric}
 
@@ -98,20 +98,20 @@ So, as expected, throughout the entire mutational walk this metric maintains a c
 
 The binary representation of the integer and bidirectional integer metrics (Section \ref{sec:integer}) induces a long-tailed distribution of mutational effect sizes.
 Under this distribution, value changes of each binary order of magnitude are equally likely (corresponding to toggling the bit at each position).
-Occasional large-effect mutations provides a plausible explanation for the bidirectional integer metric's rapid increase in match distance under mutation relative to the hamming and streak metrics.
+Occasional large-effect mutations provides a plausible explanation for the bidirectional integer metric's rapid increase in match distance under mutation relative to the Hamming and streak metrics.
 The integer metric experiences even more rapid dilation of match distance under mutation.
 Under this metric, half of first mutational steps cause a wraparound effect, immediately spiking the average match distance to 0.5.
 Supplementary Figure \ref{fig:mutational_walk_lineplot} shows match distance variance decreasing as the integer metric mutational walk proceeds away from match distances biased to 0 or 1.
 
 \subsubsection{Hamming Metric}
 
-The hamming metric's match distance diffuses upward slowest.
-The hamming metric's mutational walk is significantly slower to diverge than the streak metric's at 16 and 32 steps (non-overlapping 95\% CI).
+The Hamming metric's match distance diffuses upward slowest.
+The Hamming metric's mutational walk is significantly slower to diverge than the streak metric's at 16 and 32 steps (non-overlapping 95\% CI).
 It is significantly slower to diverge than the integer metrics and the hash metric between steps 1 and 32, as well (non-overlapping 95\% CI).
 
 \subsubsection{Streak Metric}
 
-The streak metric diffuses away from zero match distance second-slowest, trailed only by the hamming metric.
+The streak metric diffuses away from zero match distance second-slowest, trailed only by the Hamming metric.
 
 Interestingly, this result contradicts Downing's presentation of the streak metric in \citep{downing2015intelligence}, in which he suggests that the streak metric exhibits \textit{greater} robustness because its match distance diverges more slowly under a mutational walk.
 This discrepancy presumably arises due to our uniformification to ensure a uniform distribution of raw match scores between 0 and 1 (Section \ref{sec:uniformification}).
@@ -120,6 +120,6 @@ We believe that our result under uniformification is more representative because
 To compare mutational landscapes between the streak and integer metrics under more realistic circumstances (i.e., where tags do not begin exactly perfectly-matched), we performed a secondary mutational walk experiment.
 This experiment was conducted exactly as before, except instead of starting with exactly-identical tags it started with a pair of tags that was randomly sampled for match distance $<0.01$.
 
-As shown in Supplementary Figure \ref{fig:mutational_walk_sampled_start_barplot}, this experiment confirmed greater robustness of the hamming metric under mutation.
-The streak metric's match distance was significantly greater than the hamming metric between mutational steps 2 and 16 (non-overlapping 95\% CI).
+As shown in Supplementary Figure \ref{fig:mutational_walk_sampled_start_barplot}, this experiment confirmed greater robustness of the Hamming metric under mutation.
+The streak metric's match distance was significantly greater than the Hamming metric between mutational steps 2 and 16 (non-overlapping 95\% CI).
 Our result remained consistent when replicating the experiment with 64-bit tags (Supplementary Figure \ref{fig:mutational_walk_sampled_start_64_barplot}).
