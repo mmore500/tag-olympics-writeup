@@ -12,11 +12,7 @@ f(t)
 
 Formally, the integer metric computes distance between $n$-bit bitstring tags as,
 \begin{align*}
-d(t, u) =
-\begin{cases}
-  \frac{2^n - f(t) + f(u)}{2^n}, & \text{if } f(t) > f(u), \\
-  \frac{f(u) - f(t)}{2^n},         & \text{otherwise}.
-\end{cases}
+d(t, u) = \frac{\Big(f(u) - f(t)\Big) \mod 2^n}{2^n}.
 \end{align*}
 
 Inclusion of this metric is motivated by \cite{spector2011tag}, who used positive integers between 0 and 100 to name referents.

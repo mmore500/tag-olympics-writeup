@@ -101,12 +101,23 @@ We also provide some links so that diffs may be viewed directly on GitHub.
 > ==============
 >
 > Some figures, including Figure 1, appear a long ways before they are mentioned in the text.
->
+
+[Adjusted](https://github.com/mmore500/tag-olympics-writeup/commit/036383783375b9dcbab3a54b62b223e6dcd92269).
+
 > I believe the definition of the Integer Metric in section 2.3 could be simplified to: `d(t,u) = ((f(u) - f(t)) mod 2^n) / 2^n`, removing the need for a piecewise definition.
+
+We double checked this simplification with a few examples by hand and incorporated it.
+
 > (And if you stick with the piecewise definition, I believe the bottom half is backwards, and should instead be `(f(u) - f(t)) / 2^n`, since otherwise this will be negative.)
+
+Yes, the bottom half of the piecewise definition was backward.
+
 > Finally, if I'm getting the math right, the bidirectional integer metric could also be simplified to: `d(t,u) = min{(f(t) - f(u)) mod 2^n, (f(u) - f(t)) mod 2^n} / 2^n`.
 > I find these formulas with mod more intuitive for the "wrapping around" structure of these tag metrics.
->
+
+Agreed!
+Updated the definition.
+
 > 2.4 line 7 - "bintiger" not used anywhere else.
 >
 > You use "normalization" and "uniformification" to describe how you make the distributions more uniform. Pick one.
