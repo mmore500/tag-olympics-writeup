@@ -64,13 +64,23 @@ We added a table with the best-performing mutation rates for each metric on the 
 > Typos etc:
 >
 > hamming => Hamming
->
+
+[Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/3f2173f756c4218a77704969b07a1606b7609813).
+
 > Fig {2,3,4,...}c caption: ranging form => ranging from
->
+
+[Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/a77a4cc7272d0edc498fbf238f5b09113da50944).
+
 > "neither involved in neither the longest-matching streak nor" - those double-negatives are confusing!
->
+
+[Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/5dfad3f373f5a43318e110fc836c4cfd67f4e212).
+
 > mulit-step => multi-step
->
+
+[Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/f89df168d89463cca77b1cf1bab5361c18840f48).
+
 > "harvested its operand tags placed them": I think there's an "and" missing there.
 >
 > with respect tag-matching criteria => with respect to tag-matching criteria
+
+[Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/a990d2b1463684790ac0e45d12cd19548d6607dd).
