@@ -39,7 +39,14 @@ We have replaced the figure in the main text with a line plot and moved the exis
 
 > Although I see you've included the full results in supplementary material, it would be worth mentioning the optimal mutation rates in Section 5.1 (as you do in Section 5.2), since these rates contain relevant information.
 > Perhaps you could also comment on the fact that the optimal mutation rate for different metrics can differ by an order of magnitude, and maybe say something about the relative importance of optimising this hyperparameter.
->
+
+We added a table with the best-performing mutation rates for each metric on the different target-matching problems and added a note summarizing across the surveyed metrics and emphasizing variability in optimal mutation rates between metrics
+
+```diff
++ Best-performing mutation rates varied greatly, ranging from as low as 0.75 expected mutations per genome for the hash metric to as high as 8.0 for the integer metrics.
++ The hamming and streak metrics intermediate best-performing mutation rates between 1.5 and 4.0 expected mutations per genome.
+```
+
 > Was there any dependence between the choice of seed program and the performance of the metrics?
 > For instance, the optimal balance between exploration and exploitation may be determined in part by program size.
 >
