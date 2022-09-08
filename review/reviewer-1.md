@@ -119,9 +119,16 @@ Agreed!
 Updated the definition.
 
 > 2.4 line 7 - "bintiger" not used anywhere else.
->
+
+This was a typo.
+Corrected.
+
 > You use "normalization" and "uniformification" to describe how you make the distributions more uniform. Pick one.
->
+
+Agreed.
+We chose ``uniformification'' and removed all references to normalization.
+[Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/45e8149d357946a67896fd09c540cfcab641f8db).
+
 > Since Streak and Hamming seem somewhat related, it seems that it would be nice to have them next to each other in the plots.
 >
 > Subsections such as 3.1.1, 3.1.2, etc. don't discuss methods in the same order as the plots.
@@ -136,22 +143,51 @@ Updated the definition.
 >
 > Section 3.3: "m(A, B) + m(B, C) − m(A, C)" doesn't seem to correspond to Fig. 4(a).
 > Likely need to change one or the other.
->
+
+We updated the figure to clarify correspondence with the text.
+
 > Section 3.3 has no analysis of the integer metrics, and I'd like to see one.
 >
 > Section 4.1 line 36 -- should this be d', not d?
->
+
+That is correct.
+[Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/6fda702ed5feb32c7635ba29d4477d3468d65565).
+
 > p. 19 line 4 -- "loosely-affiliated" => "tightly-affiliated"
->
+
+[Corrected](https://github.com/mmore500/tag-olympics-writeup/commit/ed1760368d70bbf5c0141c018c3126847ebfea76).
+
 > Section 4.2 -- why 65 bit flip mutations? And why only 1,000 replicates for this experiment?
->
+
+We have clarified both of these points
+```diff
+@@ -81,10 +81,12 @@ We performed multi-step mutational analyses to characterize the broader mutation
+ To conduct these mutational walks, we
+ \begin{itemize}
+     \item randomly generated a starting tag,
+-    \item then sequentially applied 65 randomly-chosen one-step bit flip mutations to that tag (with back mutation allowed),
++    \item then sequentially applied randomly-chosen one-step bit flip mutations to that tag until a mutational saturation threshold,
+     \item while recording match distance to the original starting tag at each step along the walk.
+ \end{itemize}
+-We analyzed 1,000 replicate mutational walks for each metric.
++Back mutation was allowed in these experiments.
++We performed 65 step mutational walks, which allowed us to include a binary order of magnitude past one expected mutation per site.
++We analyzed 1,000 replicate mutational walks for each metric, which was sufficient to distinguish metrics with bootstrapped 95\% confidence intervals
+
+```
+
 > Section 6 line 44 -- "streak" => "hash"
->
+
+[Fixed.](https://github.com/mmore500/tag-olympics-writeup/commit/a2bb3fa68f2397d08e8755ea2649d08734d12e98)
+
 > Other Comments
 > ==============
 >
 > I really like the inclusion of the hash metric as a control.
->
+
+Thank you!
+We were trying to imagine how to invent an "anti" metric and were surprised by its strong performance in some regards.
+
 > "Geometric constraint might prove useful to facilitate modularity by allowing subsets of tag space to correspond to associated functionality" -- this perhaps sounds like homology, maybe you want to label it as such?
 >
 > I really like Detour Difference -- earlier in the paper I was hoping you'd consider the triangle inequality.

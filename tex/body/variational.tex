@@ -81,10 +81,12 @@ We performed multi-step mutational analyses to characterize the broader mutation
 To conduct these mutational walks, we
 \begin{itemize}
     \item randomly generated a starting tag,
-    \item then sequentially applied 65 randomly-chosen one-step bit flip mutations to that tag (with back mutation allowed),
+    \item then sequentially applied randomly-chosen one-step bit flip mutations to that tag until a mutational saturation threshold,
     \item while recording match distance to the original starting tag at each step along the walk.
 \end{itemize}
-We analyzed 1,000 replicate mutational walks for each metric.
+Back mutation was allowed in these experiments.
+We performed 65 step mutational walks, which allowed us to include a binary order of magnitude past one expected mutation per site.
+We analyzed 1,000 replicate mutational walks for each metric, which was sufficient to distinguish metrics with bootstrapped 95\% confidence intervals
 
 Figure \ref{fig:mutational_walk_barplot} compares how match distance increases along mutational walks for each tag-matching metric.
 
