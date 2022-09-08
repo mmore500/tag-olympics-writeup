@@ -32,16 +32,21 @@ Note again that generalization to systems with alternate mutation operators (inc
 \input{fig/evolve_bests.tex}
 \input{tab/evo_graph_mut.tex}
 
-In this evolutionary experiment, we evolved genomes consisting of 32 bit tags to establish a pattern of connectivity exactly mirroring that of a randomly-generated target bipartite graph.
-Each bitstring tag in a genome corresponded to a node in the target graph.
+In this experiment, we explored metrics' ability to facilitate evolution of an arbitrary, fixed pattern of tag-matching connectivity.
+Genomes in this experiment consisted solely of a set of 32 tags, partitioned evenly as 16 query tags and 16 operand tags.
+We used randomly-generated bipartite graphs as a specification for an arbitrary set of desired operands that queries should match to, with each node in the graph corresponding directly to a bitstring tag in the genome.
 Figure \ref{fig:graph_layouts} shows example target graph layouts.
 
-Target graphs were evenly partitioned between queries and operands.
 To evaluate the fitness of a genome, we harvested its operand tags placed them into a tag-matching data structure.
-This data structure allowed us to determine the best-matching operands for each query tag.
-We determined best matches as the operand tags with lowest match distance to that query.
-For each query tag, we recorded as many best-match results as the number of outgoing edges on the corresponding node in the target graph.
-We assessed fitness as the fraction of best-match tag pairs that correctly corresponded to edges in the target graph.
+This data structure allowed us to match each query tag to its $n$ best-matching operands.
+For each query tag, we set the number of collected operand matches $n$ to the outgoing edge count from its corresponding node in the target graph.
+So, for example, if a node had three outgoing edges then we would record the three best-matching operands of the corresponding tag.
+
+For the purposes of fitness evaluation, we considered matches within this set equivalent.
+So, each query tag had a set of $n$ best-matching operands.
+We took that query tag's contribution to fitness as the fraction of its best-matching operands that corresponded to connections on the target biparte graph; that is, the fraction of best-matching operands with corresponding graph nodes connected by an edge to the query's corresponding graph node.
+
+Along these lines, we took overall fitness as the fraction of best-match tag pairs that correctly corresponded to edges in the target graph.
 
 We controlled the degree of tag-matching constraint imposed by the target graph by manipulating:
 \begin{enumerate}
@@ -51,7 +56,7 @@ We controlled the degree of tag-matching constraint imposed by the target graph 
 We tested target graphs with mean degree 1 and 2 and both regular and irregular construction.
 
 Irregular, degree 2 graphs imposed the most tag-matching constraint.
-High-degree nodes in these graphs were exceptionally constrained by many simultaneous connection criteria.
+High-degree nodes in these graphs were strongly constrained by many simultaneous connection criteria.
 Figure \ref{fig:irregular_degree_2} shows an example irregular, degree 2 graph.
 
 Regular, degree 1 graphs imposed the least tag-matching constraint.

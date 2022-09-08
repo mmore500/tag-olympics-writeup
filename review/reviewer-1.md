@@ -63,7 +63,28 @@ We have replaced these all with histograms and moved the originals, which do sho
 > The experiment in section 5.1 is very confusingly described.
 > After reading it 3 times, I'm still not sure what's going on.
 > This needs to be rewritten from scratch to precisely describe the experiment, what genomes are, how they are used, and what they have to do with random bipartite graphs.
->
+
+We have revised our explanation as follows
+```
+In this experiment, we explored metrics' ability to facilitate evolution of an arbitrary, fixed pattern of tag-matching connectivity.
+Genomes in this experiment consisted solely of a set of 32 tags, partitioned evenly as 16 query tags and 16 operand tags.
+We used randomly-generated bipartite graphs as a specification for an arbitrary set of desired operands that queries should match to, with each node in the graph corresponding directly to a bitstring tag in the genome.
+Figure \ref{fig:graph_layouts} shows example target graph layouts.
+
+To evaluate the fitness of a genome, we harvested its operand tags placed them into a tag-matching data structure.
+This data structure allowed us to match each query tag to its $n$ best-matching operands.
+For each query tag, we set the number of collected operand matches $n$ to the outgoing edge count from its corresponding node in the target graph.
+So, for example, if a node had three outgoing edges then we would record the three best-matching operands of the corresponding tag.
+
+For the purposes of fitness evaluation, we considered matches within this set equivalent.
+So, each query tag had a set of $n$ best-matching operands.
+We took that query tag's contribution to fitness as the fraction of its best-matching operands that corresponded to connections on the target biparte graph; that is, the fraction of best-matching operands with corresponding graph nodes connected by an edge to the query's corresponding graph node.
+
+Along these lines, we took overall fitness as the fraction of best-match tag pairs that correctly corresponded to edges in the target graph.
+
+We controlled the degree of tag-matching constraint imposed by the target graph by manipulating:
+```
+
 > Moderate Concerns
 > =================
 >
