@@ -50,7 +50,10 @@ We also provide some links so that diffs may be viewed directly on GitHub.
 > After reading a bunch of these, I can somewhat interpret them, but would have a hard time explaining precisely what they mean.
 > I think I would find histograms (whether cumulative or not, not sure which would be better), easier to read and would show the same trends.
 > All of these definitely need to be changed, since they're a core piece of this work and are very difficult to interpret.
->
+
+Agreed on the shortcomings of the existing distribution plots.
+We have replaced these all with histograms and moved the originals, which do show some granular detail not entirely captured by the histograms, to the supplements.
+
 > Early in the paper you mention "In experiments where mutations were applied to tags, individual bits were toggled stochastically at a uniform per-bit rate.", which I immediately thought "that doesn't sound fair to the integer-based metrics."
 > You later, at the start of section 4, acknowledge this and state that further experimentation should be made with other mutation operators.
 > I think it would be appropriate and within the scope of this paper to at least test 1 mutation operator that would have low locality for the integer representations, comparing it to the bit-flip mutation.
