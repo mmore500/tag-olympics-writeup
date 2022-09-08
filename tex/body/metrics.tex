@@ -1,7 +1,5 @@
 \section{Tags and Tag-Matching Metrics}
 
-\input{fig/uniformification.tex}
-
 In all experiments, we used 32-bit bitstrings as tags.
 Formally, we define a tag $t$ as a fixed-length binary vector,
 \begin{align*}
@@ -28,6 +26,8 @@ Again, for consistency, we restrict closeness values between 0 and 1.
 A closeness of 0 corresponds to the ``worst'' possible match.
 A closeness of 1 corresponds to the ``best'' possible match.
 
+\input{tab/metrics.tex}
+
 We compared five tag-matching metrics: Hamming, hash, integer, bidirectional integer, and streak.
 The Hamming and bidirectional integer metrics are included because of their ubiquity in artificial life systems.
 The integer metric is included due to its use in seminal work exploring tag-matching in genetic programs \citep{spector2011tag, spector2011s,spector2012tag}.
@@ -36,8 +36,6 @@ The hash metric is introduced in this work in order to investigate the implicati
 Table \ref{tab:metrics} compares summary descriptions for each metric.
 
 % Full mathematical definitions and implementation details appear in \href{doi.org/10.17605/OSF.IO/GW5MC}{supplementary material} \citep{Moreno_Ofria_2020}.
-
-\input{tab/metrics.tex}
 
 Sections \ref{sec:hamming}, \ref{sec:hash}, \ref{sec:integer}, \ref{sec:bidirectionalinteger}, and \ref{sec:streak} provide formal definitions for each metric.
 
@@ -49,6 +47,8 @@ Sections \ref{sec:hamming}, \ref{sec:hash}, \ref{sec:integer}, \ref{sec:bidirect
 
 \subsection{Match Distance Uniformification}
 \label{sec:uniformification}
+
+\input{fig/uniformification.tex}
 
 For consistency of implementation and interpretation, all metrics output tag-matching distances between 0.0 (a ``perfect'' match) and 1.0 (a ``worst'' match).
 
