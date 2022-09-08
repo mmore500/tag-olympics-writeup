@@ -65,6 +65,8 @@ All treatments' optimal mutation rates fall within the range of mutation rates s
 In this case, peak performance was observed on the lowest sampled mutation rate.
 }
 Table \ref{fig:evo_graph_mut} provides the best-performing mutation rate for each metric across target graph configurations.
+Best-performing mutation rates varied greatly, ranging from as low as 0.75 expected mutations per genome for the hash metric to as high as 8.0 for the integer metrics.
+The hamming and streak metrics intermediate best-performing mutation rates between 1.5 and 4.0 expected mutations per genome.
 
 We ran 100 replicate 512-generation evolutionary runs for each mutation rate/target graph/tag-matching metric combination.
 These runs had a well-mixed population of size 500 and used tournament selection with tournament size 7.
