@@ -91,7 +91,37 @@ We controlled the degree of tag-matching constraint imposed by the target graph 
 > There are a handful of typos and English issues throughout, which need to be tightened up, especially when they say the wrong thing.
 >
 > The introduction does not do a good job of summarizing the results or discussion of the paper.
->
+
+We embellished the end part of our introduction to directly cover these topics.
+```diff
+-In this work, we show how tag-matching systems differ with respect to
++In this work, we survey five tag-matching schemes: two based on integer representations, one based on Hamming distance, a "streak" metric based on the maximum length of identical substrings, and a control metric that uses a hashing algorithm to compute completely arbitrary match distances.
++
++We explore how these tag-matching schemes differ with respect to
+ \begin{enumerate}
+   \item geometric structure that biases or limits the patterns of connectivity that form among queries and operands (Section \ref{sec:geometric}),
+   \item variational properties that influence changes to connectivity observed under mutation (Section \ref{sec:variational}), and
+   \item evolutionary outcomes such as the rate of adaptive evolution and the quality of evolved solutions (Section \ref{sec:evolutionary}).
+ \end{enumerate}
+-Understanding the implications of tag-matching rules will directly enable more effective genetic programming practice.
+-To a more theoretical bent, such work also provides a foundation for inquiry into the properties and mechanisms of tag-matching systems in nature.
++
++Across several geometric analyses, we found the geometric structure of the integer metrics to be most restrictive, followed by the Hamming and then streak metrics.
++We observed large-effect one step mutations under the integer metrics and streak metrics, but not under the hamming mutation.
++Except for the control hash metric, match affinity decayed most rapidly along mutational walks under the integer metrics.
++Match affinity decayed slowest along mutational walks under the hamming metric.
++
++Evolutionary experiments also showed meaningful differences between tag-matching schemes.
++We found that rigid, one-dimensional geometric structure of the integer metrics impeded satisfaction of multiple simultaneous tag-matching requirements in scenarios where a query tag was required to closely match to more than one operand.
++Integer metrics also fared poorly in genetic programming experiments, even when the selected-for tag-matching scenario only involved matching queries to a single operand.
++Evolutionary conditions in these experiments were configured to emphasize duplication and divergence by restricting sources of variation, namely initial tag variation and ongoing insertion of randomly-generated tags.
++The Hamming and streak metrics generally fared best, with the streak metric outperforming the Hamming metric in some scenarios.
++
++Although the Hamming and streak metrics generally matched or outperformed the integer metrics, confirming the extent to which these findings generalize across tag-matching application domains beyond those surveyed --- particularly with respect to mutation operator used --- necessitates further research.
++Improved understanding of the implications of tag-matching rules will directly enable more effective genetic programming practice.
++To a more theoretical bent, this work also provides a foundation for inquiry into the properties and mechanisms of tag-matching systems in nature.
+```
+
 > Transition from introduction to section 2 is very abrupt. Section 2 could use a paragraph explaining what it will contain.
 >
 > Section 2.5 and 2.6 discuss "probability of a contiguous k-bit match" and "probability of a match distance". What does "probability" mean here?
