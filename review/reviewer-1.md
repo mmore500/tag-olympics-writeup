@@ -139,7 +139,9 @@ We have added an introductory paragraph to Section 2.
 
 > Section 2.5 "probability of a contiguous k-bit match between two bitstrings" -- Does this mean probability of an exact k-bit match, or of at least k-bit match (i.e. k or more contiguous bits match).
 > My reading of the math is that it has to be the latter, but this should be stated clearly either way.
->
+
+[Further clarified](https://github.com/mmore500/tag-olympics-writeup/commit/fb8a3e5bd3f4f59ea9a842eb9b20f22e27105cd4).
+
 > All of the experiments in this paper use somewhat arbitrary numbers of samples.
 > For example, Figure 1 uses 10,000 random pairs, where others use 5,000.
 > A few remarks here:
