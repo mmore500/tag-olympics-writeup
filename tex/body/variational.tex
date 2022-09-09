@@ -19,20 +19,22 @@ In Section \ref{sec:mutational_walks}, we perform mutational walk analysis to su
 
 We performed single-step mutational analyses to characterize the local mutational neighborhoods induced by each tag-matching metric.
 
-To measure this effect of mutation on loosely-affiliated tag pairs, we
+To measure this effect of mutation on loosely-affiliated tag pairs, for each metric $m$ we
 \begin{itemize}
     \item randomly sampled a target tag $R$,
-    \item randomly sampled candidate tags until we found a second tag $S$ with a match distance $> 0.5$,
-    \item recorded match distance $d$ between $R$ and $S$,
+    \item randomly sampled candidate tags until we found a second tag $S$ with a match distance $m(R, S) > 0.5$,
+    \item recorded match distance between $R$ and $S$, $d = m(R, S)$,
     \item applied a one-bit mutation to the secondary tag $S$, yielding a mutated variant $S'$,
-    \item measured the match distance $d'$ between $R$ and $S'$,
+    \item measured the match distance between $R$ and $S'$, $d' = m(R, S')$,
     \item and then calculated change in match distance under mutation $p = d' - d$.
 \end{itemize}
 We repeated this procedure to generate 5,000 samples.
 
-The top panel of Figure \ref{fig:mutational_step} visualizes the distribution of match distance change under mutation of loosely-affiliated tags.
-A negative mutational perturbation $p$ indicates a decrease in match distance and, therefore, an increase in match quality (colored blue in Figure \ref{fig:mutational_step}).
-A positive mutational perturbation $p$ indicates an increase in match distance and, therefore, an decrease in match quality (colored red in Figure \ref{fig:mutational_step}).
+To suit the instinct that positive change should correspond to an increase in match quality and negative change should correspond to a decrease in match quality, we pose all further discussion in terms of match cloesness change (i.e., $1 - p$) rather than match distance change.
+
+The top panel of Figure \ref{fig:mutational_step} visualizes the distribution of match closeness change under mutation of loosely-affiliated tags.
+Negative match closeness change --- falling on left side of $x$ axes in Figure \ref{fig:mutational_step} --- corresponds to a decrease in match quality.
+Conversly, positive match closeness change falls on the right side of $x$ axes in Figure \ref{fig:mutational_step} and denotes an increase in match quality.
 
 We used a similar procedure to measure the distribution of mutational perturbations on tightly-matched tag pairs, except that we uniformly sampled until we found a second tag $S$ with match distance $< 0.01$.
 The bottom panel of Figure \ref{fig:mutational_step}, color coded identically to the top panel, visualizes the distribution of match distance change under mutation of tightly-affiliated tags.
@@ -78,11 +80,11 @@ Similarly, approximately 75\% of one-step mutations on loosely-affiliated tags w
 \input{fig/mutational_walk_barplot.tex}
 
 We performed multi-step mutational analyses to characterize the broader mutational landscapes induced by each tag-matching metric.
-To conduct these mutational walks, we
+To conduct these mutational walks, for each metric $m$ we
 \begin{itemize}
-    \item randomly generated a starting tag,
-    \item then sequentially applied randomly-chosen one-step bit flip mutations to that tag until a mutational saturation threshold,
-    \item while recording match distance to the original starting tag at each step along the walk.
+    \item randomly generated a starting tag $t^{(0)}$,
+    \item then sequentially applied randomly-chosen one-step bit flip mutations to that tag until a mutational saturation threshold (yielding $t^{(1)}, t^{(2)}, ...$),
+    \item while recording match distance from the original starting tag $m(t^{(0)}, t^{(i)})$ at each step $i$ along the walk.
 \end{itemize}
 Back mutation was allowed in these experiments.
 We performed 65 step mutational walks, which allowed us to include a binary order of magnitude past one expected mutation per site.

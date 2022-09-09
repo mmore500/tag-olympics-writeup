@@ -29,9 +29,10 @@ Finally, \textit{detour difference} in Section \ref{sec:detour_difference} broad
 
 \input{fig/sphere.tex}
 
-To characterize similarity constraint, we randomly sampled 5,000 target tags.
-Then, for each target tag $R$ we randomly sampled tags until we found two secondarily-sampled tags $S_1$ and $S_2$ that were within a 0.01 match distance radius to the target.
-Finally, we computed the match distance $d$ between the pair of secondarily-sampled tags.
+To characterize similarity constraint for a metric $m$, we randomly sampled 5,000 target tags.
+Then, for each target tag $R$ we randomly sampled tags until we found two secondarily-sampled tags $S_1$ and $S_2$ that were within a 0.01 match distance radius from the target.
+That is, we chose $S_1$ and $S_2$ such that $m(R, S_1) < 0.01$ and $m(R, S_2) < 0.01$.
+Finally, we computed the match distance $d = m(S_1, S_2)$ between the pair of secondarily-sampled tags.
 Figure \ref{fig:dimensionality_measure} summarizes this process.
 
 Figure \ref{fig:sphere_barplot} provides our estimate of the similarity constraint statistic for each metric, with error bars representing a 95\% confidence interval.
@@ -95,9 +96,10 @@ As expected, the hash metric exhibits no geometric structure.
 \input{fig/sphere_reverse.tex}
 % \input{fig/dissimilaritystatistic.tex}
 
-To characterize dissimilarity constraint, we randomly sampled 5,000 target tags.
-Then, for each target tag $R$ we randomly sampled tags until we found a secondarily-sampled tag $S_1$ that was within a 0.01 match distance radius of $R$ and a secondarily-sampled tag $S_2$ that was outside a 0.99 match distance radius of the $R$.
-Finally, we computed the match distance between $S_1$ and $S_2$.
+To characterize dissimilarity constraint for each metric $m$, we randomly sampled 5,000 target tags.
+Then, for each target tag $R$ we randomly sampled tags until we found a secondarily-sampled tag $S_1$ that was within a 0.01 match distance radius from $R$ and a secondarily-sampled tag $S_2$ that was outside a 0.99 match distance radius from the $R$.
+That is, we chose $S_1$ and $S_2$ such that $m(R, S_1) < 0.01$ and $m(R, S_2) > 0.99$.
+Finally, we computed the match distance between $S_2$ and $S_1$, $d = m(S_2, S_1)$.
 Figure \ref{fig:dissimilarity_statistic} summarizes this process.
 
 Figure \ref{fig:sphere_barplot} provides our estimate of the dissimilarity constraint statistic for each metric, with error bars representing a 95\% confidence interval.
