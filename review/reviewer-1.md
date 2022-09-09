@@ -240,7 +240,11 @@ We chose "uniformification" and removed all references to normalization.
 >
 > Subsections such as 3.1.1, 3.1.2, etc. don't discuss methods in the same order as the plots.
 > It seems like doing so would be nice and easier to follow.
->
+
+Agreed.
+We reorganized these subsections (and subsequent subsections) to match the order of metrics in the plots.
+[Diff](https://github.com/mmore500/tag-olympics-writeup/commit/aadb0684e0447d723f6d6afec211b0ee123b9c88).
+
 > Fig 2(a) "First, a constraining tag R..." -- you use "target", not "constraining" in the text.
 > Be consistent.
 
