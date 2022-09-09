@@ -178,7 +178,10 @@ These bootstrapped estimates of uncertainty better justify the sufficiency of sa
 > Later in the same paragraph "Single-step mutations occasionally occured (SIC) that strongly couple loosely affiliated tag pairs or strongly decouple tightly-affiliated tag pairs". -- For the loosely-affiliated tag pairs under bidirectional integer metric, the most significant bit must differ for the pair to even be considered, correct? If so, it seems like flipping that most significant bit is the only way to go from a loose coupling to a strong coupling. I think this section should be rewritten to give a better analysis of what's going on.
 >
 > Fig. 8 is hard to interpret. Line graphs may be much easier to read here?
->
+
+Agreed.
+We have redrawn this figure as a line graph.
+
 > Minor concerns
 > ==============
 >
