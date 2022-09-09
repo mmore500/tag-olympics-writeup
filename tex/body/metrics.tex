@@ -56,7 +56,7 @@ Sections \ref{sec:hamming}, \ref{sec:hash}, \ref{sec:integer}, \ref{sec:bidirect
 For consistency of implementation and interpretation, all metrics output tag-matching distances between 0.0 (a ``perfect'' match) and 1.0 (a ``worst'' match).
 
 However, the distribution of tag-match distances within this range may vary substantially between metrics.
-For example, the probability of a match distance $<1/32$ is $1/32$ under the hash metric but $1/2^{32}$ under the Hamming metric.
+For example, the probability of a match distance $<1/32$ between two randomly-sampled bitstring tags is $1/32$ under the hash metric but $1/2^{32}$ under the Hamming metric.
 
 In order to ensure an intuitive interpretation of match distances that was consistent across all tag-matching metrics, we normalized metrics' match distances so that the distances between pairs of randomly generated tags would follow a uniform distribution between 0.0 and 1.0.
 We call this process ``uniformification.''
