@@ -132,8 +132,11 @@ We have added an introductory paragraph to Section 2.
 
 > Section 2.5 and 2.6 discuss "probability of a contiguous k-bit match" and "probability of a match distance". What does "probability" mean here?
 > Of any two randomly sampled bit strings?
-> Or something else? You need to explain what you mean.
->
+> Or something else?
+> You need to explain what you mean.
+
+[Clarified](https://github.com/mmore500/tag-olympics-writeup/commit/5d9713678e64e6590aa8c10af91e3d52d8fe3386).
+
 > Section 2.5 "probability of a contiguous k-bit match between two bitstrings" -- Does this mean probability of an exact k-bit match, or of at least k-bit match (i.e. k or more contiguous bits match).
 > My reading of the math is that it has to be the latter, but this should be stated clearly either way.
 >
