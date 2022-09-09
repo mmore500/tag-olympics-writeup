@@ -3,7 +3,7 @@ Thank you for your detailed review and feedback, which has been greatly helpful 
 We have returned our response to reviewer comments in plain text format.
 However, a nicer-to-read rendered version of our responses to your feedback may be viewed at the following url,
 
-https://github.com/mmore500/tag-olympics-writeup/blob/master/review/reviewer-1.md
+https://github.com/mmore500/tag-olympics-writeup/blob/master/review/reviewer-3.md
 
 We are taking advantage of the git version control system to track and report changes we make in response to your comments.
 
