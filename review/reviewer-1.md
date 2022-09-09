@@ -151,7 +151,24 @@ We have added an introductory paragraph to Section 2.
 > - On the other hand, if you think 10,000 (or 5,000) is "enough" in the sense that adding more data won't change distributions, you should make that case of why this (relatively low) threshold was chosen.
 > - Finally, if considering all 2^32 tags is too many, would it be better to pick a smaller tag size like 2^16 so that you could consider all possible pairs?
 > I would like to see justification of both the number of samples and the tag size.
->
+
+We added notes explaining expected error under the Monte Carlo percentile approximation given the sample size of 10,000 tag pairs.
+
+```diff
++Error in the Monte Carlo approximation of the percentile for any raw match score is distributed binomially.
++With 10,000 samples, absolute error at the 50th percentile can be bounded below 0.01 match distance units with 95\% confidence and below 0.012 match distance units with 99\% confidence.
++Absolute error at the 1st percentile can be bounded below 0.0017 match distance units with 95\% confidence and below 0.0024 match distance units with 99\% confidence.
++(With five independent uniformification processes, 99\% confidence per metric translates to 95\% confidence over all metrics under Bonferroni correction.)
+```
+
+The sample size of 5,000 was used for experiments that required data to be written to file for analysis and visualization.
+This choice of sample size had some benefits for experiment execution speed and, especially, data post-processing and visualization time (particulary with respect to the original visualizations where each observation is drawn as an indepednent bar).
+Another practical factor driving our sample size decision was the ability to store data files in the Git version control system without the use of the Large File Storage (LFS) extension.
+(The 10,000 sampled match distances for Monte Carlo percentile approximation were only held in memory over the course of execution of our experiments and never had to actually be written to disk.)
+
+The recreation of distribution figures mentioned above allowed us to add confidence interval bars and bands.
+These bootstrapped estimates of uncertainty better justify the sufficiency of sample size in these experiments.
+
 > I'm not sure that the means in figures 2(c) and 3(c) and 6 tell us anything useful. Hash and Integer look identical, but clearly come from very different distributions, which are much more easily seen in distribution plots. If you want to discuss them compared to theoretical results specifically for Hamming metric in 3.1.3, that seems warranted, but I wouldn't include those plots. Similarly for Fig. 6, you lose all perspective on the distribution of values, which is what's important here, not their means.
 >
 > In section 3.2 for the dissimilarity constraint, you need to be careful to specify the order of tags, since the integer metric is non-commutative. Specifically, in the description of Fig 3(a), "Then, tags were randomly drawn until a tag S1 with distance to R less than 0.01 was obtained." is not clear whether these distances are d(R, S1) or d(S1, R). Same with the next sentence. If the other way, I would imagine integer's mean match distance would be 0.99, not 0.01. [Note: this decision either way is arbitrary, so your sentence "Then, explaining this counterintuitive result, the distance from the slightly smaller to the slightly larger tag will be small." would read that the distances would be large.]
