@@ -84,13 +84,13 @@ Surprisingly, the hash metric enables faster adaptive evolution than all other m
 On more-constrained target graphs with mean degree 2, the hash metric's advantage in rapid adaptive evolution disappears.
 In fact, on the most-constrained target graph (irregular structure with mean degree 2) the hash metric yields significantly lower-quality solutions at the end of evolutionary runs than the streak and Hamming metrics (Figure \ref{fig:evolve_bests}; non-overlapping 95\% CI).
 
+\subsubsection{Hamming and Streak Metrics}
+
+The streak metric facilitates slightly faster adaptive evolution than the Hamming metric, especially on mean degree 2 regularly configured target graphs (Figure \ref{fig:evolve_bests}; non-overlapping 95\% CI).
+
 \subsubsection{Integer Metrics}
 
 The integer and bidirectional integer metrics successfully match the least-constrained target graph (regular structure with mean degree 1) but yield lower-quality solutions than other metrics on more constrained target graphs (Figure \ref{fig:evolve_bests}; non-overlapping 95\% CI).
-
-\subsubsection{Streak Metric}
-
-The streak metric facilitates slightly faster adaptive evolution than the Hamming metric, especially on mean degree 2 regularly configured target graphs (Figure \ref{fig:evolve_bests}; non-overlapping 95\% CI).
 
 
 \subsection{Changing-signal Task} \label{sec:changing-signal}
@@ -125,12 +125,6 @@ Supplemental Section \ref{sec:gpsupplement} gives the full configuration details
 Figure \ref{fig:cst-sols} gives the number of replicates that produced a successful SignalGP program (i.e., capable of achieving maximum fitness) for each tag-matching metric on the changing-signal task.
 We compared the number of successful replicates across metrics using a pairwise Fisher's exact test with a Holm correction for multiple comparisons.
 
-\subsubsection{Hamming and Streak Metrics}
-
-The Hamming and streak metrics performed significantly better than all other metrics ($p < 5\times10^{-11}$); however, there was no significant difference in performance between the Hamming and streak metrics.
-To assess whether the streak metric produced solutions in fewer generations than the Hamming metric, we ran 200 new replicates of each condition until 100 replicates produced a solution and recorded the number of generations that elapsed (Supplementary Figure \ref{fig:cst-times}).
-We found no difference in generations elapsed between the Hamming and streak metrics.
-
 \subsubsection{Hash Metric}
 
 The hash metric significantly outperformed both integer metrics ($p < 4\times10^{-10}$).
@@ -139,6 +133,12 @@ We suspect that the hash metric performed well because it maximizes generation o
 Even a single bit flip in a tag is likely to completely re-order which other tags it best matches with.
 The capacity to quickly generate large amounts of phenotypic variation allows evolution to explore large swaths of the fitness landscape from generation to generation, which is particularly useful in this low-constraint problem.
 However, as evidenced by better performance of the Hamming and streak metrics, this capacity to generate phenotypic variation trades off with tag-matching robustness --- under this metric, a single bit mutation may also scramble established relationships with other tags.
+
+\subsubsection{Hamming and Streak Metrics}
+
+The Hamming and streak metrics performed significantly better than all other metrics ($p < 5\times10^{-11}$); however, there was no significant difference in performance between the Hamming and streak metrics.
+To assess whether the streak metric produced solutions in fewer generations than the Hamming metric, we ran 200 new replicates of each condition until 100 replicates produced a solution and recorded the number of generations that elapsed (Supplementary Figure \ref{fig:cst-times}).
+We found no difference in generations elapsed between the Hamming and streak metrics.
 
 \subsubsection{Integer Metrics}
 

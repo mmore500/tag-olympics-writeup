@@ -46,21 +46,13 @@ In 32 dimensions, it would measure 0.0137 \citep{dunbar1997average}.
 So, in some sense, this similarity constraint metric can be interpreted as an indirect measure of dimensionality.
 However, as we'll see in Section \ref{sec:detour_difference}, the Hamming, hash, and streak metric impose a decidedly non-Euclidean geometry.
 
-\subsubsection{Bidirectional Integer Metric}
+\subsubsection{Hash Metric}
 
-For the bidirectional integer metric, we measured the similarity constraint statistic as 0.0068.
-This falls in line with expectation: this metric is essentially identical to a one-dimensional Euclidean space.
-As shown in Figure \ref{fig:sphere_distnplot}, the secondarily-sampled match distances are entirely bounded by the diameter of 0.02.
-This metric not only exhibits tight similarity constraint in the mean case, but also permits no outliers to the similarity constraint.
-
-\subsubsection{Integer Metric}
-
-The integer metric exhibits much looser similarity constraint in the mean case.
-We estimated this value as 0.5092.
-However, this looser similarity constraint appears to be an artifact of averaging between two very tight constraints: a tight constraint to 0 in one case and a tight constraint to 1 in the other.
-Figure \ref{fig:sphere_distnplot} confirms that all sampled match distances fall under one of these cases.
-Because of the asymmetrical definition of the integer metric, half of pairs of similar scalar values will be in ascending order (resulting in a match distance close to 0) and half will be in descending order (resulting in wraparound search and a match distance close to 1).
-The integer metric appears to allow for a pair of tags closely related to a third tag either very strongly match or very weakly match, but permits no intermediate outcomes.
+The hash metric also exhibits a very loose similarity constraint of 0.5083 in the mean case.
+Secondarily-sampled match distances are uniformly distributed between 0 and 1.
+This is unsurprising:
+given any particular set of operands, a well-behaved hash function should yield a uniform distribution of hash results.
+As expected, the hash metric exhibits no geometric structure.
 
 \subsubsection{Hamming Metric}
 
@@ -77,19 +69,27 @@ We also calculated this statistic for the raw Hamming metric without uniformific
 The \textit{a priori} expected distance between sampled points within a 32-dimensional ball with radius 0.25 is 0.3415.
 Our estimate of similarity constraint for the raw Hamming metric falls nearly in line with expectation at 0.3312.
 
+\subsubsection{Integer Metric}
+
+The integer metric also exhibits loose similarity constraint in the mean case.
+We estimated this value as 0.5092.
+However, this looser mean similarity constraint appears to be an artifact of averaging between two very tight constraints: a tight constraint to 0 in one case and a tight constraint to 1 in the other.
+Figure \ref{fig:sphere_distnplot} confirms that all sampled match distances fall under one of these cases.
+Because of the asymmetrical definition of the integer metric, half of pairs of similar scalar values will be in ascending order (resulting in a match distance close to 0) and half will be in descending order (resulting in wraparound search and a match distance close to 1).
+The integer metric appears to allow for a pair of tags closely related to a third tag either very strongly match or very weakly match, but permits no intermediate outcomes.
+
+\subsubsection{Bidirectional Integer Metric}
+
+For the bidirectional integer metric, we measured the similarity constraint statistic as 0.0068.
+This falls in line with expectation: this metric is essentially identical to a one-dimensional Euclidean space.
+As shown in Figure \ref{fig:sphere_distnplot}, the secondarily-sampled match distances are entirely bounded by the diameter of 0.02.
+This metric not only exhibits tight similarity constraint in the mean case, but also permits no outliers to the similarity constraint.
+
 \subsubsection{Streak Metric}
 
 The streak metric exhibited the next-loosest similarity constraint statistic with a mean value sampled at 0.2813.
 For this metric, we observed distances between secondarily-sampled tags as high as 0.9993.
 The streak metric retains some geometric constraint in the mean case, but allows for outliers that strongly break similarity constraint.
-
-\subsubsection{Hash Metric}
-
-Like the unidirectional integer metric, the hash metric also exhibits a very loose similarity constraint of 0.5083 in the mean case.
-However, unlike the integer metric, secondarily-sampled match distances are uniformly distributed between 0 and 1.
-This is exactly as we would expect:
-given any particular set of operands, a well-behaved hash function should yield a uniform distribution of hash results.
-As expected, the hash metric exhibits no geometric structure.
 
 \subsection{Dissimilarity Constraint} \label{sec:dissimilarityconstraint}
 
@@ -110,24 +110,12 @@ These results tell a similar story to our similarity constraint findings.
 \subsubsection{Hash Metric}
 The hash metric exhibited no geometric structure --- $S_1$ and $S_2$ were uniformly likely to exhibit any match distance between 0 and 1.
 
-\subsubsection{Streak Metric}
-
-The streak metric exhibited some geometric structure in the mean case. We observed a mean secondarily-sampled distance 0.7127, significantly greater than the mean distance of 0.5 expected between arbitrarily-sampled tags.
-
-However, outcomes that strongly broke geometric constraints also occurred.
-We observed distances between secondarily-sampled tags as low as 0.0002.
-
 \subsubsection{Hamming Metric}
 
 The Hamming metric exhibited stronger geometric structure in the mean case than the streak metric.
 Mean secondarily-sampled distance was 0.8248.
 The Hamming metric also exhibited less extreme tail-end outcomes than the streak metric.
 We observed match distances between the secondarily-sampled tags only as low as 0.2355.
-
-\subsubsection{Bidirectional Integer Metric}
-
-The bidirectional integer metric was highly constrained in both the mean and tail-end cases.
-The smallest distance between secondarily-sampled tags observed was 0.9802.
 
 \subsubsection{Integer Metric}
 
@@ -141,6 +129,19 @@ The mechanism behind this result stems from the metric's asymmetrical nature.
 Under this metric, if you sample a tag that is close to a target it will be numerically slightly larger than the target.
 Likewise, if you sample a tag that is very far from a target, it will be numerically slightly smaller than the target (due to wraparound).
 Then, explaining this counterintuitive result, the distance from the slightly smaller to the slightly larger tag will be small.
+
+\subsubsection{Bidirectional Integer Metric}
+
+The bidirectional integer metric was highly constrained in both the mean and tail-end cases.
+The smallest distance between secondarily-sampled tags observed was 0.9802.
+
+\subsubsection{Streak Metric}
+
+The streak metric exhibited some geometric structure in the mean case. We observed a mean secondarily-sampled distance 0.7127, significantly greater than the mean distance of 0.5 expected between arbitrarily-sampled tags.
+
+However, outcomes that strongly broke geometric constraints also occurred.
+We observed distances between secondarily-sampled tags as low as 0.0002.
+
 
 \subsection{Detour Difference} \label{sec:detour_difference}
 

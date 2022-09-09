@@ -40,6 +40,21 @@ We used a similar procedure to measure the distribution of mutational perturbati
 The bottom panel of Figure \ref{fig:mutational_step}, color coded identically to the top panel, visualizes the distribution of match distance change under mutation of tightly-affiliated tags.
 This distribution reflects the effects of one-step mutations on tags with pre-existing affinity.
 
+\subsubsection{Hash Metric}
+
+The hash metric exhibits the thickest tails of mutational magnitude of all metrics.
+Extreme-effect one-step mutations are plentiful under this metric.
+Interestingly, compared to other metrics, the hash metric exhibits a greater fraction of mutations that reduce affinity between tightly-affiliated tags and a greater fraction of mutations that increase affinity between loosely-affiliated tags.
+This result can be attributed to the hash metric's lack of geometric structure.
+Because all one-step mutations uniformly sample a new match distance, 99.5\% of one-step mutations on tightly-affiliated tags will result in a looser coupling.
+Similarly, approximately 75\% of one-step mutations on loosely-affiliated tags will result in a tighter coupling.
+
+\subsubsection{Hamming Metric}
+
+The Hamming metric exhibits a generally uniform magnitude of match-distance changes under mutation.
+High-magnitude one-step mutations do not occur under this metric.
+(Without normalizing match distance to a uniform distribution for randomly-sampled tags, all Hamming metric mutations would be of exactly the same magnitude, either increasing or decreasing the count of matching bits by 1.)
+
 \subsubsection{Integer and Bidirectional Integer Metrics}
 
 For both tightly- and loosely-affiliated tag pairs under the integer and bidirectional integer metrics, most mutations caused very small changes in match closeness.
@@ -61,21 +76,6 @@ In addition, the most extreme mutational outcomes that couple loosely-affiliated
 Mechanistically, this might be due to mutations that disrupt longest-mismatching streaks.
 However, one-step mutations that decouple tightly-affiliated tags do not appear as potent.
 This might be because achieving a very poor match requires both increasing longest-mismatching streak length and decreasing longest-matching streak length.
-
-\subsubsection{Hamming Metric}
-
-The Hamming metric exhibits a generally uniform magnitude of match-distance changes under mutation.
-High-magnitude one-step mutations do not occur under this metric.
-(Without normalizing match distance to a uniform distribution for randomly-sampled tags, all Hamming metric mutations would be of exactly the same magnitude, either increasing or decreasing the count of matching bits by 1.)
-
-\subsubsection{Hash Metric}
-
-The hash metric exhibits the thickest tails of mutational magnitude of all metrics.
-Extreme-effect one-step mutations are plentiful under this metric.
-Interestingly, compared to other metrics, the hash metric exhibits a greater fraction of mutations that reduce affinity between tightly-affiliated tags and a greater fraction of mutations that increase affinity between loosely-affiliated tags.
-This result can be attributed to the hash metric's lack of geometric structure.
-Because all one-step mutations uniformly sample a new match distance, 99.5\% of one-step mutations on tightly-affiliated tags will result in a looser coupling.
-Similarly, approximately 75\% of one-step mutations on loosely-affiliated tags will result in a tighter coupling.
 
 \subsection{Mutational Walks} \label{sec:mutational_walks}
 
@@ -99,6 +99,12 @@ Figure \ref{fig:mutational_walk_barplot} compares how match distance increases a
 Due to the hash metric's lack of geometric structure the hash metric, bitwise equivalent tags do not exhibit low match distance.
 So, as expected, throughout the entire mutational walk this metric maintains a constant mean match distance of 0.5.
 
+\subsubsection{Hamming Metric}
+
+The Hamming metric's match distance diffuses upward slowest.
+The Hamming metric's mutational walk is significantly slower to diverge than the streak metric's at 16 and 32 steps (non-overlapping 95\% CI).
+It is significantly slower to diverge than the integer metrics and the hash metric between steps 1 and 32, as well (non-overlapping 95\% CI).
+
 \subsubsection{Integer Metric and Bidirectional Integer Metric}
 \label{sec:mutation_integer}
 
@@ -108,12 +114,6 @@ Occasional large-effect mutations provides a plausible explanation for the bidir
 The integer metric experiences even more rapid dilation of match distance under mutation.
 Under this metric, half of first mutational steps cause a wraparound effect, immediately spiking the average match distance to 0.5.
 Supplementary Figure \ref{fig:mutational_walk_lineplot} shows match distance variance decreasing as the integer metric mutational walk proceeds away from match distances biased to 0 or 1.
-
-\subsubsection{Hamming Metric}
-
-The Hamming metric's match distance diffuses upward slowest.
-The Hamming metric's mutational walk is significantly slower to diverge than the streak metric's at 16 and 32 steps (non-overlapping 95\% CI).
-It is significantly slower to diverge than the integer metrics and the hash metric between steps 1 and 32, as well (non-overlapping 95\% CI).
 
 \subsubsection{Streak Metric}
 
