@@ -123,7 +123,13 @@ We embellished the end part of our introduction to directly cover these topics.
 ```
 
 > Transition from introduction to section 2 is very abrupt. Section 2 could use a paragraph explaining what it will contain.
->
+
+We have added an introductory paragraph to Section 2.
+```diff
++Rigorous comparison of disparate tag-matching schemes required careful standardization of tag representation, mutation, and match quality calculation.
++This section summarizes the tag representation, mutation, and match quality calculation procedures used in our experiments and provides formal definition for each of the surveyed tag-matching schemes within that framework.
+```
+
 > Section 2.5 and 2.6 discuss "probability of a contiguous k-bit match" and "probability of a match distance". What does "probability" mean here?
 > Of any two randomly sampled bit strings?
 > Or something else? You need to explain what you mean.
