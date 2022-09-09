@@ -133,7 +133,9 @@ We added a table with the best-performing mutation rates for each metric on the 
 [Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/f89df168d89463cca77b1cf1bab5361c18840f48).
 
 > "harvested its operand tags placed them": I think there's an "and" missing there.
->
+
+[Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/bfe9cd36c33b4b571da18d695c6da037d472037c).
+
 > with respect tag-matching criteria => with respect to tag-matching criteria
 
 [Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/a990d2b1463684790ac0e45d12cd19548d6607dd).
