@@ -260,7 +260,13 @@ We fixed this inconsistency in this figure and another where it appeared.
 We updated the figure to clarify correspondence with the text.
 
 > Section 3.3 has no analysis of the integer metrics, and I'd like to see one.
->
+
+Added.
+```diff
++The integer and bidirectional integer metrics only exhibited shortening detours up to -0.02, which were due to minor stochastic imperfections of the uniformification process.
++As would be expected given their Euclidean basis, shortening detours were otherwise nonexistent for the integer metrics.
+```
+
 > Section 4.1 line 36 -- should this be d', not d?
 
 That is correct.
