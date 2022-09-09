@@ -224,7 +224,9 @@ We chose "uniformification" and removed all references to normalization.
 >
 > Fig 2(a) "First, a constraining tag R..." -- you use "target", not "constraining" in the text.
 > Be consistent.
->
+
+We fixed this inconsistency in this figure and another where it appeared.
+
 > Section 3.1.4: "The streak metric retains some geometric constraint in the mean case, but allows for outliers that strongly break similarity constraint." -- Why?
 > What do these outliers look like?
 > This sounds interesting and I'd like more here.
