@@ -37,7 +37,7 @@ Genomes in this experiment consisted solely of a set of 32 tags, partitioned eve
 We used randomly-generated bipartite graphs as a specification for an arbitrary set of desired operands that queries should match to, with each node in the graph corresponding directly to a bitstring tag in the genome.
 Figure \ref{fig:graph_layouts} shows example target graph layouts.
 
-To evaluate the fitness of a genome, we harvested its operand tags placed them into a tag-matching data structure.
+To evaluate the fitness of a genome, we harvested its operand tags and placed them into a tag-matching data structure.
 This data structure allowed us to match each query tag to its $n$ best-matching operands.
 For each query tag, we set the number of collected operand matches $n$ to the outgoing edge count from its corresponding node in the target graph.
 So, for example, if a node had three outgoing edges then we would record the three best-matching operands of the corresponding tag.
