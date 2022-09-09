@@ -214,7 +214,7 @@ Corrected.
 > You use "normalization" and "uniformification" to describe how you make the distributions more uniform. Pick one.
 
 Agreed.
-We chose ``uniformification'' and removed all references to normalization.
+We chose "uniformification" and removed all references to normalization.
 [Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/45e8149d357946a67896fd09c540cfcab641f8db).
 
 > Since Streak and Hamming seem somewhat related, it seems that it would be nice to have them next to each other in the plots.
@@ -274,7 +274,7 @@ We have clarified both of these points
 > I really like the inclusion of the hash metric as a control.
 
 Thank you!
-We were trying to imagine how to invent an "anti" metric and were surprised by its strong performance in some regards.
+We were trying to imagine how to invent an "antipattern" metric and were surprised by its strong performance in some regards.
 
 > "Geometric constraint might prove useful to facilitate modularity by allowing subsets of tag space to correspond to associated functionality" -- this perhaps sounds like homology, maybe you want to label it as such?
 >
