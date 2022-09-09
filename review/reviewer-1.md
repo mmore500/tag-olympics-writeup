@@ -177,7 +177,9 @@ We incorporated mathematical notation into this definition (and several others) 
 [Diff](https://github.com/mmore500/tag-olympics-writeup/commit/b640c1f97201c632977f17f903561a66d4413de0).
 
 > Section 4.1.1: "For both tightly- and loosely-affiliated tag pairs under the integer and bidirectional integer metrics, most mutations caused very small changes in match distance. These mutations toggle least-significant bits of the tag's integer representation." -- This doesn't make sense to me. Aren't all bits equally likely to be toggled, not least-significant bits most often? I think a better interpretation is that only the first 7 or 8 bits actually make much difference in the integer representation, since those are the only ones that affect whether tags are within 0.01 normalized distance. So, the other 24 bits have very little effect on distance, and 3/4 of changes won't be noticeable.
->
+
+We corrected the second sentence to read "These mutations toggle less-significant" instead of "least-significant."
+
 > Later in the same paragraph "Single-step mutations occasionally occured (SIC) that strongly couple loosely affiliated tag pairs or strongly decouple tightly-affiliated tag pairs". -- For the loosely-affiliated tag pairs under bidirectional integer metric, the most significant bit must differ for the pair to even be considered, correct? If so, it seems like flipping that most significant bit is the only way to go from a loose coupling to a strong coupling. I think this section should be rewritten to give a better analysis of what's going on.
 >
 > Fig. 8 is hard to interpret. Line graphs may be much easier to read here?
