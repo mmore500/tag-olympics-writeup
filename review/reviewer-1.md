@@ -181,7 +181,24 @@ We incorporated mathematical notation into this definition (and several others) 
 We corrected the second sentence to read "These mutations toggle less-significant" instead of "least-significant."
 
 > Later in the same paragraph "Single-step mutations occasionally occured (SIC) that strongly couple loosely affiliated tag pairs or strongly decouple tightly-affiliated tag pairs". -- For the loosely-affiliated tag pairs under bidirectional integer metric, the most significant bit must differ for the pair to even be considered, correct? If so, it seems like flipping that most significant bit is the only way to go from a loose coupling to a strong coupling. I think this section should be rewritten to give a better analysis of what's going on.
->
+
+Our use of "stongly: here inadvertently drew a false equivalency to "tightly/loosely."
+We did not intend that "strongly" implied a match distance change surpassing a particular threshold (i.e., 0.5).
+
+We have rephrased to use ther term "conspicuously" instead of strongly and added some numerical detail about the percentage of mutations that altered match distance by at least 0.25 match distance units.
+
+```diff
+For both tightly- and loosely-affiliated tag pairs under the integer and bidirectional integer metrics, most mutations caused very small changes in match distance.
+ These mutations toggle less-significant bits of the tag's integer representation.
+ However, under these metrics, a small fraction of mutations affecting more-significant bits of the integer representation have a much stronger effect.
+-Single-step mutations occasionally occured that strongly couple loosely-affiliated tag pairs or strongly decouple tightly-affiliated tag pairs.
+-In particular, the unidirectional integer metric appears to exhibit more frequent strong decoupling mutations than the bidirectional integer metric, presumably due to its non-commutative quirks.
++Single-step mutations occasionally occurred that conspicuously couple loosely-affiliated tag pairs or conspicuously decouple tightly-affiliated tag pairs.
++For instance, under the integer metric 3.6\% of mutations increased loosely-affiliated match closeness by at least 0.25 units and and 10.6\% decreased tightly-affiliated match closeness by at least 0.25 units.
++Under the bidirectional integer metric, these percentages were 3.3\% and 3.9\%, respectively.
++Notably, the unidirectional integer metric exhibits more frequent strong decoupling mutations than the bidirectional integer metric, presumably due to its non-commutative quirks.
+```
+
 > Fig. 8 is hard to interpret. Line graphs may be much easier to read here?
 
 Agreed.
