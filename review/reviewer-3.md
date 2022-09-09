@@ -29,7 +29,36 @@ We also provide some links so that diffs may be viewed directly on GitHub.
 >
 > It would good to add some justification for focusing on binary-valued, rather than, for instance, real-valued tags.
 > Though I appreciate there's only so much you can cover in one study, I'd be interested to hear if you have any thoughts on the role of tag alphabet, e.g. whether you'd expect any differences in terms of evolvability for binary vs multi-valued vs continuous.
->
+
+We added a subsection to the "Tags and Tag-Matching Metrics" section to offer some thoughts on this subject.
+
+```diff
++\subsection{Note on Tag Alphabet}
++
++For tractability and consistency, this work exclusively considers strings composed from the binary alphabet $\{0, 1\}$.
++However, we expect that most geometric, variational, and evolutionary properties of the metrics studied are not fundmaentally tied to the particular use of the binary alphabet.
++
++We suspect that the surveyed integer metrics under the existing bitstring representation should behave effectively indistinguishably from a continuous-valued (i.e., floating point) representation.
++Due to the uniformification process performed, both would be effectively rescaled to the range $\[0, 1\]$.
++With a precision of $1/2^{32}$ --- tighter than $10^{-9}$ --- the 32-bit tags used should exhibit near-undetectable granularity, especially given the relatively small pools of query and operand tags used in our experiments.
++
++However, it is important to note that the bit flip mutation operator used in our experiments induces a rougly exponential distribution of effect size, which might otherwise be an unusual choice when working with a continuous-valued tag system.
++We unpack this issue in greater detail in Section \ref{sec:variational}.
++
++Alternate alphabet choice would have a minimal effect on the streak metric.
++Imagine, for example, using a four-valued alphabet instead of the existing two-valued binary alphabet.
++Any character in that four-valued alphabet could be encoded by a pair of binary digits.
++So, the existing bitstring representation for tags could be preserved and adjustment instead made to the match distance metric to count only entirely-matching (or mismatching) pairs of bits as contributing to a streak.
++The significance of this effect would depend on typical streak length and, of course, for large alphabets this truncation effect would eventually become overwhelming.
++
++Increased alphabet size might have a more nuanced effect on the Hamming metric.
++Under the binary alphabet, every mutation affects a tag's match distances to all other tags --- no mutation is neutral.
++However, with a larger alphabet size this would no longer be the case.
++As with the streak metric, increased alphabet size would introduce effects from coarsened granularity, with the magnitude of these effects eventually becoming overwhelming under large alphabets.
++
++We do not fully explore the possibilities introduced by alternate tag-matching alphabets in this work, so a detailed and rigorous understanding of this topic remains an avenue for future research.
+```
+
 > The introduction to the metrics would benefit from some concrete examples, and I think more examples in general would help engage readers who are less familiar with tag systems.
 
 We have added a paragraph recapping John Holland's Echo model as a motivating example
