@@ -20,3 +20,10 @@ Queries matched to the referent that had the next-larger value, wrapping around 
 
 Like the hash metric, this metric is not commutative.
 We adopt the convention of using the query tag as $t$ and the operand tag as $u$.
+
+As an example, consider eight bit tags $t = \langle 1, 0, 0, 1, 0, 0, 1, 1 \rangle$ and $u = \langle 0, 0, 1, 0, 0, 0, 1, 1 \rangle$.
+The tag $t$ encodes the integer value 147.
+The tag $u$ encodes the integer value 35.
+Computing the difference between these integers mod 256 yields 144.
+This is equivalent to starting at 147 then counting up by 109 to reach 256, wrapping around to 0, then counting up a further 35.
+Dividing by 256 to normalize gives the match distance 0.5625.

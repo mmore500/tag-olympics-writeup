@@ -42,3 +42,18 @@ In motivating the metric, Downing reports mutational walk experiments that show 
 However, it is not demonstrated in an evolving system.
 To our knowledge, no further work on this metric has been published.
 (Although, through personal communication, we learned of some unpublished work applying the metric in a neuroevolution system.)
+
+As an example, consider the eight bit tags $t = \langle 1, 0, 0, 1, 0, 0, 1, 1 \rangle$ and $u = \langle 0, 0, 1, 0, 0, 0, 1, 1 \rangle$.
+Sites 1, 4, 5, 6, 7, and 8 match.
+Sites 0, 2, and 3 mismatch.
+For these two tags, 5 conscecutive bits match: sites 4 through 8.
+Likewise, the longest streak of mismatching bits is 2 bits long: sites 2 and 3.
+Plugging these values into Downing's formulas gives a match distance of
+\begin{align*}
+1 - \frac{
+  (8 - 2 + 1) / 2^2
+}{
+  (8 - 2 + 1) / 2^2
+  + (8 - 5 + 1) / 2^5
+} \approx 0.06.
+\end{align*}
