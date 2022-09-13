@@ -69,6 +69,12 @@ We also calculated this statistic for the raw Hamming metric without uniformific
 The \textit{a priori} expected distance between sampled points within a 32-dimensional ball with radius 0.25 is 0.3415.
 Our estimate of similarity constraint for the raw Hamming metric falls nearly in line with expectation at 0.3312.
 
+\subsubsection{Streak Metric}
+
+The streak metric exhibited the next-loosest similarity constraint statistic with a mean value sampled at 0.2813.
+For this metric, we observed distances between secondarily-sampled tags as high as 0.9993.
+The streak metric retains some geometric constraint in the mean case, but allows for outliers that strongly break similarity constraint.
+
 \subsubsection{Integer Metric}
 
 The integer metric also exhibits loose similarity constraint in the mean case.
@@ -84,12 +90,6 @@ For the bidirectional integer metric, we measured the similarity constraint stat
 This falls in line with expectation: this metric is essentially identical to a one-dimensional Euclidean space.
 As shown in Figure \ref{fig:sphere_distnplot}, the secondarily-sampled match distances are entirely bounded by the diameter of 0.02.
 This metric not only exhibits tight similarity constraint in the mean case, but also permits no outliers to the similarity constraint.
-
-\subsubsection{Streak Metric}
-
-The streak metric exhibited the next-loosest similarity constraint statistic with a mean value sampled at 0.2813.
-For this metric, we observed distances between secondarily-sampled tags as high as 0.9993.
-The streak metric retains some geometric constraint in the mean case, but allows for outliers that strongly break similarity constraint.
 
 \subsection{Dissimilarity Constraint} \label{sec:dissimilarityconstraint}
 
@@ -117,6 +117,14 @@ Mean secondarily-sampled distance was 0.8248.
 The Hamming metric also exhibited less extreme tail-end outcomes than the streak metric.
 We observed match distances between the secondarily-sampled tags only as low as 0.2355.
 
+\subsubsection{Streak Metric}
+
+The streak metric exhibited some geometric structure in the mean case.
+We observed a mean secondarily-sampled distance 0.7127, significantly greater than the mean distance of 0.5 expected between arbitrarily-sampled tags.
+
+However, outcomes that strongly broke geometric constraints also occurred.
+We observed distances between secondarily-sampled tags as low as 0.0002.
+
 \subsubsection{Integer Metric}
 
 Again, the unidirectional integer metric exhibited a quirky result due to its noncommutative nature.
@@ -134,14 +142,6 @@ Then, explaining this counterintuitive result, the distance from the slightly sm
 
 The bidirectional integer metric was highly constrained in both the mean and tail-end cases.
 The smallest distance between secondarily-sampled tags observed was 0.9802.
-
-\subsubsection{Streak Metric}
-
-The streak metric exhibited some geometric structure in the mean case. We observed a mean secondarily-sampled distance 0.7127, significantly greater than the mean distance of 0.5 expected between arbitrarily-sampled tags.
-
-However, outcomes that strongly broke geometric constraints also occurred.
-We observed distances between secondarily-sampled tags as low as 0.0002.
-
 
 \subsection{Detour Difference} \label{sec:detour_difference}
 

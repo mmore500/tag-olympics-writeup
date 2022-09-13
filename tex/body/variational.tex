@@ -55,16 +55,6 @@ The Hamming metric exhibits a generally uniform magnitude of match-distance chan
 High-magnitude one-step mutations do not occur under this metric.
 (Without normalizing match distance to a uniform distribution for randomly-sampled tags, all Hamming metric mutations would be of exactly the same magnitude, either increasing or decreasing the count of matching bits by 1.)
 
-\subsubsection{Integer and Bidirectional Integer Metrics}
-
-For both tightly- and loosely-affiliated tag pairs under the integer and bidirectional integer metrics, most mutations caused very small changes in match closeness.
-These mutations toggle less-significant bits of the tag's integer representation.
-However, under these metrics, a small fraction of mutations affecting more-significant bits of the integer representation have a much stronger effect.
-Single-step mutations occasionally occurred that conspicuously couple loosely-affiliated tag pairs or conspicuously decouple tightly-affiliated tag pairs.
-For instance, under the integer metric 3.6\% of mutations increased loosely-affiliated match closeness by at least 0.25 units and and 10.6\% decreased tightly-affiliated match closeness by at least 0.25 units.
-Under the bidirectional integer metric, these percentages were 3.3\% and 3.9\%, respectively.
-Notably, the unidirectional integer metric exhibits more frequent strong decoupling mutations than the bidirectional integer metric, presumably due to its non-commutative quirks.
-
 \subsubsection{Streak Metric}
 
 Unlike all other metrics, the streak metric frequently yields perfectly neutral outcomes under mutation.
@@ -76,6 +66,16 @@ In addition, the most extreme mutational outcomes that couple loosely-affiliated
 Mechanistically, this might be due to mutations that disrupt longest-mismatching streaks.
 However, one-step mutations that decouple tightly-affiliated tags do not appear as potent.
 This might be because achieving a very poor match requires both increasing longest-mismatching streak length and decreasing longest-matching streak length.
+
+\subsubsection{Integer and Bidirectional Integer Metrics}
+
+For both tightly- and loosely-affiliated tag pairs under the integer and bidirectional integer metrics, most mutations caused very small changes in match closeness.
+These mutations toggle less-significant bits of the tag's integer representation.
+However, under these metrics, a small fraction of mutations affecting more-significant bits of the integer representation have a much stronger effect.
+Single-step mutations occasionally occurred that conspicuously couple loosely-affiliated tag pairs or conspicuously decouple tightly-affiliated tag pairs.
+For instance, under the integer metric 3.6\% of mutations increased loosely-affiliated match closeness by at least 0.25 units and and 10.6\% decreased tightly-affiliated match closeness by at least 0.25 units.
+Under the bidirectional integer metric, these percentages were 3.3\% and 3.9\%, respectively.
+Notably, the unidirectional integer metric exhibits more frequent strong decoupling mutations than the bidirectional integer metric, presumably due to its non-commutative quirks.
 
 \subsection{Mutational Walks} \label{sec:mutational_walks}
 
@@ -105,16 +105,6 @@ The Hamming metric's match distance diffuses upward slowest.
 The Hamming metric's mutational walk is significantly slower to diverge than the streak metric's at 16 and 32 steps (non-overlapping 95\% CI).
 It is significantly slower to diverge than the integer metrics and the hash metric between steps 1 and 32, as well (non-overlapping 95\% CI).
 
-\subsubsection{Integer Metric and Bidirectional Integer Metric}
-\label{sec:mutation_integer}
-
-The binary representation of the integer and bidirectional integer metrics (Section \ref{sec:integer}) induces a long-tailed distribution of mutational effect sizes.
-Under this distribution, value changes of each binary order of magnitude are equally likely (corresponding to toggling the bit at each position).
-Occasional large-effect mutations provides a plausible explanation for the bidirectional integer metric's rapid increase in match distance under mutation relative to the Hamming and streak metrics.
-The integer metric experiences even more rapid dilation of match distance under mutation.
-Under this metric, half of first mutational steps cause a wraparound effect, immediately spiking the average match distance to 0.5.
-Supplementary Figure \ref{fig:mutational_walk_lineplot} shows match distance variance decreasing as the integer metric mutational walk proceeds away from match distances biased to 0 or 1.
-
 \subsubsection{Streak Metric}
 
 The streak metric diffuses away from zero match distance second-slowest, trailed only by the Hamming metric.
@@ -129,3 +119,13 @@ This experiment was conducted exactly as before, except instead of starting with
 As shown in Supplementary Figure \ref{fig:mutational_walk_sampled_start_barplot}, this experiment confirmed greater robustness of the Hamming metric under mutation.
 The streak metric's match distance was significantly greater than the Hamming metric between mutational steps 2 and 16 (non-overlapping 95\% CI).
 Our result remained consistent when replicating the experiment with 64-bit tags (Supplementary Figure \ref{fig:mutational_walk_sampled_start_64_barplot}).
+
+\subsubsection{Integer Metric and Bidirectional Integer Metric}
+\label{sec:mutation_integer}
+
+The binary representation of the integer and bidirectional integer metrics (Section \ref{sec:integer}) induces a long-tailed distribution of mutational effect sizes.
+Under this distribution, value changes of each binary order of magnitude are equally likely (corresponding to toggling the bit at each position).
+Occasional large-effect mutations provides a plausible explanation for the bidirectional integer metric's rapid increase in match distance under mutation relative to the Hamming and streak metrics.
+The integer metric experiences even more rapid dilation of match distance under mutation.
+Under this metric, half of first mutational steps cause a wraparound effect, immediately spiking the average match distance to 0.5.
+Supplementary Figure \ref{fig:mutational_walk_lineplot} shows match distance variance decreasing as the integer metric mutational walk proceeds away from match distances biased to 0 or 1.
