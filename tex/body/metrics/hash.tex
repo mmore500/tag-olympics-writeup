@@ -5,7 +5,7 @@ The metric produces an arbitrary, but deterministic, match distance between any 
 In other words, the tag matching space is completely unstructured.
 We include it primarily to serve as a control.
 
-The hash metric calculates match distance via a cryptographic hash of tags $t$ and $u$.
+The hash metric calculates match distance via a SHA1 cryptographic hash of tags $t$ and $u$ \citep{eastlake2001us}.
 First, we concatenate $t$ and $u$ into a double-width bitstring $v$ such that
 \begin{align*}
 v = \langle t_0, t_1, t_2, \dots, t_{n-2}, t_{n-1}, u_0, u_1, u_2, \dots, u_{n-2}, u_{n-1} \rangle
