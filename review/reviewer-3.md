@@ -88,7 +88,7 @@ We have added a paragraph recapping John Holland's Echo model as a motivating ex
 > A line plot might work better for Fig 6.
 > It's hard to see and compare the trends at the moment.
 
-We have replaced the figure in the main text with a line plot and moved the existing bar plot to the supplement.
+We have replaced the figure in the main text with a line plot.
 
 > Although I see you've included the full results in supplementary material, it would be worth mentioning the optimal mutation rates in Section 5.1 (as you do in Section 5.2), since these rates contain relevant information.
 > Perhaps you could also comment on the fact that the optimal mutation rate for different metrics can differ by an order of magnitude, and maybe say something about the relative importance of optimising this hyperparameter.
