@@ -170,7 +170,15 @@ The recreation of distribution figures mentioned above allowed us to add confide
 These bootstrapped estimates of uncertainty better justify the sufficiency of sample size in these experiments.
 
 > I'm not sure that the means in figures 2(c) and 3(c) and 6 tell us anything useful. Hash and Integer look identical, but clearly come from very different distributions, which are much more easily seen in distribution plots. If you want to discuss them compared to theoretical results specifically for Hamming metric in 3.1.3, that seems warranted, but I wouldn't include those plots. Similarly for Fig. 6, you lose all perspective on the distribution of values, which is what's important here, not their means.
->
+
+We agree that contextualizing means with respect to the underlying distributions is critical (particularly when those distributions are multimodal, as some of the distributions in question are).
+
+We have switched bar plots in Figures 2 and 3 for violin plots with mean (and bootstrapped CI) annotated.
+We have added a subpanel to Figure 6 that shows distribution of match distance by mutational step as a heat map.
+
+We do believe that mean similarity constraint (Fig 2), dissimilarity constraint (Fig 3), and match distance (Figure 6) provide reasonable and interpretable information, so long as they are considered in context of the underlying distributions.
+For example, mean match distance at a mutational step gives a measure of how well you could expect a pair of previously perfectly-matched tags to match after _x_ successive mutations.
+
 > In section 3.2 for the dissimilarity constraint, you need to be careful to specify the order of tags, since the integer metric is non-commutative. Specifically, in the description of Fig 3(a), "Then, tags were randomly drawn until a tag S1 with distance to R less than 0.01 was obtained." is not clear whether these distances are d(R, S1) or d(S1, R). Same with the next sentence. If the other way, I would imagine integer's mean match distance would be 0.99, not 0.01. [Note: this decision either way is arbitrary, so your sentence "Then, explaining this counterintuitive result, the distance from the slightly smaller to the slightly larger tag will be small." would read that the distances would be large.]
 
 We incorporated mathematical notation into this definition (and several others) in order to resolve ambiguity about argument order with respect to metric functions.
