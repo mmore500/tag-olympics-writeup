@@ -245,7 +245,10 @@ We chose "uniformification" and removed all references to normalization.
 [Fixed](https://github.com/mmore500/tag-olympics-writeup/commit/45e8149d357946a67896fd09c540cfcab641f8db).
 
 > Since Streak and Hamming seem somewhat related, it seems that it would be nice to have them next to each other in the plots.
->
+
+Agreed.
+Additionally, we have placed the Hash metric at the beginning of the order because it serves as a control.
+
 > Subsections such as 3.1.1, 3.1.2, etc. don't discuss methods in the same order as the plots.
 > It seems like doing so would be nice and easier to follow.
 
