@@ -31,9 +31,10 @@ This is clearly impossible --- it would imply $p'(0) > 1 \forall n > 0$.
 
 Although correct probabilities can be calculated via dynamic programming, $p'$ provides a useful approximation.
 For computational efficiency and consistency with the existing literature, we use the math proposed in \citep{downing2015intelligence} but clamp edge cases between 0.0 and 1.0.
+Additionally, because Downing uses the match closeness convention where a perfect match is scored 1.0, we subtract from 1 to convert to match distance.
 This yields the corrected streak metric $d$ used in this work,
 \begin{align*}
-d(t, u) = \max\Big( \min( d'(t, u), 1), 0 \Big).
+d(t, u) = 1 - \max\Big( \min( d'(t, u), 1), 0 \Big).
 \end{align*}
 
 Downing motivates the streak metric by analogy to the biochemistry of enzyme-ligand binding.
