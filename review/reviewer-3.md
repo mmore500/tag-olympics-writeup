@@ -30,11 +30,10 @@ We also provide some links so that diffs may be viewed directly on GitHub.
 > It would good to add some justification for focusing on binary-valued, rather than, for instance, real-valued tags.
 > Though I appreciate there's only so much you can cover in one study, I'd be interested to hear if you have any thoughts on the role of tag alphabet, e.g. whether you'd expect any differences in terms of evolvability for binary vs multi-valued vs continuous.
 
-We added a subsection to the "Tags and Tag-Matching Metrics" section to offer some thoughts on this subject.
+This is a good point, and something that will certainly be important to explore in the future.
+We added a supplementary section to offer some thoughts on this subject.
 
 ```diff
-+\subsection{Note on Tag Alphabet}
-+
 +For tractability and consistency, this work exclusively considers strings composed from the binary alphabet $\{0, 1\}$.
 +However, we expect that most geometric, variational, and evolutionary properties of the metrics studied are not fundmaentally tied to the particular use of the binary alphabet.
 +
@@ -42,7 +41,7 @@ We added a subsection to the "Tags and Tag-Matching Metrics" section to offer so
 +Due to the uniformification process performed, both would be effectively rescaled to the range $\[0, 1\]$.
 +With a precision of $1/2^{32}$ --- tighter than $10^{-9}$ --- the 32-bit tags used should exhibit near-undetectable granularity, especially given the relatively small pools of query and operand tags used in our experiments.
 +
-+However, it is important to note that the bit flip mutation operator used in our experiments induces a rougly exponential distribution of effect size, which might otherwise be an unusual choice when working with a continuous-valued tag system.
++However, it is important to note that the bit flip mutation operator used in our experiments induces a rougly exponential distribution of mutation effect size, which might otherwise be an unusual choice when working with a continuous-valued tag system.
 +We unpack this issue in greater detail in Section \ref{sec:variational}.
 +
 +Alternate alphabet choice would have a minimal effect on the streak metric.
@@ -55,10 +54,11 @@ We added a subsection to the "Tags and Tag-Matching Metrics" section to offer so
 +Under the binary alphabet, every mutation affects a tag's match distances to all other tags --- no mutation is neutral.
 +However, with a larger alphabet size this would no longer be the case.
 +As with the streak metric, increased alphabet size would introduce effects from coarsened granularity, with the magnitude of these effects eventually becoming overwhelming under large alphabets.
-+
-+We do not fully explore the possibilities introduced by alternate tag-matching alphabets in this work, so a detailed and rigorous understanding of this topic remains an avenue for future research.
-* add note about most common types: continuous and different alphabets are not common
+
++We do not fully explore the possibilities introduced by alternate tag-matching representations in this work, so a detailed and rigorous understanding of this topic remains an avenue for future research.
 ```
+
+We added an aside in the Metrics section to note other possible tag representations and refer interested readers to this new section in the supplement for more detail.
 
 > The introduction to the metrics would benefit from some concrete examples, and I think more examples in general would help engage readers who are less familiar with tag systems.
 

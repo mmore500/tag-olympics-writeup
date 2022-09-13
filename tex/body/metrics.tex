@@ -3,7 +3,11 @@
 Rigorous comparison of disparate tag-matching schemes required careful standardization of tag representation, mutation, and match quality calculation.
 This section summarizes the tag representation, mutation, and match quality calculation procedures used in our experiments and provides formal definition for each of the surveyed tag-matching schemes within that framework.
 
-In all experiments, we used 32-bit bitstrings as tags.
+In all experiments, we used 32-bit bitstrings as tags.%
+\footnote{
+Many other tag representations are possible, including higher-cardinality alphabets \citep{holland1992adaptation} and floating point values.
+Although for reasons of tractability and consistency we do not explore them in this initial work, we do include some commentary in Supplementary Section \ref{sec:alphabet} on how alternate representations might differ from the bitstring tags used in this work.
+}
 Formally, we define a tag $t$ as a fixed-length binary vector,
 \begin{align*}
 t = \langle t_0, t_1, t_2, \dots, t_{n-2}, t_{n-1} \rangle
@@ -96,28 +100,3 @@ Absolute error at the 1st percentile can be bounded below 0.0017 match distance 
 All work reported here employed match distance uniformification.
 A single match distance lookup table was used across all experiments with each metric.
 Note that match distance uniformification has no effect in experiments where tag-matching derives exclusively from relative ordering with no absolute match distance effect (i.e., evolutionary experiments with the graph-matching and changing-signal tasks introduced later on).
-
-\subsection{Note on Tag Alphabet}
-
-For tractability and consistency, this work exclusively considers strings composed from the binary alphabet $\{0, 1\}$.
-However, we expect that most geometric, variational, and evolutionary properties of the metrics studied are not fundmaentally tied to the particular use of the binary alphabet.
-
-We suspect that the surveyed integer metrics under the existing bitstring representation should behave effectively indistinguishably from a continuous-valued (i.e., floating point) representation.
-Due to the uniformification process performed, both would be effectively rescaled to the range $[0, 1]$.
-With a precision of $1/2^{32}$ --- tighter than $10^{-9}$ --- the 32-bit tags used should exhibit near-undetectable granularity, especially given the relatively small pools of query and operand tags used in our experiments.
-
-However, it is important to note that the bit flip mutation operator used in our experiments induces a rougly exponential distribution of effect size, which might otherwise be an unusual choice when working with a continuous-valued tag system.
-We unpack this issue in greater detail in Section \ref{sec:variational}.
-
-Alternate alphabet choice would have a minimal effect on the streak metric.
-Imagine, for example, using a four-valued alphabet instead of the existing two-valued binary alphabet.
-Any character in that four-valued alphabet could be encoded by a pair of binary digits.
-So, the existing bitstring representation for tags could be preserved and adjustment instead made to the match distance metric to count only entirely-matching (or mismatching) pairs of bits as contributing to a streak.
-The significance of this effect would depend on typical streak length and, of course, for large alphabets this truncation effect would eventually become overwhelming.
-
-Increased alphabet size might have a more nuanced effect on the Hamming metric.
-Under the binary alphabet, every mutation affects a tag's match distances to all other tags --- no mutation is neutral.
-However, with a larger alphabet size this would no longer be the case.
-As with the streak metric, increased alphabet size would introduce effects from coarsened granularity, with the magnitude of these effects eventually becoming overwhelming under large alphabets.
-
-We do not fully explore the possibilities introduced by alternate tag-matching alphabets in this work, so a detailed and rigorous understanding of this topic remains an avenue for future research.
