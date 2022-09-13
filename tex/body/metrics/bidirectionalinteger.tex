@@ -9,7 +9,7 @@ The bidirectional integer metric interprets bitstring tags $t$ and $u$ as unsign
 Formally, the bidirectional integer metric computes distance between $n$-bit bitstring tags as,
 \begin{align*}
 d(t, u) =
-  \frac{\min \Big(f(u) - f(t), f(t) - f(u)\Big) \mod 2^n}{2^n}. \\
+  \frac{\min \Big(f(u) - f(t)  \mod 2^n, f(t) - f(u) \mod 2^n \Big)}{2^n}. \\
 \end{align*}
 
 We included this metric to contrast with the integer metric. In particular, we wished to shed light on any consequences of its asymmetry and discontinuity.
