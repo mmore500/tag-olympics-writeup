@@ -1,11 +1,37 @@
 \begin{figure}[!htbp]
 \begin{center}
 
-\includegraphics[width=\textwidth]{img/mutational_walk/bitweight=0dot5+seed=1+title=mutational_walk_lineplot_ci+_data_hathash_hash=8bf152d87daa9cb7+_script_fullcat_hash=44400a7961ad5f3b+ext=}
+\begin{subfigure}[b]{\linewidth}
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=0.75\linewidth]{img/mutational_walk/bitweight=0dot5+seed=1+title=mutational_walk_lineplot_ci+_data_hathash_hash=8bf152d87daa9cb7+_script_fullcat_hash=44400a7961ad5f3b+ext=}
+
+\end{minipage}
+\begin{minipage}{\linewidth}
 \caption{
-Match distance along mutational walks from initially identical tags.
+Mean match distances along mutational walks.
 Error bands represent bootstrapped 95\% confidence intervals.
 Note lotharithmic scale on the $x$ axis.
+}
+\end{minipage}
+\end{subfigure}
+
+\begin{subfigure}[b]{\linewidth}
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=\linewidth]{img/mutational_walk/bitweight=0dot5+seed=1+title=mutational_walk_heatplot+_data_hathash_hash=8bf152d87daa9cb7+_script_fullcat_hash=d91905e1c51705f0+ext=}
+
+\end{minipage}
+\begin{minipage}{\linewidth}
+\caption{
+Distribution of match distances along mutational walks.
+Note lotharithmic scale on the $x$ axis.
+}
+\end{minipage}
+\end{subfigure}
+
+\caption{
+Match distance along 5,000 sampled mutational walks from initially identical tags.
 }
 \label{fig:mutational_walk_barplot}
 
