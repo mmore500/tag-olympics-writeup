@@ -57,33 +57,12 @@ We added a subsection to the "Tags and Tag-Matching Metrics" section to offer so
 +As with the streak metric, increased alphabet size would introduce effects from coarsened granularity, with the magnitude of these effects eventually becoming overwhelming under large alphabets.
 +
 +We do not fully explore the possibilities introduced by alternate tag-matching alphabets in this work, so a detailed and rigorous understanding of this topic remains an avenue for future research.
+* add note about most common types: continuous and different alphabets are not common
 ```
 
 > The introduction to the metrics would benefit from some concrete examples, and I think more examples in general would help engage readers who are less familiar with tag systems.
 
-We have added a paragraph recapping John Holland's Echo model as a motivating example
-
-```diff
---- a/tex/body/introduction.tex
-+++ b/tex/body/introduction.tex
-@@ -36,13 +36,25 @@ Inexact referencing facilitates orderly growth, shrinkage, and reconfiguration o
- If an operand is deleted, it does not invalidate any existing operations, as other well-matching operands will fill its place.
- Likewise, new operations can be created or existing operations can be altered freely without concern for potentially invalid operands.
-
-+John Holland's Echo model provides a motivating example for the use of tags in evolving systems \citep{holland1992adaptation, mitchell1994genetic}.
-+This complex adaptive system model revolves around agents competing over several renewable resources within a spatial grid.
-+Agents' life histories unfold through fighting, trading, and/or mating interactions with neighbors.
-+Equiping agents with the capacity to dynamically opt in or out of these exchanges based on neighbor identity was crucial to realizing the model's conceit to study emergent phenomena including ecology, economic exchange, and hierarchical organization.
-+To this end, each agent in the Echo model posesses a set of externally-facing ``appearance'' tags and a set of internally-held ``condition'' tags.
-+Tag matching regulates of agents' behavior: the occurance or non-occurance of each interaction stems from match quality between an agent's internal ``condition'' tag and the external ``appearance'' tag of its prospective partner.
-+Tag matching provides three major benefits.
-+First, interaction rules are well-defined between any possible paring of agents, even under dynamic insertion, removal, or mutation of agents within the system.
-+Second, agents can malleably and succinctly specify arbitrary sets of tag identities to allow or prevent interaction with.
-+Third, existing agent behavior can be adjusted or refined under mutation.
-+
- Indeed, inexact referencing techniques find common use in agent-based modeling \citep{riolo2001evolution}, neuroevolution \citep{reisinger2007acquiring}, artificial gene regulatory networks \citep{banzhaf2003artificial}, genetic programming \citep{spector2011tag, lalejini2018evolving}, artificial chemistry \citep{dittrich2001artificial}, and artificial immunology \citep{timmis2008theoretical}.
- These systems typically either use tagging schemes based on
-```
+We added a brief worked example of each tag metric's distance computation.
 
 > A line plot might work better for Fig 6.
 > It's hard to see and compare the trends at the moment.
