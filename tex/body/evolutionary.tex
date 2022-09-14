@@ -75,6 +75,7 @@ The Hamming and streak metrics intermediate best-performing mutation rates betwe
 
 We ran 100 replicate 512-generation evolutionary runs for each mutation rate/target graph/tag-matching metric combination.
 These runs had a well-mixed population of size 500 and used tournament selection with tournament size 7.
+The population was initialized with randomly-generated genomes.
 Figure \ref{fig:evolve_bests} plots population-maximum fitness over the course of these evolutionary runs.
 We performed the same evolutionary experiment with larger 64-node target graphs and observed qualitatively similar results (Supplementary Figures \ref{fig:evolve_bests64} and \ref{fig:evolve_big_mutsweep}).
 
