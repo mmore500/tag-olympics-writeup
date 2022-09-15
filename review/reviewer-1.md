@@ -59,7 +59,13 @@ We have replaced these all with histograms and moved the originals, which do sho
 > I think it would be appropriate and within the scope of this paper to at least test 1 mutation operator that would have low locality for the integer representations, comparing it to the bit-flip mutation.
 > You suggest adding rounded Gaussian noise, which I think would be appropriate.
 > I could imagine other mutations here as well -- I don't think you have to test all of them, but choosing one representative would round out the paper nicely.
->
+
+We tested the Gaussian noise mutation operator and found that it performed equivalently or worse compared to the bitwise mutation on the graph matching task.
+
+We added a supplementary section reporting this result.
+We also expanded our footnote aside on the application of bitwise mutation to the integer metrics to mention this further motivation for restricting our scope to consider only bitwise mutation.
+[Diff](https://github.com/mmore500/tag-olympics-writeup/commit/ec330fdc8fa87c470cd7ed054ba1cdc0d41becf5).
+
 > The experiment in section 5.1 is very confusingly described.
 > After reading it 3 times, I'm still not sure what's going on.
 > This needs to be rewritten from scratch to precisely describe the experiment, what genomes are, how they are used, and what they have to do with random bipartite graphs.
