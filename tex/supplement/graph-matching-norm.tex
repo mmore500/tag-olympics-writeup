@@ -1,0 +1,21 @@
+\section{Graph Matching with Normally-distributed Mutation Operator}
+\label{sec:graph-matching-norm}
+
+In order to contextualize our use of bitwise mutation with integer metrics, we replicated the 32-node target graph matching experiment with randomly-initialized genomes reported in Section \ref{sec:graph-matching} using a normally-distributed mutation operator.
+
+Under the normally-distributed mutational operator, each tag had an integer amount drawn from a normal distribution added to its integer representation every generation.
+Specifically, the amount added was drawn from $\mathcal{N}(0, m \times c)$, where $m$ was a variable mutation rate parameter and $c$ was a fixed scale parameter $2^{32} - 1$.
+(Recall that $2^{32} - 1$ is the largest possible
+Overflow values after addition were wrapped around.
+
+A swath of 15 standard deviations $m$ between 0.000976562 and 0.125 were surveyed.
+All metrics had a best-performing mutation rate within the range of surveyed rates for each problem configuration tested.
+Supplementary Figure \ref{fig:evolve_zeroinit_mutsweep} summarizes performance across surveyed mutation rates.
+We used the best-performing mutation rate for each metric on each problem configuration for further analysis.
+Supplementary Table \ref{tab:evo_graph_mut_norm} provides the best-performing mutation rates used.
+
+Supplementary Figure \ref{fig:evolve_bests_norm} shows adaptation over generations under this mutational operator for regular/irregular target graphs with mean degree 1/2.
+The normally-distributed mutation operator performs comparably to the bitwise mutation operator or worse in all instances.
+
+It may be possible to achieve better performance with a mutation operator that combines a per-tag mutation probability with a normally distributed mutational effect.
+Further work will be required to explore such possibilities.
