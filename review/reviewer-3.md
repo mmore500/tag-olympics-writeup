@@ -85,7 +85,17 @@ We added a table with the best-performing mutation rates for each metric on the 
 > Something you've not explored is the relationship between tag representation/metric and operator(s).
 > For example, if you use a representation/metric with poor exploration properties, can this be adequately compensated for by using a more explorative operator?
 > Or is there some more fundamental benefit to using a particular representation/metric?
->
+
+A metric's geometric constraint properties will remain no matter what mutation operator is used.
+For example, under the bidirectional integer metric it will be impossible to have tag `A` match closely to tags `a` and `b` while having  tag `B` match closely to `a` but very poorly to `b`.
+
+We have added some commentary to the section on geometric constraint to emphasize this point.
+```diff
++Geometric constraint cannot be circumvented by mutation operator design.
++In both the Hamming metric and bidirectional integer metric examples above, the nonexistence of any tag $v$ satisfying the given match distance criteria holds no matter how mutation is performed.
++The mutation operator only affects how tags in a genome move through bitstring space between generations and not how they match to other tags at a particular generation, so is orthogonal to geometric constraint.
+```
+
 > You might find the following paper of relevance, since it also explored the evolvability of tag-based representation in GP, and (relevant to my previous point) explored the idea that getting the representation right is more important than getting the operator right: <http://doi.org/10.1016/j.biosystems.2004.05.015>
 >
 > Given that you've only looked at a small number of problems, it's unclear whether the observations will generalise.

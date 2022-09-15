@@ -15,6 +15,10 @@ Stated more generally, geometric constraint may also enable tag pairs such that 
 Geometric constraint varies by metric.
 For example, under the hash metric no pair of tags exists with either aspect of geometric constraint described above --- how well a third tag $v$ matches to $t$ and how well it matches to $u$ is always entirely independent.
 
+Geometric constraint cannot be circumvented by mutation operator design.
+In both the Hamming metric and bidirectional integer metric examples above, the nonexistence of any tag $v$ satisfying the given match distance criteria holds no matter how mutation is performed.
+The mutation operator only affects how tags in a genome move through bitstring space between generations and not how they match to other tags at a particular generation, so is orthogonal to geometric constraint.
+
 Geometric constraint seems likely to profoundly influence evolution in tag-matching systems.
 However, it is not obvious how to predict \textit{a priori} how these implications ultimately play out.
 Geometric constraint might prove useful to facilitate modularity by allowing subsets of tag space to correspond to associated functionality \citep{holland1990concerning}.
