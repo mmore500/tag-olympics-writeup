@@ -92,7 +92,35 @@ We added a table with the best-performing mutation rates for each metric on the 
 > I suspect, as with most things, there is going to be a degree of No Free Lunch here, i.e. different representations/metrics will work well for different problems.
 > Maybe something worth discussing.
 > That said, I like your brief point about tuning tag systems in the conclusions; perhaps this could be emphasised a bit more, since you have shown that getting the right setup for a particular problem is important.
->
+
+
+We agree that this is an interesting point to expand on.
+We added a subsection on practical recommendations to the end of our discussion.
+
+```diff
++\subsection{Practical Recommendations}
++
++Our results highlight the dependence of tag-matching metrics' performance on  problem domain.
++So, consideration of properties of the problem domain at hand should drive the decision of which tag-matching metric to use in a particular system.
++
++A major practical advantage of integer-based metrics is the possibility for log time lookup of operands (i.e., via binary search).
++However, the integer metrics performed competitively only within a particular class of problem domains.
++In all high-constraint problem domains, the integer metrics performed poorly.
++Among low-constraint problem domains, the integer metrics only performed well on the toy graph-matching task --- they did not perform well on the low-constraint GP changing signals task.
++At present, it is unclear what problem domain property stymied the integer metrics in the low-constraint GP changing signals task --- the potential for the operand set to grow over time (e.g., duplication and divergence), fitness landscape ruggedness (e.g., epistasis), or something else.
++
++However, within the low-constraint, fixed-size, smooth fitness landscape problem domain where integer metrics performed well, the hash metric actually performed slightly better.
++So, under these conditions, the hash metric may be preferable when log time lookup is not critical.
++
++Outside of low-constraint, fixed-size, smooth fitness landscape problem domains, the Hamming and streak metrics perform best.
++On the low-constraint, fixed-size, smooth fitness landscape tested, both evolved full solutions, although the Hamming metric was slightly slower than the streak and integer metrics.
++In particular, the Hamming and streak metrics performed best in our GP tests.
++So, both metrics appear to be reasonable choices in most cases.
++
++Choosing between the two will likely depend on implementation considerations: the streak metric facilitated faster adaptive evolution in some experiments, but is more computationally expensive to calculate than the Hamming metric.
++Future work should investigate whether a simplified version of the streak metric --- for example, ignoring mismatching streak length and only considering matching streak length --- suffices to capture its properties.
+```
+
 > Typos etc:
 >
 > hamming => Hamming
