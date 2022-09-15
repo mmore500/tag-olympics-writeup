@@ -71,6 +71,8 @@ We added a subsection to the end our discussion in order to speak to this point 
 +Future work should investigate whether a simplified version of the streak metric --- for example, ignoring mismatching streak length and only considering matching streak length --- suffices to capture its properties.
 ```
 
+We have rewritten the rest of the discussion section to be more interpretive (rather than summary-driven).
+[Diff](https://github.com/mmore500/tag-olympics-writeup/commit/d74183e04a44fe6743fd4cbc20255912df72a87f).
 
 > I find the "Match Distance/Percentile" plots that appear throughout the paper (including and not limited to Figs. 1, 2c, 3c, etc.) very hard to wrap my mind around, and strongly recommend reconfiguring every one of them.
 > Are they essentially cumulative distribution functions on their sides?
