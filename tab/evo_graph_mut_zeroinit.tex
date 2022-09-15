@@ -1,32 +1,32 @@
 \begin{table}[!htbp]
 \begin{tabular}{l|l|l|l}
 \textbf{Metric}       & \textbf{Target Structure} & \textbf{Target Degree} &  \textbf{\begin{tabular}[c]{@{}l@{}}Best-Performing \\ Per-Genome Bit\\ Mutation Rate\end{tabular}} \\ \hline
-Hash                  & Regular                   & 1                      & 0.75                                           \\ \hline
-Hash                  & Regular                   & 2                      & 0.75                                           \\ \hline
+Hash                  & Regular                   & 1                      & 1.0                                           \\ \hline
+Hash                  & Regular                   & 2                      & 1.0                                           \\ \hline
 Hash                  & Irregular                 & 1                      & 1.0                                            \\ \hline
-Hash                  & Irregular                 & 2                      & 0.75                                           \\ \hline
+Hash                  & Irregular                 & 2                      & 1.0                                           \\ \hline
 Hamming               & Regular                   & 1                      & 4.0                                            \\ \hline
-Hamming               & Regular                   & 2                      & 2.0                                            \\ \hline
+Hamming               & Regular                   & 2                      & 3.0                                            \\ \hline
 Hamming               & Irregular                 & 1                      & 4.0                                            \\ \hline
-Hamming               & Irregular                 & 2                      & 2.0                                            \\ \hline
+Hamming               & Irregular                 & 2                      & 3.0                                            \\ \hline
 Streak                & Regular                   & 1                      & 3.0                                            \\ \hline
-Streak                & Regular                   & 2                      & 1.5                                            \\ \hline
+Streak                & Regular                   & 2                      & 2.0                                            \\ \hline
 Streak                & Irregular                 & 1                      & 4.0                                            \\ \hline
 Streak                & Irregular                 & 2                      & 2.0                                            \\ \hline
-Integer               & Regular                   & 1                      & 6.0                                            \\ \hline
+Integer               & Regular                   & 1                      & 4.0                                            \\ \hline
 Integer               & Regular                   & 2                      & 6.0                                            \\ \hline
-Integer               & Irregular                 & 1                      & 8.0                                            \\ \hline
-Integer               & Irregular                 & 2                      & 8.0                                            \\ \hline
+Integer               & Irregular                 & 1                      & 6.0                                            \\ \hline
+Integer               & Irregular                 & 2                      & 4.0                                            \\ \hline
 Bidirectional Integer & Regular                   & 1                      & 4.0                                            \\ \hline
 Bidirectional Integer & Regular                   & 2                      & 6.0                                            \\ \hline
 Bidirectional Integer & Irregular                 & 1                      & 8.0                                            \\ \hline
-Bidirectional Integer & Irregular                 & 2                      & 8.0
+Bidirectional Integer & Irregular                 & 2                      & 6.0
 \end{tabular}
 
 \caption{
-Best-performing per-bit mutation rates for 32-node graph matching tasks with randomly-initialized genomes.
-See Supplementary Figure \ref{fig:evolve_mutsweep} for performance across surveyed mutation rates.
+Best-performing per-bit mutation rates for 32-node graph matching tasks with identically-initialized genomes.
+See Supplementary Figure \ref{fig:evolve_zeroinit_mutsweep} for performance across surveyed mutation rates.
 }
-\label{tab:evo_graph_mut}
+\label{tab:evo_graph_mut_zeroinit}
 
 \end{table}
