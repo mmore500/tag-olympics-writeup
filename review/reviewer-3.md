@@ -81,7 +81,15 @@ We added a table with the best-performing mutation rates for each metric on the 
 
 > Was there any dependence between the choice of seed program and the performance of the metrics?
 > For instance, the optimal balance between exploration and exploitation may be determined in part by program size.
->
+
+We were also interested by this question, and performed an additional experiment with the target graph-matching system to investigate.
+For this additional experiment, we initialized genomes with all-identical tags rather than randomly-generated tags.
+This condition increases initial pressure to explore and differentiate.
+
+We found that the integer metrics had significantly faster initial adaptive evolution under these conditions, indicating a greater capacity to generate useful initial variation through mutation.
+However, this effect only lasted for about the first 10 generations.
+We have added some commentary on this experiment to the text.
+
 > Something you've not explored is the relationship between tag representation/metric and operator(s).
 > For example, if you use a representation/metric with poor exploration properties, can this be adequately compensated for by using a more explorative operator?
 > Or is there some more fundamental benefit to using a particular representation/metric?
