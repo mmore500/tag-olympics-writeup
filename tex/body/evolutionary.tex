@@ -74,6 +74,7 @@ Best-performing mutation rates varied greatly, ranging from as low as 0.75 expec
 The Hamming and streak metrics intermediate best-performing mutation rates between 1.5 and 4.0 expected mutations per genome.
 
 We ran 100 replicate 512-generation evolutionary runs for each mutation rate/target graph/tag-matching metric combination.
+Populations were initialized with genomes comprising randomly-generated tags.
 These runs had a well-mixed population of size 500 and used tournament selection with tournament size 7.
 The population was initialized with randomly-generated genomes.
 Figure \ref{fig:evolve_bests} plots population-maximum fitness over the course of these evolutionary runs.
@@ -93,10 +94,15 @@ The streak metric facilitates slightly faster adaptive evolution than the Hammin
 
 The integer and bidirectional integer metrics successfully match the least-constrained target graph (regular structure with mean degree 1) but yield lower-quality solutions than other metrics on more constrained target graphs (Figure \ref{fig:evolve_bests}; non-overlapping 95\% CI).
 
-\subsubsection{Identically-Initialized Tags}
+\subsubsection{Identical Initialization Experiment}
 
 \input{fig/evolve_bests_zeroinit.tex}
 
+In a follow-up experiment to discern metrics' capabilities to generate variation, we initialized populations with an all-identical set of initial tags (instead of random initial tags).
+Figure \ref{fig:evolve_bests_zeroinit} shows trajectories of adaptive evolution across tag-matching metrics and target graph configurations.
+
+Surprisingly, integer metrics exhibited the fastest initial adaptive evolution --- even outperforming the volatile hash metric.
+However, this effect dissipated after about 10 generations and results at subsequent generations were generally the same as before.
 
 \subsection{Changing-signal Task} \label{sec:changing-signal}
 
