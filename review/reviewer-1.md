@@ -100,25 +100,31 @@ We also expanded our footnote aside on the application of bitwise mutation to th
 > After reading it 3 times, I'm still not sure what's going on.
 > This needs to be rewritten from scratch to precisely describe the experiment, what genomes are, how they are used, and what they have to do with random bipartite graphs.
 
-We have revised our explanation as follows
+We added a "cartoon" summary of the graph-matching experiment and rewrote our explanation as follows.
 ```
-In this experiment, we explored metrics' ability to facilitate evolution of an arbitrary, fixed pattern of tag-matching connectivity.
-Genomes in this experiment consisted solely of a set of 32 tags, partitioned evenly as 16 query tags and 16 operand tags.
-We used randomly-generated bipartite graphs as a specification for an arbitrary set of desired operands that queries should match to, with each vertex in the graph corresponding directly to a bitstring tag in the genome.
+The graph-matching task provides a pared-back experimental system to isolate tag matching evolutionary dynamics.
+Genomes in this domain consisted solely of a set of 32 tags, partitioned evenly as 16 query tags and 16 operand tags.
+Operand tags served as available tag-matching targets and query tags were used as tag-matching lookups.
+The goal of the graph-matching task is to establish of an arbitrary, fixed pattern of tag-matching connectivity between query tags and operands.
+
+Each experiment with this task selected for a distinct, randomly-determined pattern of connectivity between query tags and operand tags.
+Formally, we used randomly-generated bipartite graphs to specify this target connectivity.
+Each bitstring tag in the genome corresponded directly to a vertex in the graph;
+one partition of the bipartite graph contained all query tags and the other contained all operand tags.
 Figure \ref{fig:graph_layouts} shows example target graph layouts.
 
-To evaluate the fitness of a genome, we harvested its operand tags placed them into a tag-matching data structure.
-This data structure allowed us to match each query tag to its $n$ best-matching operands.
-For each query tag, we set the number of collected operand matches $n$ to the outgoing edge count from its corresponding vertex in the target graph.
-So, for example, if a vertex had three outgoing edges then we would record the three best-matching operands of the corresponding tag.
+To evaluate the fitness of a genome, we harvested its operand tags and placed them into a tag-matching data structure.
+This data structure allowed us to rank operand tags in terms of match distance from each particular query tag.
+In order to compare tag-encoded connectivity against the target graph, we had to decide whether or not each operand was ``connected to'' by a query tag.
+For each query, we considered only the top $n$ best-matching operands as ``connected to.''
+This rank cutoff $n$ was determined independently for each query tag.
+We used the degree of a query's corresponding vertex as its rank cutoff $n$.
+So, for example, if a vertex had three outgoing edges then we would consider the three best-matching operands of the corresponding tag as ``connected to. n''
 
-For the purposes of fitness evaluation, we considered matches within this set equivalent.
-So, each query tag had a set of $n$ best-matching operands.
-We took that query tag's contribution to fitness as the fraction of its best-matching operands that corresponded to connections on the target biparte graph; that is, the fraction of best-matching operands with corresponding graph vertices connected by an edge to the query's corresponding graph vertex.
-
-Along these lines, we took overall fitness as the fraction of best-match tag pairs that correctly corresponded to edges in the target graph.
-
-We controlled the degree of tag-matching constraint imposed by the target graph by manipulating:
+For the purposes of fitness evaluation, we considered all ``connected to'' matches equivalent.
+So, with respect to a particular query tag, we took fitness as the fraction of the ``connected to'' operands that shared an edge with the query in the target bipartite graph.
+Along these lines, we took overall fitness as the fraction of established connections that correctly corresponded to edges in the target graph.
+Figure \ref{fig:target_matching_problem} summarizes the evaluation process for the graph-matching task.
 ```
 
 > Moderate Concerns
