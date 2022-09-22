@@ -206,9 +206,9 @@ We added notes explaining expected error under the Monte Carlo percentile approx
 The sample size of 5,000 was used for experiments that required data to be written to file for analysis and visualization.
 This choice of sample size had some benefits for experiment execution speed and, especially, data post-processing and visualization time (particulary with respect to the original visualizations where each observation is drawn as an indepednent bar).
 Another practical factor driving our sample size decision was the ability to store data files in the Git version control system without the use of the Large File Storage (LFS) extension.
-(The 10,000 sampled match distances for Monte Carlo percentile approximation were only held in memory over the course of execution of our experiments and never had to actually be written to disk.)
+(We were able to use the larger 10,000 sampled match distances for Monte Carlo percentile approximation because these were held in memory over the course of execution of our experiments and never had to actually be written to disk.)
 
-The recreation of distribution figures mentioned above allowed us to add confidence interval bars and bands.
+The updated distribution figures mentioned above allowed us to add confidence interval bars and bands.
 These bootstrapped estimates of uncertainty better justify the sufficiency of sample size in these experiments.
 
 > I'm not sure that the means in figures 2(c) and 3(c) and 6 tell us anything useful. Hash and Integer look identical, but clearly come from very different distributions, which are much more easily seen in distribution plots. If you want to discuss them compared to theoretical results specifically for Hamming metric in 3.1.3, that seems warranted, but I wouldn't include those plots. Similarly for Fig. 6, you lose all perspective on the distribution of values, which is what's important here, not their means.
