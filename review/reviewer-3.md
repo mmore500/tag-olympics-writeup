@@ -136,7 +136,7 @@ We added a subsection on practical recommendations to the end of our discussion.
 +So, both metrics appear to be reasonable choices in most cases.
 +
 +Choosing between the two will likely depend on implementation considerations: the streak metric facilitated faster adaptive evolution in some experiments, but is more computationally expensive to calculate than the Hamming metric.
-+Future work should investigate whether a simplified version of the streak metric --- for example, ignoring mismatching streak length and only considering matching streak length --- suffices to capture its properties.
++Future work should investigate whether a streamlined version of the streak metric --- for example, ignoring mismatching streak length and only considering matching streak length --- suffices to capture its properties.
 ```
 
 > Typos etc:

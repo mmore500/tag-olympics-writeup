@@ -97,7 +97,7 @@ In particular, the Hamming and streak metrics performed best in our GP tests.
 So, both metrics appear to be reasonable choices in most cases.
 
 Choosing between the two will likely depend on implementation considerations: the streak metric facilitated faster adaptive evolution in some experiments, but is more computationally expensive to calculate than the Hamming metric.
-Future work should investigate whether a simplified version of the streak metric --- for example, ignoring mismatching streak length and only considering matching streak length --- suffices to capture its properties.
+Future work should investigate whether a streamlined version of the streak metric --- for example, ignoring mismatching streak length and only considering matching streak length --- suffices to capture its properties.
 
 A critical qualification on these recommendations should be noted: they assume the bitwise mutation used in this work.
 Although, in supplementary experiments reported in Supplementary Section \ref{sec:graph-matching-norm} we did not find that a simple Gaussian mutation operator improved the performance of integer metrics on the graph-matching task, future work should more thoroughly explore the extent to which our findings generalize under alternate mutation operators.
