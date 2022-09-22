@@ -198,8 +198,8 @@ We added notes explaining expected error under the Monte Carlo percentile approx
 
 ```diff
 +Error in the Monte Carlo approximation of the percentile for any raw match score is distributed binomially.
-+With 10,000 samples, absolute error at the 50th percentile can be bounded below 0.01 match distance units with 95\% confidence and below 0.012 match distance units with 99\% confidence.
-+Absolute error at the 1st percentile can be bounded below 0.0017 match distance units with 95\% confidence and below 0.0024 match distance units with 99\% confidence.
++With 10,000 samples, absolute error at the 50th percentile (0.5 match distance) can be bounded below 0.01 match distance units with 95\% confidence and below 0.012 match distance units with 99\% confidence.
++Absolute error at the 1st percentile (0.01 match distance) can be bounded below 0.0017 match distance units with 95\% confidence and below 0.0024 match distance units with 99\% confidence.
 +(With five independent uniformification processes, 99\% confidence per metric translates to 95\% confidence over all metrics under Bonferroni correction.)
 ```
 
