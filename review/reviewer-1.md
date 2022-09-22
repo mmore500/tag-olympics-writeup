@@ -94,7 +94,20 @@ We tested the Gaussian noise mutation operator and found that it performed equiv
 
 We added a supplementary section reporting this result.
 We also expanded our footnote aside on the application of bitwise mutation to the integer metrics to mention this further motivation for restricting our scope to consider only bitwise mutation.
-[Diff](https://github.com/mmore500/tag-olympics-writeup/commit/ec330fdc8fa87c470cd7ed054ba1cdc0d41becf5).
+
+Here is how the footnote now reads.
+```
+However, as a result, these analyses do not explore alternate, more semantic approaches to mutation --- especially pertinent for integer tagging schemes where a tag's integer value can be directly manipulated, for example by adding or subtracting a normally-distributed amount.\footnote{
+Although not universal, use of bit flip mutation operators with integer representations is not entirely uncommon.
+See e.g., \cite{downing2015intelligence}.
+
+Additionally, in a supplementary experiment we found that the bitwise mutational operator outperforms a simple Gaussian mutation operator on the 32-vertex graph-matching task discussed in Section \ref{sec:graph-matching}.
+This simple operator applies Gaussian noise to the integer value of all tags in a genome every generation; addition of an additional ``mutation probability'' parameter may yield better results.
+Supplementary Section \ref{sec:graph-matching-norm} provides details on this experiment.
+This finding further motivates the limitation of scope to bitwise mutations in this initial work.
+}
+Any extrapolation of these results to systems with different mutation operators should be made with careful consideration, and may merit additional experimentation or analysis.
+```
 
 > The experiment in section 5.1 is very confusingly described.
 > After reading it 3 times, I'm still not sure what's going on.
