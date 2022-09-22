@@ -116,6 +116,10 @@ We have added some commentary to the section on geometric constraint to emphasiz
 
 > You might find the following paper of relevance, since it also explored the evolvability of tag-based representation in GP, and (relevant to my previous point) explored the idea that getting the representation right is more important than getting the operator right: <http://doi.org/10.1016/j.biosystems.2004.05.015>
 >
+
+Thank you for the recommendation.
+We have added this work to our literature review on inexact referencing.
+
 > Given that you've only looked at a small number of problems, it's unclear whether the observations will generalise.
 > I suspect, as with most things, there is going to be a degree of No Free Lunch here, i.e. different representations/metrics will work well for different problems.
 > Maybe something worth discussing.
