@@ -31,7 +31,10 @@ We also provide some links so that diffs may be viewed directly on GitHub.
 > Though I appreciate there's only so much you can cover in one study, I'd be interested to hear if you have any thoughts on the role of tag alphabet, e.g. whether you'd expect any differences in terms of evolvability for binary vs multi-valued vs continuous.
 
 This is a good point, and something that will certainly be important to explore in the future.
-We added a supplementary section to offer some thoughts on this subject.
+We do think that the restriciton to binary representations benefits this initial work by ensuring tractability (and digestability for readers!), but agree that this limitation is important to directly address in the text.
+
+We added an aside in the Metrics section to note other possible tag representations and refer interested readers to this new section in the supplement for more detail.
+Here is the text of the new supplementary section.
 
 ```diff
 +For tractability and consistency, this work exclusively considers strings composed from the binary alphabet $\{0, 1\}$.
@@ -57,8 +60,6 @@ We added a supplementary section to offer some thoughts on this subject.
 
 +We do not fully explore the possibilities introduced by alternate tag-matching representations in this work, so a detailed and rigorous understanding of this topic remains an avenue for future research.
 ```
-
-We added an aside in the Metrics section to note other possible tag representations and refer interested readers to this new section in the supplement for more detail.
 
 > The introduction to the metrics would benefit from some concrete examples, and I think more examples in general would help engage readers who are less familiar with tag systems.
 
