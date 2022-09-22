@@ -119,7 +119,7 @@ In order to compare tag-encoded connectivity against the target graph, we had to
 For each query, we considered only the top $n$ best-matching operands as ``connected to.''
 This rank cutoff $n$ was determined independently for each query tag.
 We used the degree of a query's corresponding vertex as its rank cutoff $n$.
-So, for example, if a vertex had three outgoing edges then we would consider the three best-matching operands of the corresponding tag as ``connected to. n''
+So, for example, if a vertex had three outgoing edges then we would consider the three best-matching operands of the corresponding query tag as ``connected to.''
 
 For the purposes of fitness evaluation, we considered all ``connected to'' matches equivalent.
 So, with respect to a particular query tag, we took fitness as the fraction of the ``connected to'' operands that shared an edge with the query in the target bipartite graph.
