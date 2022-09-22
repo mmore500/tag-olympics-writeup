@@ -1,7 +1,7 @@
 \section{Graph Matching with Normally-distributed Mutation Operator}
 \label{sec:graph-matching-norm}
 
-In order to contextualize our use of bitwise mutation with integer metrics, we replicated the 32-node target graph matching experiment with randomly-initialized genomes reported in Section \ref{sec:graph-matching} using a normally-distributed mutation operator.
+In order to contextualize our use of bitwise mutation with integer metrics, we replicated the 32-vertex target graph matching experiment with randomly-initialized genomes reported in Section \ref{sec:graph-matching} using a normally-distributed mutation operator.
 
 Under the normally-distributed mutational operator, each tag had an integer amount drawn from a normal distribution added to its integer representation every generation.
 Specifically, the amount added was drawn from $\mathcal{N}(0, m \times c)$, where $m$ was a variable mutation rate parameter and $c$ was a fixed scale parameter $2^{32} - 1$.
