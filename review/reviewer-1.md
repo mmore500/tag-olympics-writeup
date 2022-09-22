@@ -144,7 +144,10 @@ Figure \ref{fig:target_matching_problem} summarizes the evaluation process for t
 > =================
 >
 > There are a handful of typos and English issues throughout, which need to be tightened up, especially when they say the wrong thing.
->
+
+We made a comprehensive pass to proofread and line-edit the entire main text.
+[Diff](https://github.com/mmore500/tag-olympics-writeup).
+
 > The introduction does not do a good job of summarizing the results or discussion of the paper.
 
 We embellished the end part of our introduction to directly cover these topics.
