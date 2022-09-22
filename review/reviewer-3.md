@@ -34,6 +34,15 @@ This is a good point, and something that will certainly be important to explore 
 We do think that the restriciton to binary representations benefits this initial work by ensuring tractability (and digestability for readers!), but agree that this limitation is important to directly address in the text.
 
 We added an aside in the Metrics section to note other possible tag representations and refer interested readers to this new section in the supplement for more detail.
+
+```diff
+In all experiments, we used 32-bit bitstrings as tags.%
++\footnote{
++Many other tag representations are possible, including higher-cardinality alphabets \citep{holland1992adaptation} and floating point values.
++Although for reasons of tractability and consistency we do not explore them in this initial work, we do include some commentary in Supplementary Section \ref{sec:alphabet} on how alternate representations might differ from the bitstring tags used in this work.
+}
+```
+
 Here is the text of the new supplementary section.
 
 ```diff
