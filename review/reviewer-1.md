@@ -50,7 +50,7 @@ We added a subsection to the end our discussion in order to speak to this point 
 ```diff
 +\subsection{Practical Recommendations}
 +
-+Our results highlight the dependence of tag-matching metrics' performance on  problem domain.
++Our results highlight the dependence of tag-matching metrics' performance on problem domain.
 +So, consideration of properties of the problem domain at hand should drive the decision of which tag-matching metric to use in a particular system.
 +
 +A major practical advantage of integer-based metrics is the possibility for log time lookup of operands (i.e., via binary search).
