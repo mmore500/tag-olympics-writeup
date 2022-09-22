@@ -127,11 +127,11 @@ We added a subsection on practical recommendations to the end of our discussion.
 +Among low-constraint problem domains, the integer metrics only performed well on the toy graph-matching task --- they did not perform well on the low-constraint GP changing signals task.
 +At present, it is unclear what problem domain property stymied the integer metrics in the low-constraint GP changing signals task --- the potential for the operand set to grow over time (e.g., duplication and divergence), fitness landscape ruggedness (e.g., epistasis), or something else.
 +
-+However, within the low-constraint, fixed-size, smooth fitness landscape problem domain where integer metrics performed well, the hash metric actually performed slightly better.
++However, within the low-constraint target-matching problem domain where integer metrics performed well (i.e., a low-constraint, fixed-size problem with a smooth fitness landscape), the hash metric actually performed slightly better.
 +So, under these conditions, the hash metric may be preferable when log time lookup is not critical.
 +
-+Outside of low-constraint, fixed-size, smooth fitness landscape problem domains, the Hamming and streak metrics perform best.
-+On the low-constraint, fixed-size, smooth fitness landscape tested, both evolved full solutions, although the Hamming metric was slightly slower than the streak and integer metrics.
++Outside the low-constraint target-matching problem domain, the Hamming and streak metrics perform significantly better than the integer metrics.
++On the low-constraint target-matching problem, both did evolve full solutions, although the Hamming metric was slightly slower than the streak and integer metrics.
 +In particular, the Hamming and streak metrics performed best in our GP tests.
 +So, both metrics appear to be reasonable choices in most cases.
 +
