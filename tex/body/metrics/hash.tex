@@ -21,7 +21,7 @@ So, an ordering within each pair of tags processed in a tag-matching system will
 We use the convention of ordering the operand tag after the query tag when concatenating the tags' bit representations.
 
 Take as an example the two eight bit tags $t = \langle 1, 0, 0, 1, 0, 0, 1, 1 \rangle$ and $u = \langle 0, 0, 1, 0, 0, 0, 1, 1 \rangle$.
-The intricacy of the SHA1 algorithm precludes working through an example in full detail but these two tags will have an arbitrary match distance --- suppose it as 0.24.
+The intricacy of the SHA1 algorithm precludes working through an example in full detail, but these two tags will have an arbitrary match distance --- suppose it as 0.24.
 Changing any bit in either of the tags $t$ or $u$ will completely scramble match distance.
 For example, with the first bit of $t$ flipped match distance might instead be computed as 0.89.
 Flipping the second bit instead could yield a totally different result.

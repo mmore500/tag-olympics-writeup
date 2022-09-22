@@ -38,7 +38,7 @@ We identified the most performant tag mutation rate (from a range of possible mu
 These data (and analyses) are available online in the GitHub repository that houses these experiments \citepinappendix{lalejini_2020_3781295}.
 We used the following per-bit tag mutation rates for the changing-signal task: 0.01 for the Hamming and Streak metrics, 0.002 for the Hash metric, and 0.02 for the Integer and Bidirectional Integer metrics.
 Aside from tag mutation rate, the overall configuration used for each metric was identical.
-We limited tag variation in offspring to tag mutation operators (bit flips) by initializing populations with a common ancestor program in which all tags are identical and by disallowing mutations that would insert instructions with random tags.
+We limited tag variation in offspring to tag mutation (bit flips) by initializing populations with a common ancestor program in which all tags are identical and by disallowing mutations that would insert instructions with random tags.
 
 The full configuration details for the changing-signal task (including a guide to running these experiments on your local machine) can be found in the associated GitHub repository \citepinappendix{lalejini_2020_3781295}.
 
@@ -46,7 +46,7 @@ The full configuration details for the changing-signal task (including a guide t
 
 % Task overview
 As in the changing-signal task, the directional-signal task requires that programs respond to a sequence of environmental cues; in the directional-signal task, however, the correct response depends on previously experienced signals.
-In the directional signal task, there are two possible environmental signals --- a `forward-signal' and a `backward-signal' (each with a distinct tag) ---  and four possible responses.
+In the directional-signal task, there are two possible environmental signals --- a `forward-signal' and a `backward-signal' (each with a distinct tag) ---  and four possible responses.
 If a program receives a forward-signal, it should express the next response, and if the program receives, a backward-signal, it should express the previous response.
 For example, if response-three is currently required, then a subsequent forward-signal indicates that response-four is required next, while a backward-signal would instead indicate that response-two is required next.
 Because the appropriate response to both the backward- and forward-signals change over time, successful programs must regulate which functions these signals trigger (rather than hardcode each response to a particular signal).
@@ -54,7 +54,7 @@ Because the appropriate response to both the backward- and forward-signals chang
 % Evaluation overview
 We evaluate programs on all possible four-signal sequences of forward- and backward-signals (sixteen total).
 For each program, we evaluate each sequence of signals independently, and a program's fitness is equal to its aggregate performance.
-Otherwise, evaluation on a single sequence of signals mirrors that of the changing signal task.
+Otherwise, evaluation on a single sequence of signals mirrors that of the changing-signal task.
 
 % Experiment overview
 We used an identical experimental design for the directional-signal task as in the changing-signal task.

@@ -2,7 +2,8 @@
 
 In Section \ref{sec:geometric} we investigated how existing tag-match relationships to a common tag influenced the distribution of match distances.
 This section, in contrast, focuses on how individual mutations and cumulative sequences of mutations affect a single tag-matching relationship.
-Here, we use bit flip mutation operator.
+
+In this work, we use a bit flip mutation operator.
 This approach enables straightforward, direct comparison between metrics.
 However, as a result, these analyses do not explore alternate, more semantic approaches to mutation --- especially pertinent for integer tagging schemes where a tag's integer value can be directly manipulated, for example by adding or subtracting a normally-distributed amount.\footnote{
 Although not universal, use of bit flip mutation operators with integer representations is not entirely uncommon.
@@ -11,11 +12,11 @@ See e.g., \cite{downing2015intelligence}.
 Additionally, in a supplementary experiment we found that the bitwise mutational operator outperforms a simple Gaussian mutation operator on the 32-vertex graph-matching task discussed in Section \ref{sec:graph-matching}.
 This simple operator applies Gaussian noise to the integer value of all tags in a genome every generation; addition of an additional ``mutation probability'' parameter may yield better results.
 Supplementary Section \ref{sec:graph-matching-norm} provides details on this experiment.
-This finding further motivates the limitation of scope to bitwise mutations in this initial work.
+This finding further motivates our limitation of scope to bitwise mutations in this initial work.
 }
 Any extrapolation of these results to systems with different mutation operators should be made with careful consideration, and may merit additional experimentation or analysis.
 
-In Section \ref{sec:single_step}, we report two single-step mutational analyses: one that examines the local mutational neighborhoods of loosely-affiliated and a second that examines the local mutational neighborhoods of tightly-affiliated tag pairs.
+In Section \ref{sec:single_step}, we report two single-step mutational analyses: one that examines the local mutational neighborhoods of loosely-affiliated tag pairs and a second that examines the local mutational neighborhoods of tightly-affiliated tag pairs.
 In Section \ref{sec:mutational_walks}, we perform mutational walk analysis to survey the broader mutational landscape.
 
 \subsection{Single-Step Mutations} \label{sec:single_step}
@@ -24,7 +25,7 @@ In Section \ref{sec:mutational_walks}, we perform mutational walk analysis to su
 
 We performed single-step mutational analyses to characterize the local mutational neighborhoods induced by each tag-matching metric.
 
-To measure this effect of mutation on loosely-affiliated tag pairs, for each metric $m$ we
+To measure the effect of mutation on loosely-affiliated tag pairs, for each metric $m$ we
 \begin{itemize}
     \item randomly sampled a target tag $R$,
     \item randomly sampled candidate tags until we found a second tag $S$ with a match distance $m(R, S) > 0.5$,
@@ -35,14 +36,14 @@ To measure this effect of mutation on loosely-affiliated tag pairs, for each met
 \end{itemize}
 We repeated this procedure to generate 5,000 samples.
 
-To suit the instinct that positive change should correspond to an increase in match quality and negative change should correspond to a decrease in match quality, we pose all further discussion in terms of match cloesness change (i.e., $1 - p$) rather than match distance change.
+To suit the instinct that positive change should correspond to an increase in match quality and negative change should correspond to a decrease in match quality, we pose all further discussion in terms of match cloesness change rather than match distance change.
 
 The top panel of Figure \ref{fig:mutational_step} visualizes the distribution of match closeness change under mutation of loosely-affiliated tags.
-Negative match closeness change --- falling on left side of $x$ axes in Figure \ref{fig:mutational_step} --- corresponds to a decrease in match quality.
-Conversly, positive match closeness change falls on the right side of $x$ axes in Figure \ref{fig:mutational_step} and denotes an increase in match quality.
+Negative match closeness change --- falling on left side of $x$-axes in Figure \ref{fig:mutational_step} --- corresponds to a decrease in match quality.
+Conversly, positive match closeness change falls on the right side of $x$-axes in Figure \ref{fig:mutational_step} and denotes an increase in match quality.
 
 We used a similar procedure to measure the distribution of mutational perturbations on tightly-matched tag pairs, except that we uniformly sampled until we found a second tag $S$ with match distance $< 0.01$.
-The bottom panel of Figure \ref{fig:mutational_step}, color coded identically to the top panel, visualizes the distribution of match distance change under mutation of tightly-affiliated tags.
+The bottom panel of Figure \ref{fig:mutational_step} visualizes the distribution of match distance change under mutation of tightly-affiliated tags.
 This distribution reflects the effects of one-step mutations on tags with pre-existing affinity.
 
 \subsubsection{Hash Metric}
@@ -56,7 +57,7 @@ Similarly, approximately 75\% of one-step mutations on loosely-affiliated tags w
 
 \subsubsection{Hamming Metric}
 
-The Hamming metric exhibits a generally uniform magnitude of match-distance changes under mutation.
+The Hamming metric consistently exhibits small-magnitude match-closeness changes under mutation.
 High-magnitude one-step mutations do not occur under this metric.
 (Without normalizing match distance to a uniform distribution for randomly-sampled tags, all Hamming metric mutations would be of exactly the same magnitude, either increasing or decreasing the count of matching bits by 1.)
 
@@ -67,7 +68,7 @@ With loose affinity, 56\% of all mutations were perfectly neutral.
 With tight affinity, 45\% of all mutations were perfectly neutral.
 These perfectly-neutral mutations presumably affect regions of the bitstring involved in neither the longest-matching streak nor the longest-mismatching streak.
 The streak metric exhibits a thicker tail of mutational magnitude for mutations that couple loosely-affiliated tags than the integer metrics.
-In addition, the most extreme mutational outcomes that couple loosely-affiliated tags appear to be of a comparable magnitude to those under the integer metrics.
+In addition, the most extreme mutational outcomes that couple loosely-affiliated tags appear to be of a comparable magnitude to those under the integer metrics and the Hamming metric.
 Mechanistically, this might be due to mutations that disrupt longest-mismatching streaks.
 However, one-step mutations that decouple tightly-affiliated tags do not appear as potent.
 This might be because achieving a very poor match requires both increasing longest-mismatching streak length and decreasing longest-matching streak length.
@@ -90,18 +91,18 @@ We performed multi-step mutational analyses to characterize the broader mutation
 To conduct these mutational walks, for each metric $m$ we
 \begin{itemize}
     \item randomly generated a starting tag $t^{(0)}$,
-    \item then sequentially applied randomly-chosen one-step bit flip mutations to that tag until a mutational saturation threshold (yielding $t^{(1)}, t^{(2)}, ...$),
+    \item then sequentially applied randomly-chosen one-step bit flip mutations to that tag until a mutational saturation threshold (yielding a sequence of tags $t^{(1)}, t^{(2)}, ...$),
     \item while recording match distance from the original starting tag $m(t^{(0)}, t^{(i)})$ at each step $i$ along the walk.
 \end{itemize}
 Back mutation was allowed in these experiments.
-We performed 65 step mutational walks, which allowed us to include a binary order of magnitude past one expected mutation per site.
+We performed 65 step mutational walks, which allowed us to cover one binary order of magnitude past one expected mutation per site at 32 steps.
 We analyzed 1,000 replicate mutational walks for each metric, which was sufficient to distinguish metrics with bootstrapped 95\% confidence intervals
 
-Figure \ref{fig:mutational_walk_barplot} compares how match distance increases along mutational walks for each tag-matching metric.
+Figure \ref{fig:mutational_walk_barplot} shows how match distance increases along mutational walks for each tag-matching metric.
 
 \subsubsection{Hash Metric}
 
-Due to the hash metric's lack of geometric structure the hash metric, bitwise equivalent tags do not exhibit low match distance.
+Due to the hash metric's lack of geometric structure, bitwise equivalent tags do not exhibit low match distance.
 So, as expected, throughout the entire mutational walk this metric maintains a constant mean match distance of 0.5.
 
 \subsubsection{Hamming Metric}
@@ -130,7 +131,7 @@ Our result remained consistent when replicating the experiment with 64-bit tags 
 
 The binary representation of the integer and bidirectional integer metrics (Section \ref{sec:integer}) induces a long-tailed distribution of mutational effect sizes.
 Under this distribution, value changes of each binary order of magnitude are equally likely (corresponding to toggling the bit at each position).
-Occasional large-effect mutations provides a plausible explanation for the bidirectional integer metric's rapid increase in match distance under mutation relative to the Hamming and streak metrics.
+Occasional large-effect mutations provide plausible explanation for the bidirectional integer metric's rapid increase in match distance under mutation relative to the Hamming and streak metrics.
 The integer metric experiences even more rapid dilation of match distance under mutation.
 Under this metric, half of first mutational steps cause a wraparound effect, immediately spiking the average match distance to 0.5.
 Supplementary Figure \ref{fig:mutational_walk_lineplot} shows match distance variance decreasing as the integer metric mutational walk proceeds away from match distances biased to 0 or 1.

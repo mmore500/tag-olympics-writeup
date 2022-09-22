@@ -4,13 +4,13 @@ Computer programs ultimately translate into sequences of individual operations.
 These operations must specify the identities of registers and memory addresses they read from and write to.
 Most modern programming languages introduce a layer of abstraction that specifies operands indirectly in terms of named variables and unnamed literal values.
 As instances of computer programs by their very nature, genetic programs and digital artificial life systems must also specify computational operands on which to act.
-These computational operands range from
+These computational operands include
 \begin{itemize}
-  \item program modules in genetic programs \citep{spector2011tag}
+  \item program modules in genetic programs \citep{spector2011tag},
   \item virtual hardware analogs like registers, memory addresses, stacks, or jump addresses in genetic programs \citep{lalejini_tag-accessed_2019,ray1991approach,ofria2004avida},
   \item molecules in artificial chemistries \citep{bagley1990spontaneous},
   \item genes in artificial gene regulatory networks \citep{banzhaf2003artificial},
-  \item individual neurons or neural modules in neuroevolution \citep{reisinger2007acquiring}, or
+  \item individual neurons or neural modules in neuroevolution \citep{reisinger2007acquiring}, and
   \item agents in agent-based models of complex systems \citep{riolo2001evolution}.
 \end{itemize}
 
@@ -20,7 +20,7 @@ This capability also allows for incorporation of new computational elements and 
 In genetic programming, dynamic reorganization of code modules can facilitate hierarchical problem-solving in genetic programming \citep{Kinnear:Koza:1994:adf}.
 Similarly, reorganization and extension of existing computational elements is critical in the context of artificial life, where novelty and change are often of key interest \citep{taylor2016open}.
 
-Tag-based referencing, sometimes also termed ``pattern matching'' or ``inexact referencing,' provides a practical solution for deciding computational operands.
+Tag-based referencing, sometimes also termed ``pattern matching'' or ``inexact referencing,'' provides a practical solution for deciding computational operands.
 This approach attaches a tag to each computational operand that may be selected and a tag for each querying operation.
 Operand(s) are then selected for each query through a tag-matching process.
 A querying operation's tag is compared to available operand tags.
@@ -39,15 +39,15 @@ Likewise, new operations can be created or existing operations can be altered fr
 Indeed, inexact referencing techniques find common use in agent-based modeling \citep{riolo2001evolution}, neuroevolution \citep{reisinger2007acquiring}, artificial gene regulatory networks \citep{banzhaf2003artificial}, genetic programming \citep{spector2011tag, lalejini2018evolving}, artificial chemistry \citep{dittrich2001artificial}, and artificial immunology \citep{timmis2008theoretical}.
 These systems typically either use tagging schemes based on
 \begin{itemize}
-    \item Hamming distance between bitstrings (\textit{e.g.}, \cite{lalejini2018evolving,banzhaf2003artificial}) or
-    \item differences between real-valued scalars (\textit{e.g.}, \cite{riolo2001evolution,spector2011tag}).
+    \item Hamming distance between bitstrings (e.g., \cite{lalejini2018evolving,banzhaf2003artificial}) or
+    \item differences between real-valued scalars (e.g., \cite{riolo2001evolution,spector2011tag}).
 \end{itemize}
 However, other nonlinear tag-matching systems, such as Downing's streak metric \citep{downing2015intelligence} and de Boer's adjacency match metric \citep{DEBOER1991381}, have been proposed.
 More exotic tag-matching extensions have explored, too, such as incorporation of a wildcard ``match-any'' character into tag alphabets \citep{holland2012signals} or automatic generation of operand tags based on the underlying functional behavior of each particular tagged component \citep{lones2004modelling}.
 
-Although some efforts have been made to distinguish certain tag-matching criteria in terms of narrative explanations of their evolutionary properties and appeals to biological analogy \citep{downing2015intelligence,scherer2004activation}, no work has yet provided systematic, quantitative, and empirical insight into the ramifications of tag-matching criteria.
+Although some efforts have been made to distinguish certain tag-matching criteria in terms of narrative explanations of their evolutionary properties and appeals to biological analogy \citep{downing2015intelligence,scherer2004activation}, no work has yet provided systematic, quantitative, and empirical insight into the ramifications of commonly used tag-matching criteria.
 
-We hypothesize that properties of tag-matching criteria could potentially affect evolvability through mechanisms including
+We hypothesize that properties of tag-matching criteria could affect evolvability through mechanisms including
 \begin{itemize}
   \item bias of certain queries or operands against tight-affinity matches (i.e., tunable specificity)
   \item bias to the stability of certain connections under mutation (i.e., tunable robustness),
@@ -56,21 +56,21 @@ We hypothesize that properties of tag-matching criteria could potentially affect
   % found these classic gene duplication references here: https://www.sciencedirect.com/science/article/pii/S108495219990335X
 \end{itemize}
 
-In this work, we survey five tag-matching schemes: two based on integer representations, one based on Hamming distance, a "streak" metric based on the maximum length of identical substrings, and a control metric that uses a hashing algorithm to compute completely arbitrary match distances.
+In this work, we survey five tag-matching schemes: two based on integer representations, one based on Hamming distance, a ``streak'' metric based on the maximum length of identical substrings, and a control metric that uses a hashing algorithm to compute completely arbitrary match distances.
 
 We explore how these tag-matching schemes differ with respect to
 \begin{enumerate}
   \item geometric structure that biases or limits the patterns of connectivity that form among queries and operands (Section \ref{sec:geometric}),
   \item variational properties that influence changes to connectivity observed under mutation (Section \ref{sec:variational}), and
-  \item evolutionary outcomes such as the rate of adaptive evolution and the quality of evolved solutions (Section \ref{sec:evolutionary}).
+  \item evolutionary consequences such as the rate of adaptive evolution and the quality of evolved solutions (Section \ref{sec:evolutionary}).
 \end{enumerate}
 
 Across several geometric analyses, we found the geometric structure of the integer metrics to be most restrictive, followed by the Hamming and then streak metrics.
-We observed large-effect one step mutations under the integer metrics and streak metrics, but not under the hamming mutation.
+We observed large-effect one step mutations under the integer metrics and streak metrics, but not under the Hamming metric.
 Except for the control hash metric, match affinity decayed most rapidly along mutational walks under the integer metrics.
-Match affinity decayed slowest along mutational walks under the hamming metric.
+Match affinity decayed slowest along mutational walks under the Hamming metric.
 
-Evolutionary experiments also showed meaningful differences between tag-matching schemes.
+Evolutionary experiments also showed significant differences between tag-matching schemes.
 We found that rigid, one-dimensional geometric structure of the integer metrics impeded satisfaction of multiple simultaneous tag-matching requirements in scenarios where a query tag was required to closely match to more than one operand.
 Integer metrics also fared poorly in genetic programming experiments, even when the selected-for tag-matching scenario only involved matching queries to a single operand.
 Evolutionary conditions in these experiments were configured to emphasize duplication and divergence by restricting sources of variation, namely initial tag variation and ongoing insertion of randomly-generated tags.

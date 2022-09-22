@@ -7,13 +7,13 @@ We begin with a toy problem, presented in Section \ref{sec:graph-matching}, whic
 That is, these experiments compared scenarios where individual tags needed to ensure simultaneously tight affinity with several other tags (more constrained) and where individual tags only needed to ensure tight affinity with one other tag (less constrained).
 In this toy problem, we define a target connection topology between tagged queries and operands then select for sets of tags that exhibit high-affinity pairings between connected topology elements.
 
-In order to investigate potential consequences of tag-matching metrics in a more generalized, complex domain, we also evolved full-fledged SignalGP programs that mediate module activation via tag matching.
+In order to investigate potential consequences of tag-matching metrics in a more complex, applied setting, we also evolved full-fledged SignalGP programs that use tag matching to mediate module activation.
 
 The SignalGP genetic programming representation employs tag-based referencing to facilitate event-driven program execution \citep{lalejini2018evolving}.
 In SignalGP, programs are segmented into modules (functions) that may be automatically triggered by exogenously- or endogenously-generated signals.
 Tags specify the relationship between signals and signal-handlers (program modules), triggering the module with the closest matching tag to run its linear sequence of instructions.
 
-The SignalGP instruction set, in addition to including traditional GP operations, allows programs to generate arbitrarily-tagged internal signals and broadcast arbitrarily-tagged external signals, and otherwise work in a tag-based context.
+The SignalGP instruction set, in addition to including traditional GP operations, allows programs to generate arbitrarily-tagged internal signals and broadcast arbitrarily-tagged external signals.
 SignalGP also supports genetic regulation with promoter and repressor instructions that, when executed, allow programs to adjust how well subsequent signals match with a target function (specified with tag-based referencing) \citep{lalejini2021tag}.
 See \cite{lalejini2018evolving} for a more detailed description of SignalGP.
 
@@ -24,7 +24,7 @@ To ensure a broad survey of tag-matching functionality, we performed experiments
 \end{itemize}
 
 These experiments used bit flip mutation operators across all metrics.
-Note again that generalization to systems with alternate mutation operators (including many with integer-based tags) should be made carefully.
+Note again that generalization to systems with alternate mutation operators (i.e., especially with respect to integer-based tags) should be made carefully.
 
 \subsection{Graph-matching Task} \label{sec:graph-matching}
 
@@ -33,14 +33,14 @@ Note again that generalization to systems with alternate mutation operators (inc
 \input{fig/evolve_bests.tex}
 \input{tab/evo_graph_mut.tex}
 
-The graph-matching task provides a pared-back experimental system to isolate tag matching evolutionary dynamics.
+The graph-matching task provides a barebones experimental system to isolate tag matching evolutionary dynamics.
 Genomes in this domain consisted solely of a set of 32 tags, partitioned evenly as 16 query tags and 16 operand tags.
-Operand tags served as available tag-matching targets and query tags were used as tag-matching lookups.
+Operand tags serve as available tag-matching targets and query tags are used as tag-matching lookups.
 The goal of the graph-matching task is to establish of an arbitrary, fixed pattern of tag-matching connectivity between query tags and operands.
 
 Each experiment with this task selected for a distinct, randomly-determined pattern of connectivity between query tags and operand tags.
 Formally, we used randomly-generated bipartite graphs to specify this target connectivity.
-Each bitstring tag in the genome corresponded directly to a vertex in the graph;
+Each bitstring tag in the genome corresponded directly to a vertex in the target graph;
 one partition of the bipartite graph contained all query tags and the other contained all operand tags.
 Figure \ref{fig:graph_layouts} shows example target graph layouts.
 
@@ -50,7 +50,7 @@ In order to compare tag-encoded connectivity against the target graph, we had to
 For each query, we considered only the top $n$ best-matching operands as ``connected to.''
 This rank cutoff $n$ was determined independently for each query tag.
 We used the degree of a query's corresponding vertex as its rank cutoff $n$.
-So, for example, if a vertex had three outgoing edges then we would consider the three best-matching operands of the corresponding tag as ``connected to. n''
+So, for example, if a vertex had three outgoing edges then we would consider the three best-matching operands of the corresponding tag as ``connected to.''
 
 For the purposes of fitness evaluation, we considered all ``connected to'' matches equivalent.
 So, with respect to a particular query tag, we took fitness as the fraction of the ``connected to'' operands that shared an edge with the query in the target bipartite graph.
@@ -69,9 +69,10 @@ High-degree vertices in these graphs were strongly constrained by many simultane
 Figure \ref{fig:irregular_degree_2} shows an example irregular, degree 2 graph.
 
 Regular, degree 1 graphs imposed the least tag-matching constraint.
+Every vertex participates in exactly one connection.
 Figure \ref{fig:regular_degree_1} shows an example regular, degree 1 graph.
 
-For each target graph configuration, we surveyed each metric's performance over ten per-bit mutation rates ranging from 0.75 expected bit mutations per genome to 16.0 expected bit mutations per genome.
+For each target graph configuration, we surveyed metrics' performance over ten per-bit mutation rates ranging from 0.75 expected bit mutations per genome to 16.0 expected bit mutations per genome.
 For each combination of metric and target graph configuration, we report results from the most favorable mutation rate (as defined by sum population-maximum fitness across evolutionary generations).%
 \footnote{%
 Supplementary Figure \ref{fig:evolve_mutsweep} shows the rate each metric's rate of adaptive evolution across surveyed mutation rates for each target graph configurations.
@@ -80,7 +81,7 @@ In this case, peak performance was observed on the lowest sampled mutation rate.
 }
 Table \ref{tab:evo_graph_mut} provides the best-performing mutation rate for each metric across target graph configurations.
 Best-performing mutation rates varied greatly, ranging from as low as 0.75 expected mutations per genome for the hash metric to as high as 8.0 for the integer metrics.
-The Hamming and streak metrics intermediate best-performing mutation rates between 1.5 and 4.0 expected mutations per genome.
+The Hamming and streak metrics had intermediate best-performing mutation rates between 1.5 and 4.0 expected mutations per genome.
 
 We ran 100 replicate 512-generation evolutionary runs for each mutation rate/target graph/tag-matching metric combination.
 Populations were initialized with genomes comprising randomly-generated tags.
@@ -107,7 +108,7 @@ The integer and bidirectional integer metrics successfully match the least-const
 
 \input{fig/evolve_bests_zeroinit.tex}
 
-In a follow-up experiment to discern metrics' capabilities to generate variation, we initialized populations with an all-identical set of initial tags (instead of random initial tags).
+In a follow-up experiment to diagnose metrics' capabilities to generate variation, we initialized populations with an all-identical set of initial tags (instead of random initial tags).
 Figure \ref{fig:evolve_bests_zeroinit} shows trajectories of adaptive evolution across tag-matching metrics and target graph configurations.
 
 Surprisingly, integer metrics exhibited the fastest initial adaptive evolution --- even outperforming the volatile hash metric.
@@ -117,7 +118,7 @@ However, this effect dissipated after about 10 generations and results at subseq
 
 \input{fig/evo_changing_signal.tex}
 
-The changing-signal task requires SignalGP programs to express a certain, distinct response to each of $K$ environmental signals.
+The changing-signal task requires SignalGP programs to express a specific response to each of $K$ environmental signals.
 Environmental signals correspond to a unique tagged event.
 Programs express a response by executing one of $K$ response instructions.
 Successful programs can ``hardcode'' each response to the appropriate environmental signal by ensuring that each tagged environmental signal best matches the function containing its correct response.
@@ -137,7 +138,7 @@ We identified the most performant per-bit tag mutation rates (from a range of po
 \end{itemize}
 Aside from tag mutation rate, the overall configuration used for each metric was identical.
 
-We limited tag variation in offspring to tag mutation operators (bit flips) by initializing populations with a common ancestor program in which all tags were identical and by disallowing mutations that would insert instructions with random tags.
+We limited tag variation in offspring to tag mutation (bit flips) by initializing populations with a common ancestor program in which all tags were identical and by disallowing mutations that would insert instructions with random tags.
 Supplemental Section \ref{sec:gpsupplement} gives the full configuration details for this experiment, including a guide for replication.
 
 % \input{fig/gp_results}
@@ -170,23 +171,23 @@ We observed no adaptive difference  between the integer and bidirectional intege
 \input{fig/evo_directional_signal.tex}
 
 As in the changing-signal task, the directional-signal task requires that programs respond to a sequence of environmental cues.
-In the directional-signal task, however, the correct response to signal depends on the history previously experienced signals.
+In the directional-signal task, however, the correct response to signal depends on the history of previously experienced signals.
 In the directional-signal task, there are two possible environmental signals --- a ``forward signal'' and a ``backward signal'' (each with a distinct tag) ---  and a cycle of four possible responses.
-If a program receives a forward-signal, it should express the next response in the cycle.
-If the program receives, a backward-signal, it should express the previous response in the cycle.
-For example, if response three is currently required, a subsequent forward signal indicates that response four is required next, while a backward signal would instead indicate that response-two is required next.
+If a program receives the forward-signal, it should express the next response in the cycle.
+Conversely, a program should express the previous response in the cycle if it receives the backward signal.
+For example, if response three is currently required, a subsequent forward signal indicates that response four is required next, while a backward signal would instead indicate that response two is required next.
 Because the appropriate response to both the backward and forward signals change over time, successful programs must regulate which functions these signals trigger (rather than hardcode each response to a particular signal).
 
 SignalGP module tags are more constrained than in the changing-signal task, potentially needing to match to queries by genetic regulation instructions in addition to \textit{several} tagged events (e.g., environmental signals or internally-generated signals) depending on internal regulatory state.
-Indeed, in other work, we have observed that the directional signal task yields significantly more interconnected regulatory networks than the changing signal task \citep{lalejini_tag-based_2021}.
+Indeed, in other work, we have observed that the directional-signal task yields significantly more interconnected regulatory networks than the changing-signal task \citep{lalejini_tag-based_2021}.
 
 % Evaluation overview
 We evaluated programs on all possible four-signal sequences of forward and backward signals (sixteen total).
 For each program, we evaluated each sequence of signals independently, and a program's fitness was taken as its aggregate performance.
-Otherwise, evaluation on a single sequence of signals mirrors that of the changing signal task.
+Otherwise, evaluation on a single sequence of signals mirrors that of the changing-signal task.
 
 % Experiment overview
-We used an identical experimental design for the directional-signal task as in the changing signal task.
+We used an identical experimental design for the directional-signal task as in the changing-signal task.
 However, we evolved programs for 5,000 generations (instead of 100) and re-parameterized each metric's tag mutation rate:
 \begin{itemize}
 \item 0.001 for the Hamming and hash metrics,
@@ -208,7 +209,7 @@ Among this subset of replicates, we found significantly faster generations-to-so
 
 \subsubsection{Integer and Hash Metrics}
 
-As in the changing-signal task, we observed no difference in success between the integer and bidirectional integer metrics on both the changing- and directional-signal tasks.
+As in the changing-signal task, we observed no difference in success between the integer and bidirectional integer metrics on the directional-signal task.
 Again, the hash metric outperformed both the integer metrics ($p < 3\times10^{-5}$).
 %Intuitively, the Hash metric maximizes the amount of phenotypic variation (\textit{i.e.}, signal-function relationships) that can be generated by mutating a given genotype --- a single bit flip in a tag is likely to completely re-order which other tags it best matches with.
 %The capacity to quickly generate large amounts of phenotypic variation allows evolution to explore a large swaths of the fitness landscape from generation to generation.

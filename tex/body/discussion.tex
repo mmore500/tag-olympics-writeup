@@ -8,8 +8,8 @@
 % If two tags both closely match a third tag, will these two tags be constrained to closely match each other?
 % Likewise, if a tag closely matches a second tag, will the tag be constrained to poorly match other tags the second tag poorly matches?
 
-Evolutionary experiments in Section \ref{sec:evolutionary} showed that choice of tag-matching metric had a significant effect on adaptive evolution.
-In all experiments, adaptive evolution progressed more slowly under certain metrics than under others.
+Evolutionary experiments in Section \ref{sec:evolutionary} showed that choice of tag-matching metric significantly shaped adaptive evolution.
+In all experiments, adaptive evolution progressed more slowly under some metrics and more quickly under others.
 In most experiments, final solution quality was also affected by tag-matching metric choice.
 
 We found that network constraint (the number of tags a query or operand needs to simultaneously establish affinity with) influenced the relative performance of tag-matching metrics.
@@ -31,7 +31,7 @@ Geometrical constraint explains with poor performance of the integer metrics on 
 However, it is surprising that the geometrically unconstrained hash metric performed best on problems with low network constraint and worst on problems with high network constraint  --- the opposite of what may otherwise be expected.
 Analysis of metrics' mutational properties provides an explanation.
 
-Analysis of the effect of bitwise mutation on match distance score revealed significant differences metrics.
+Analysis of the effect of bitwise mutation on match distance score revealed significant differences between metrics.
 Under the Hamming metric, all mutations have small effects on match distance score.
 In contrast, under the integer metrics, rare mutations can have strong effects on match distance score.
 The streak metric also exhibited strong-effect mutations, particularly with respect to coupling loosely-affiliated tags.
@@ -49,15 +49,15 @@ This would prevent satisfaction of a single tag-matching requirement from being 
 
 Results from evolution experiments with a full-fledged genetic programming system suggest that additional mechanisms may influence tag-matching metric performance.
 
-In genetic programming evolutionary experiments, we found that the Hamming and streak metrics yielded successful solutions the most frequently.
-On the directional signal task, which tends to require denser (more constrained) interaction networks, we found evidence that the streak metric enabled more rapid adaptive evolution than the Hamming metric.
-The hash metric had the next-best performance in SignalGP experiments, yielding more solutions than the integer metrics, which performed comparably poorly.
+In SignalGP experiments, we found that the Hamming and streak metrics yielded successful solutions the most frequently.
+On the directional-signal task, which tends to require denser (more constrained) interaction networks, we found evidence that the streak metric enabled more rapid adaptive evolution than the Hamming metric.
+The hash metric had the next-best performance in SignalGP experiments, yielding more solutions than the integer metrics, which both performed comparably poorly.
 
 Although the hash metric performed best in low-constraint target-matching experiments, it was outperformed in low-constraint SignalGP experiments by the streak and Hamming metrics.
 Likewise, the integer metrics were outperformed by the streak and Hamming metrics in low-constraint SignalGP experiments even though they had not been in the low-constraint target-matching experiments.
 
-The mechanisms driving degradation of hash and integer metric performance in the GP experiments remain opaque.
-The degradation may be due to better streak and Hash support for duplication and differentiation processes within SignalGP lineages, where instruction and module count can grow over time.
+The mechanisms driving degradation of hash and integer metric performance in the GP experiments remain unclear.
+The degradation may be due to better streak and Hash support for duplication and differentiation processes along SignalGP lineages, in which instruction and module count can grow over time.
 However, altering the graph-matching task to emphasize generation of variation and tag differentiation by disallowing initial tag variation did not reproduce degraded hash and integer metric performance.
 Another possible causal difference could be fitness landscape ruggedness.
 Within the target-matching experiments, the fitness benefit of a particular query-operand match does not depend on other query-operand matches
@@ -88,16 +88,16 @@ In all high-constraint problem domains, the integer metrics performed poorly.
 Among low-constraint problem domains, the integer metrics only performed well on the toy graph-matching task --- they did not perform well on the low-constraint GP changing signals task.
 At present, it is unclear what problem domain property stymied the integer metrics in the low-constraint GP changing signals task --- the potential for the operand set to grow over time (e.g., duplication and divergence), fitness landscape ruggedness (e.g., epistasis), or something else.
 
-However, within the low-constraint target-matching problem domain where integer metrics performed well (i.e., a low-constraint, fixed-size problem with a smooth fitness landscape), the hash metric actually performed slightly better.
+However, within the low-constraint target-matching problem domain where integer metrics performed well (i.e., a fixed-size problem with a smooth fitness landscape), the hash metric actually performed slightly better.
 So, under these conditions, the hash metric may be preferable when log time lookup is not critical.
 
-Outside the low-constraint target-matching problem domain, the Hamming and streak metrics perform significantly better than the integer metrics.
-On the low-constraint target-matching problem, both did evolve full solutions, although the Hamming metric was slightly slower than the streak and integer metrics.
-In particular, the Hamming and streak metrics performed best in our GP tests.
-So, both metrics appear to be reasonable choices in most cases.
+Besides the low-constraint target-matching problem domain, the Hamming and streak metrics performed significantly better than the integer metrics.
+On the low-constraint target-matching problem, both did evolve full solutions, (although the Hamming metric was slightly slower than the streak and integer metrics).
+Of particular note, the Hamming and streak metrics performed best in our GP tests.
+So, both metrics appear to be a robst choice across most contexts.
 
 Choosing between the two will likely depend on implementation considerations: the streak metric facilitated faster adaptive evolution in some experiments, but is more computationally expensive to calculate than the Hamming metric.
-Future work should investigate whether a streamlined version of the streak metric --- for example, ignoring mismatching streak length and only considering matching streak length --- suffices to capture its properties.
+Future work should investigate whether a streamlined version of the streak metric --- for example, ignoring mismatching streak length and only considering matching streak length --- suffices to capture its desirable properties.
 
-A critical qualification on these recommendations should be noted: they assume the bitwise mutation used in this work.
-Although, in supplementary experiments reported in Supplementary Section \ref{sec:graph-matching-norm} we did not find that a simple Gaussian mutation operator improved the performance of integer metrics on the graph-matching task, future work should more thoroughly explore the extent to which our findings generalize under alternate mutation operators.
+A critical qualification on these recommendations must be noted: they assume the bitwise mutation used in this work.
+Although in experiments reported in Supplementary Section \ref{sec:graph-matching-norm} we did not find that a simple Gaussian mutation operator improved the performance of integer metrics on the graph-matching task, future work should more thoroughly explore the extent to which our findings generalize under alternate mutation operators.

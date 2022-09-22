@@ -1,12 +1,12 @@
 \section{Tags and Tag-Matching Metrics}
 
 Rigorous comparison of disparate tag-matching schemes required careful standardization of tag representation, mutation, and match quality calculation.
-This section summarizes the tag representation, mutation, and match quality calculation procedures used in our experiments and provides formal definition for each of the surveyed tag-matching schemes within that framework.
+This section summarizes the tag representation, mutation, and match quality calculation procedures used in our experiments and provides formal definitions for each of the surveyed tag-matching schemes within that framework.
 
 In all experiments, we used 32-bit bitstrings as tags.%
 \footnote{
 Many other tag representations are possible, including higher-cardinality alphabets \citep{holland1992adaptation} and floating point values.
-Although for reasons of tractability and consistency we do not explore them in this initial work, we do include some commentary in Supplementary Section \ref{sec:alphabet} on how alternate representations might differ from the bitstring tags used in this work.
+Although for tractability and consistency we do not explore them in this initial work, we do include some commentary in Supplementary Section \ref{sec:alphabet} on how behavior of alternate representations might differ from the bitstring tags used in this work.
 }
 Formally, we define a tag $t$ as a fixed-length binary vector,
 \begin{align*}
@@ -16,17 +16,16 @@ where
 \begin{align*}
 \forall i, t_i \in \{0, 1\} \text{ and } n=32.
 \end{align*}
-
 In experiments where mutations were applied to tags, individual bits were toggled stochastically at a uniform per-bit rate.
 
-We call an algorithm used to calculate the match quality between two tags a tag-matching metric.
+We call the algorithm used to calculate match quality between two tags a tag-matching metric.
 A tag-matching metric takes two tags as operands and calculates a match distance between them.
 Low match distance indicates a ``good'' or ``strong'' match.
 High match distance indicates a ``poor'' or ``weak'' match.
 For consistency between metrics, we bound all match distances so that a distance of 0 is the ``best'' possible match and a distance of 1 is the ``worst'' possible match.
 
 Occasionally, it is convenient to discuss match quality in terms of closeness instead of distance.
-So, we also employ a closeness terminology, which is inverse to the distance terminology.
+So, we also employ a closeness terminology (which is inverse to the distance terminology).
 Low match closeness corresponds a ``poor'' or ``weak'' match.
 High match closeness corresponds to a ``good'' or ``strong'' match.
 Again, for consistency, we restrict closeness values between 0 and 1.
@@ -36,15 +35,15 @@ A closeness of 1 corresponds to the ``best'' possible match.
 \input{tab/metrics.tex}
 
 We compared five tag-matching metrics: Hamming, hash, integer, bidirectional integer, and streak.
-The Hamming and bidirectional integer metrics are included because of their ubiquity in artificial life systems.
+The Hamming and bidirectional integer metrics are included because of their ubiquity in genetic programming and artificial life systems.
 The integer metric is included due to its use in seminal work exploring tag-matching in genetic programs \citep{spector2011tag, spector2011s,spector2012tag}.
 The streak metric was proposed to model large-effect mutations observed in biology but, to our knowledge, has not yet been formally studied in an evolving system.
-The hash metric is introduced in this work in order to investigate the implications of a completely geometrically-unstructured tag-matching scheme.
+The hash metric is introduced in this work as a control due to its completely geometrically-unstructured tag-matching scheme.
 Table \ref{tab:metrics} compares summary descriptions for each metric.
 
 % Full mathematical definitions and implementation details appear in \href{doi.org/10.17605/OSF.IO/GW5MC}{supplementary material} \citep{Moreno_Ofria_2020}.
 
-Sections \ref{sec:hamming}, \ref{sec:hash}, \ref{sec:integer}, \ref{sec:bidirectionalinteger}, and \ref{sec:streak} provide formal definitions for each metric.
+Sections \ref{sec:hash}, \ref{sec:hamming}, \ref{sec:streak}, \ref{sec:integer}, and \ref{sec:bidirectionalinteger} provide formal definitions for each metric.
 
 \input{tex/body/metrics/hash.tex}
 \input{tex/body/metrics/hamming.tex}
@@ -59,7 +58,7 @@ Sections \ref{sec:hamming}, \ref{sec:hash}, \ref{sec:integer}, \ref{sec:bidirect
 
 For consistency of implementation and interpretation, all metrics output tag-matching distances between 0.0 (a ``perfect'' match) and 1.0 (a ``worst'' match).
 
-However, the distribution of tag-match distances within this range may vary substantially between metrics.
+However, the distribution of tag-match distances within this range varies substantially between metrics.
 For example, the probability of a match distance $<1/32$ between two randomly-sampled bitstring tags is $1/32$ under the hash metric but $1/2^{32}$ under the Hamming metric.
 
 In order to ensure an intuitive interpretation of match distances that was consistent across all tag-matching metrics, we normalized metrics' match distances so that the distances between pairs of randomly generated tags would follow a uniform distribution between 0.0 and 1.0.

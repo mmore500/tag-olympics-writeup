@@ -26,7 +26,7 @@ p'(k)
 \end{align*}
 
 However, this formula is subtly flawed.
-For instance, the probability of a $0$-bit match according to this formula would be computed as $p'(0) = \frac{n - 0 + 1}{2^0} = n + 1$.
+For instance, the probability of a $0$-bit match according to this formula would be computed as $p'(0) = (n - 0 + 1)/2^0 = n + 1$.
 This is clearly impossible --- it would imply $p'(0) > 1 \forall n > 0$.
 
 Although correct probabilities can be calculated via dynamic programming, $p'$ provides a useful approximation.
