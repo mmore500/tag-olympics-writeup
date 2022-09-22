@@ -8,9 +8,10 @@ However, as a result, these analyses do not explore alternate, more semantic app
 Although not universal, use of bit flip mutation operators with integer representations is not entirely uncommon.
 See e.g., \cite{downing2015intelligence}.
 
-Additionally, in a supplementary experiment we found that the bitwise mutational operator outperforms a normally-distributed mutation operator on the 32-vertex graph-matching task discussed in \ref{sec:graph-matching}.
+Additionally, in a supplementary experiment we found that the bitwise mutational operator outperforms a simple Gaussian mutation operator on the 32-vertex graph-matching task discussed in Section \ref{sec:graph-matching}.
+This simple operator applies Gaussian noise to the integer value of all tags in a genome every generation; addition of an additional ``mutation probability'' parameter may yield better results.
 Supplementary Section \ref{sec:graph-matching-norm} provides details on this experiment.
-This finding further motivates our restriction in scope to only consider bitwise mutations.
+This finding further motivates the limitation of scope to bitwise mutations in this initial work.
 }
 Any extrapolation of these results to systems with different mutation operators should be made with careful consideration, and may merit additional experimentation or analysis.
 
