@@ -17,9 +17,17 @@ ${BUILD_DIR}-draft.pdf: main.tex
     -jobname=${BUILD_DIR}-draft \
     -pdflatex="pdflatex -interaction=nonstopmode" draft.tex
 
+${BUILD_DIR}.tex: main.tex
+	./latexpand main.tex > ${BUILD_DIR}.tex
+
+${BUILD_DIR}-draft.tex: main.tex
+	./latexpand draft.tex > ${BUILD_DIR}-draft.tex
+
 clean:
 	rm -f ${BUILD_DIR}.pdf
+	rm -f ${BUILD_DIR}.tex
 	rm -f ${BUILD_DIR}-draft.pdf
+	rm -f ${BUILD_DIR}-draft.tex
 
 sview:
 	xdg-open ${BUILD_DIR}-draft.pdf 2>/dev/null
