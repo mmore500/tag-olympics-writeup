@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 # get the basename of the containing directory
 # this will be used to name othe output document
 BUILD_DIR := $(shell basename $(abspath $(dir $(lastword $(MAKEFILE_LIST)))))
@@ -22,6 +24,9 @@ ${BUILD_DIR}.tex: main.tex
 
 ${BUILD_DIR}-draft.tex: main.tex
 	./latexpand draft.tex > ${BUILD_DIR}-draft.tex
+
+ps-graphics:
+	shopt -s globstar; for pdf in **/*.pdf; do echo "$${pdf}"; cd "$$(dirname "$${pdf}")"; pdf2ps "$$(basename "$${pdf}")"; cd -; done
 
 clean:
 	rm -f ${BUILD_DIR}.pdf
