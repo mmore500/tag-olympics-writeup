@@ -32,6 +32,7 @@ clean:
 sview:
 	xdg-open ${BUILD_DIR}-draft.pdf 2>/dev/null
 
+full: ${BUILD_DIR}-draft.pdf ${BUILD_DIR}.pdf ${BUILD_DIR}-draft.tex ${BUILD_DIR}.tex
 
 cleaner:
 	latexmk -CA
