@@ -1,21 +1,21 @@
 \section{Introduction} \label{sec:introduction}
 
 In genetic programming, it is often essential for operations to undergo evolutionary adjustment to which computational elements they act on.
-This capability can tweak the semantics of existing evolved code, critical in particular for duplication and divergence processes commonly highlighted in discussions of evolvability \citep{altenberg1994evolution}.
-This capability also allows for incorporation of new computational elements and for removal of existing computational elements.
+This process can tweak the semantics of existing evolved code, critical in particular for duplication and divergence processes commonly highlighted in discussions of evolvability \citep{altenberg1994evolution}.
+This process also allows for incorporation of new computational elements and for removal of existing computational elements.
 In genetic programming, dynamic reorganization of code modules can facilitate hierarchical problem-solving in genetic programming \citep{Kinnear:Koza:1994:adf}.
 
 Tag-based referencing, sometimes also termed ``pattern matching'' or ``inexact referencing,'' provides a practical solution for deciding computational operands.
 This approach attaches a tag to each computational operand that may be selected and a tag for each querying operation.
 Operand(s) are then selected for each query through a tag-matching process.
 
-Indeed, inexact referencing techniques find common use in agent-based modeling \citep{riolo2001evolution}, neuroevolution \citep{reisinger2007acquiring}, artificial gene regulatory networks \citep{banzhaf2003artificial}, genetic programming \citep{spector2011tag, lalejini2018evolving}, artificial chemistry \citep{dittrich2001artificial}, and artificial immunology \citep{timmis2008theoretical}.
-Although some efforts have been made to distinguish certain tag-matching criteria in terms of narrative explanations of their evolutionary properties and appeals to biological analogy \citep{downing2015intelligence,scherer2004activation}, no work has yet provided systematic, quantitative, and empirical insight into the ramifications of commonly used tag-matching criteria.
+Indeed, inexact referencing techniques find common use in agent-based modeling \citep{riolo2001evolution}, neuroevolution \citep{reisinger2007acquiring}, artificial gene regulatory networks \citep{banzhaf2003artificial}, and genetic programming \citep{spector2011tag, lalejini2018evolving}.
+Although some efforts have been made to distinguish certain tag-matching criteria in terms of narrative explanations of their evolutionary properties and appeals to biological analogy \citep{downing2015intelligence,scherer2004activation}, to our knowledge, this work is first to provide systematic, quantitative, and empirical insight into the ramifications of commonly used tag-matching criteria.
 
 \section{Methods}
 
 Rigorous comparison of disparate tag-matching schemes required careful standardization of tag representation, mutation, and match quality calculation.
-In all experiments, we used 32-bit bitstrings as tags.%
+In all experiments, we used 32-bit bitstrings as tags.
 In experiments where mutations were applied to tags, individual bits were toggled stochastically at a uniform per-bit rate.
 In order to ensure an intuitive interpretation of match distances that was consistent across all tag-matching metrics, we normalized metrics' match distances so that the distances between pairs of randomly generated tags would follow a uniform distribution.
 
@@ -32,79 +32,56 @@ In support of further investigations, all tag-matching techniques compared here 
 
 \section{Summary of Results}
 
-We explore how these tag-matching schemes differ with respect to
-\begin{enumerate}
-  \item geometric structure that biases or limits the patterns of connectivity that form among queries and operands (Section \ref{sec:geometric}),
-  \item variational properties that influence changes to connectivity observed under mutation (Section \ref{sec:variational}), and
-  \item evolutionary consequences such as the rate of adaptive evolution and the quality of evolved solutions (Section \ref{sec:evolutionary}).
-\end{enumerate}
+% We explored how these tag-matching schemes differ with respect to
+% (1) \textit{geometric structure} that biases or limits the patterns of connectivity that form among queries and operands, (2) \textit{variational properties} that influence changes to connectivity observed under mutation, and (3) \textit{evolutionary outcomes} such as the rate of adaptive evolution and the quality of evolved solutions.
 
 \subsection{Geometric and Variational Analyses}
 
-Across several geometric analyses, we found the geometric structure of the integer metrics to be most restrictive, followed by the Hamming and then streak metrics.
-These geometries may affect the patterns of connectivity between tagged components that tend to arise, or are even possible at all.
+We first investigated the impact of different tag-matching metrics on mutational neighborhoods and connectivity patterns in geometric structures.
+We performed single-step and multi-step mutational analyses to characterize the local and broader mutational landscapes induced by each tag-matching metric.
+Our findings indicate that the geometric structure of the integer metrics is most restrictive, followed by the Hamming and then streak metrics. These geometries could influence the connectivity patterns between tagged components.
 
-We performed single-step mutational analyses to characterize the local mutational neighborhoods induced by each tag-matching metric.
-We observed large-effect one step mutations under the integer metrics and streak metrics, but not under the Hamming metric.
+In our single-step mutational analyses, we observed large-effect one-step mutations under the integer metrics and streak metrics, but not under the Hamming metric.
+For multi-step mutational analyses, we found that match affinity decayed most rapidly along mutational walks under the integer metrics, except for the control hash metric.
+Match affinity decayed slowest along mutational walks under the Hamming metric, while the streak metric diffused away from zero match distance second-slowest.
 
-We performed multi-step mutational analyses to characterize the broader mutational landscapes induced by each tag-matching metric.
-Except for the control hash metric, match affinity decayed most rapidly along mutational walks under the integer metrics.
-Match affinity decayed slowest along mutational walks under the Hamming metric.
-The streak metric diffuses away from zero match distance second-slowest, trailed only by the Hamming metric.
-Interestingly, this result contradicts Downing's presentation of the streak metric in \citep{downing2015intelligence}, in which he suggests that the streak metric exhibits \textit{greater} robustness because its match distance diverges more slowly under a mutational walk.
-This discrepancy arises due to our normalization to ensure a uniform distribution of raw match scores between 0 and 1.
-We believe that our result under uniformification is more representative because match distance corresponds to the probability that arbitrary tags would match more strongly by chance --- which directly relates to how effectively a operand tag competes to be the ``best'' match for a query.
-
-SUMMARY STATEMENT
+Interestingly, our results contradict existing hypotheses of the streak metric's mutational properties, which suggest that the streak metric should exhibit \textit{greater} robustness than the Hamming metric \citep{downing2015intelligence}.
+This discrepancy arises from our normalization to ensure a uniform distribution of raw match scores.
+We believe that our result under uniformification is more representative, as match distance corresponds to the probability that arbitrary tags would match more strongly by chance, which directly relates to how effectively an operand tag competes to be the ``best'' match for a query.
 
 \subsection{Evolutionary Experiments}
 
-We begin with a toy problem, presented in Section \ref{sec:graph-matching}, which allowed us to systematically vary the level of network constraint selected for.
-That is, these experiments compared scenarios where individual tags needed to ensure simultaneously tight affinity with several other tags (more constrained) and where individual tags only needed to ensure tight affinity with one other tag (less constrained).
-In this toy problem, we define a target connection topology between tagged queries and operands then select for sets of tags that exhibit high-affinity pairings between connected topology elements.
+This study aims to investigate the performance of various tag-matching metrics in genetic programming tasks, starting with a toy problem and progressing to more complex, applied settings using the SignalGP genetic programming representation.
+In the toy problem, we define a target connection topology between tagged queries and operands and select sets of tags that exhibit high-affinity pairings between connected topology elements.
+Across experiments, we systematically varied the topological density selected for, comparing scenarios low constraint (i.e., each query selected to match with a single operand) and high constraint (i.e., each query selected to match with multiple operands).
 
-In order to investigate potential consequences of tag-matching metrics in a more complex, applied setting, we also evolved full-fledged SignalGP programs that use tag matching to mediate module activation.
-
-The SignalGP genetic programming representation employs tag-based referencing to facilitate event-driven program execution \citep{lalejini2018evolving}.
-In SignalGP, programs are segmented into modules (functions) that may be automatically triggered by exogenously- or endogenously-generated signals.
+SignalGP (as detailed in \cite{lalejini2018evolving}) employs tag-based referencing to facilitate event-driven program execution. Programs are segmented into modules (functions) that may be automatically triggered by exogenously- or endogenously-generated signals.
 Tags specify the relationship between signals and signal-handlers (program modules), triggering the module with the closest matching tag to run its linear sequence of instructions.
+The instruction set includes traditional GP operations, the generation of arbitrarily-tagged internal and external signals, and genetic regulation through promoter and repressor instructions, as described in \cite{lalejini2021tag}.
 
-The SignalGP instruction set, in addition to including traditional GP operations, allows programs to generate arbitrarily-tagged internal signals and broadcast arbitrarily-tagged external signals.
-SignalGP also supports genetic regulation with promoter and repressor instructions that, when executed, allow programs to adjust how well subsequent signals match with a target function (specified with tag-based referencing) \citep{lalejini2021tag}.
-See \cite{lalejini2018evolving} for a more detailed description of SignalGP.
+To examine tag-matching functionality, we perform experiments with two complementary SignalGP problems: the Changing-signal Task which selects for sparse tag interactions (low constraint), and the Directional-signal Task which selects for denser tag interactions (high constraint).
 
-To ensure a broad survey of tag-matching functionality, we performed experiments with a complementary pair of SignalGP problems: the \textit{Changing-signal Task} (Section \ref{sec:changing-signal}), which is known to select for sparse tag interactions (i.e., low constraint), and the \textit{Directional-signal Task} (Section \ref{sec:directional-signal}), which is known to select for more dense tag interactions (i.e., high constraint).
+Our findings reveal that the Hamming and streak metrics generally performed best in these experiments, with the streak metric outperforming the Hamming metric in some cases, such as simple operand-matching and the Directional-signal Task scenario.
+The hash metric showed the next-best performance, yielding more solutions than the integer metrics, which both performed comparably poorly.
 
-We found that rigid, one-dimensional geometric structure of the integer metrics impeded satisfaction of multiple simultaneous tag-matching requirements in scenarios where a query tag was required to closely match to more than one operand.
-The Hamming and streak metrics fared best in genetic programming experiments, with the streak metric outperforming the Hamming metric in some simple operand-matching and the full-fledged genetic programming \textit{Directional-signal Task} scenario, which tends to require denser interaction networks between GP modules.
-The hash metric had the next-best performance in SignalGP experiments, yielding more solutions than the integer metrics, which both performed comparably poorly.
+Interestingly, the hash metric performed best in low-constraint target-matching experiments but was outperformed in low-constraint SignalGP experiments by the streak and Hamming metrics.
+Similarly, the integer metrics were outperformed by the streak and Hamming metrics in low-constraint SignalGP experiments, despite their performance in low-constraint target-matching experiments.
 
-
-Although the hash metric performed best in low-constraint target-matching experiments, it was outperformed in low-constraint SignalGP experiments by the streak and Hamming metrics.
-Likewise, the integer metrics were outperformed by the streak and Hamming metrics in low-constraint SignalGP experiments even though they had not been in the low-constraint target-matching experiments.
-
-The mechanisms driving degradation of hash and integer metric performance in the GP experiments remain unclear.
-The degradation may be due to better streak and Hash support for duplication and differentiation processes along SignalGP lineages, in which instruction and module count can grow over time.
-However, altering the graph-matching task to emphasize generation of variation and tag differentiation by disallowing initial tag variation did not reproduce degraded hash and integer metric performance.
-Another possible causal difference could be fitness landscape ruggedness.
-Within the target-matching experiments, the fitness benefit of a particular query-operand match does not depend on other query-operand matches
-In the SignalGP experiments, where modules can form arbitrary interweaving call chains, this is likely not the case.
+The mechanisms driving the degradation of hash and integer metric performance in the genetic programming experiments remain unclear.
+Potential factors could include better streak and Hash support for duplication and differentiation processes along SignalGP lineages or differences in fitness landscape ruggedness.
 Further experiments are needed to understand the evolutionary dynamics of non-trivial tag-matching systems and the interplay of those dynamics with tag-matching metrics.
+
+In conclusion, this study provides valuable insights into the performance of various tag-matching metrics in genetic programming tasks and emphasizes the need for further investigation to comprehend the evolutionary dynamics of non-trivial tag-matching systems.
 
 \section{Conclusion}
 
-Better understanding the mechanistic properties and functional implications of tag-matching criteria will enable more effective incorporation of tag matching in evolutionary systems.
-Within genetic programming, tuning tag-matching criteria could facilitate faster evolution of higher-fitness solutions.
-In this domain, tag matching approaches have been highlighted, particularly, for their potential to enable dynamic, modular reconfiguration of evolved programs at runtime \citep{spector2011tag,lalejini2021tag}.
+Tag-matching criteria play a crucial role in understanding mechanistic properties and functional implications in evolutionary systems, facilitating faster evolution of higher-fitness solutions within genetic programming.
+In particular, tag-matching approaches enable dynamic, modular reconfiguration of evolved programs at runtime.
+This work serves as a first step toward theoretical understanding of tag-matching applications in evolutionary systems, while also providing practical recommendations for choosing tag-matching criteria and tag mutation rates.
 
-In addition to practical recommendations for choosing tag-matching criteria and tag mutation rates, this work provides a first step toward theoretical understanding of tag-matching applications to evolutionary systems.
-Important open questions remain with respect to tag-matching criteria.
-In particular, the relationships between tag-matching criteria and specificity, modularity, robustness, and the process of duplication and divergence should be explored.
-Evolvability or information-theoretical analyses may prove fruitful in this regard \citep{tarapore2015evolvability}.
-How to systematically design new tag-matching metrics with desirable evolutionary properties also remains an open problem.
-Mutation operator design should also be considered.
-We also need algorithms capable of performing fast look ups under high-dimensional or irregular tag-matching metrics, ideally achieving sublinear time complexity on large sets of referents.
+Important open questions remain, such as the relationships between tag-matching criteria and specificity, modularity, robustness, and the process of duplication and divergence.
+Evolvability or information-theoretical analyses may prove fruitful in exploring these questions.
+Furthermore, the systematic design of new tag-matching metrics with desirable evolutionary properties and mutation operator design remain open problems.
 
-
-Tag-like mechanisms play a central role mediating interaction and function across the spectrum of biological scale \citep{holland2012signals}.
-By shining light on previously-unexplored mechanistic and evolutionary properties of tagging systems, we hope that insight into artificial tag models can translate into a more nuanced appreciation --- and algorithmic mimicry --- of natural systems.
+Tag-like mechanisms mediate interaction and function across various biological scales.
+By exploring the mechanistic and evolutionary properties of tagging systems, we hope to gain insight into artificial tag models that can translate into a more nuanced appreciation and algorithmic mimicry of natural systems.
