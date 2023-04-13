@@ -1,4 +1,4 @@
-\begin{table}[!htbp]
+\begin{table*}[!htbp]
 \begin{tabularx}{\textwidth}{l|X}
 \textbf{Metric}       & \textbf{Description}                                                                                                                                        \\ \hline
 Hash                  & SHA1 cryptographic hash of  concatenation of \texttt{tag\_0} and \texttt{tag\_1} \citep{eastlake2001us}                         \\ \hline
@@ -8,15 +8,15 @@ Bidirectional Integer & lesser of integer metric distances \texttt{d(tag\_0, tag
 Streak                & ratio of lengths of contiguously matching and mismatching substrings \\ \hline
 \end{tabularx}
 
-\begin{tabularx}{\textwidth}{l|X|X}
-\hline
-\textbf{Metric}       & \textbf{Commutative?} & \textbf{Multidimensional?} \\ \hline
-Hash                  & no                    & yes                        \\ \hline
-Hamming               & yes                   & yes                        \\ \hline
-Streak                & yes                   & yes                        \\ \hline
-Integer               & no                    & no                         \\ \hline
-Bidirectional Integer & yes                   & no
-\end{tabularx}
+% \begin{tabularx}{\textwidth}{l|X|X}
+% \hline
+% \textbf{Metric}       & \textbf{Commutative?} & \textbf{Multidimensional?} \\ \hline
+% Hash                  & no                    & yes                        \\ \hline
+% Hamming               & yes                   & yes                        \\ \hline
+% Streak                & yes                   & yes                        \\ \hline
+% Integer               & no                    & no                         \\ \hline
+% Bidirectional Integer & yes                   & no
+% \end{tabularx}
 
 \caption{
 Surveyed tag-matching metrics. A matching metric is commutative if \texttt{d(tag\_0, tag\_1) = d(tag\_1, tag\_0)} for all tags.
@@ -24,4 +24,4 @@ A matching metric is considered multidimensional if position within matching spa
 }
 \label{tab:metrics}
 
-\end{table}
+\end{table*}
