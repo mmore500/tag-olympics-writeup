@@ -38,16 +38,12 @@
 %
 \RequirePackage{fix-cm}
 
-\documentclass[smallextended]{svjour3}
+\documentclass[dvipsnames,format=sigconf,anonymous=true,review=true]{acmart}
 
-\smartqed  % flush right qed marks, e.g. at end of proof
-%
 
 \usepackage{tabularx}
 
 \usepackage{graphicx}
-
-\usepackage[authoryear]{natbib}  %% The order is important
 
 \usepackage[resetlabels]{multibib}
 \newcites{inappendix}{Supplementary References}
@@ -125,31 +121,10 @@
 
 
 \title{Matchmaker, Matchmaker, Make Me a Match: Geometric, Variational, and Evolutionary Implications of Criteria for Tag Affinity}
-\titlerunning{Matchmaker, Matchmaker, Make Me a Match}
 \author{
     Matthew Andres Moreno
 	  \and Alexander Lalejini
     \and Charles Ofria \\
-}
-
-\authorrunning{Moreno et al.} % if too long for running head
-
-\institute{%
-  M. A. Moreno \at
-  BEACON Center for the Study of Evolution in Action \\
-  Department of Computer Science and Engineering \\
-  Program in Ecology, Evolutionary Biology, and Behavior \\
-  Michigan State University, East Lansing, MI \\
-  \email{mmore500@msu.edu}
-\and
-  A. Lalejini \at
-  University of Michigan, Ann Arbor, MI
-\and
-  C. Ofria \at
-  BEACON Center for the Study of Evolution in Action \\
-  Department of Computer Science and Engineering \\
-  Program in Ecology, Evolutionary Biology, and Behavior \\
-  Michigan State University, East Lansing, MI \\
 }
 
 \date{Received: date / Accepted: date}
@@ -176,34 +151,35 @@
 \makeatother
 
 \begin{document}
-\maketitle
 
 \input{tex/abstract.tex}
+
+\maketitle
 
 \input{tex/body.tex}
 
 % \input{tex/codedata.tex}
 
-\input{tex/boilerplate.tex}
-
-\input{tex/acknowledgements.tex}
+% \input{tex/boilerplate.tex}
+%
+% \input{tex/acknowledgements.tex}
 
 \footnotesize
 \bibliographystyle{apalike}
 \bibliography{bibl} % replace by the name of your .bib file
 
-\clearpage
-\newpage
-
-\appendix
-
-\setcounter{secnumdepth}{2}
-
-
-\input{tex/supplement.tex}
-
-\footnotesize
-\bibliographystyleinappendix{apalike}
-\bibliographyinappendix{bibl} % replace by the name of your .bib file
+% \clearpage
+% \newpage
+%
+% \appendix
+%
+% \setcounter{secnumdepth}{2}
+%
+%
+% \input{tex/supplement.tex}
+%
+% \footnotesize
+% \bibliographystyleinappendix{apalike}
+% \bibliographyinappendix{bibl} % replace by the name of your .bib file
 
 \end{document}
