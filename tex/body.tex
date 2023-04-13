@@ -38,7 +38,7 @@ Implementations of all tag-matching algorithms were incorporated into the open-s
 \subsection{Geometric and Variational Analyses}
 
 We first investigated the impact of different tag-matching metrics on mutational neighborhoods and geometric constraints of connectivity patterns.
-Single-step and multi-step mutational analyses allowed us to characterize the local and broader mutational landscapes induced by each metric
+Single-step and multi-step mutational analyses allowed us to characterize the local and broader mutational landscapes induced by each metric.
 The integer metrics displayed the most restrictive geometric structure, followed by the Hamming and streak metrics.
 Such restrictive structure limits possible connectivity patterns between tagged components, for instance precluding a pair of query tags that both closely match one operand tag from strongly disagreeing in match affinity to other operand tags.
 
@@ -62,7 +62,7 @@ In the SignalGP problem domain, tag-based referencing facilitates activation of 
 Tags specify the relationship between signals and signal-handlers (program modules), triggering the module with the closest matching tag to run its linear sequence of instructions.
 The instruction set includes traditional GP operations, instructions to generate arbitrarily-tagged internal and external signals, as well as module promoter and repressor instructions to facilitate during-lifetime plasticity as described in \cite{lalejini2021tag}.
 
-We perform experiments with two diagnostic SignalGP problems: the changing-signal Task which selects for sparse tag interactions (low constraint) and the directional-signal Task which selects for denser tag interactions (high constraint).
+We perform experiments with two diagnostic SignalGP problems: the changing-signal task which selects for sparse tag interactions (low constraint) and the directional-signal Task which selects for denser tag interactions (high constraint).
 
 The Hamming and streak metrics performed best in the SignalGP experiments.
 In the high-constraint directional-signal task, the streak metric outperformed the Hamming metric.
