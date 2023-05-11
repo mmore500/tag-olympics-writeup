@@ -17,11 +17,11 @@ While some attempts have been made to distinguish tag-matching criteria through 
 
 \section{Methods}
 
-Rigorous comparison of disparate tag-matching schemes required careful standardization of tag representation, mutation, and match quality calculation.
+Rigorous comparison of disparate tag-matching schemes required careful standardization of tag representation, mutation, and match scoring.
 We used 32-bit bitstrings as tags for all experiments.
-When mutations were applied, individual bits were toggled stochastically at a uniform per-bit rate.
+Mutations toggled individual bits stochastically at a uniform per-bit rate.
 Match distances were normalized to ensure a uniform distribution of scores between randomly sampled tags.
-This ensured consistent and intuitive interpretation across all tag-matching metrics, with distances between random tag pairs following a uniform distribution.
+This ensured consistent and intuitive interpretation across all tag-matching metrics.
 
 \input{tab/metrics.tex}
 
@@ -82,10 +82,10 @@ Further experiments are needed to understand the evolutionary dynamics of non-tr
 \section{Conclusion}
 
 In a first step toward systematic theory for evolutionary applications of tag-matching, we have cataloged mechanistic differences between tag-matching criteria and demonstrated significant impact of these differences on adaptive evolution.
-Our other primary contribution is practical guidance on tag-matching metrics and mutation rates that can be applied to existing genetic programming systems.
+This work provides practical guidance on tag-matching metrics and mutation rates that can be applied to existing genetic programming systems.
 Important open questions remain, such as the relationships between tag-matching criteria and specificity, modularity, robustness, and the process of duplication and divergence.
 Evolvability or information-theoretical analyses may prove fruitful in exploring these questions.
 A framework for the systematic design of new tag-matching metrics and mutation operators with desirable evolutionary properties should also be pursued.
 
 Tag-like mechanisms mediate interaction and function across various biological scales.
-Investigating the mechanistic and evolutionary properties of tagging systems can ultimately lead to a more nuanced understanding and algorithmic emulation of natural systems.
+Investigating the mechanistic and evolutionary properties of tagging systems promises more nuanced understanding and algorithmic emulation of natural systems.
