@@ -8,6 +8,9 @@ Additionally, dynamic reorganization of code modules can facilitate hierarchical
 Tag-based referencing, also known as ``pattern matching'' or ``inexact referencing,'' offers a practical solution for choosing computational operands.
 This approach attaches a tag to each computational operand and query.
 Operands are then selected for each query according to compatibility between respective tags.
+For example, consider a system where matching is performed according to absolute difference between integer tags.
+If two operands tagged 8 and 2 are available, a query tagged 7 would retrieve the operand tagged 8.
+Conversely, a query tagged 2 would retrieve the operand tagged 2.
 
 Inexact referencing techniques are widely used in agent-based modeling \citep{riolo2001evolution}, neuroevolution \citep{reisinger2007acquiring}, artificial gene regulatory networks \citep{banzhaf2003artificial}, and genetic programming \citep{spector2011tag, lalejini2018evolving}.
 While some attempts have been made to distinguish tag-matching criteria through narrative explanations of evolutionary properties and biological analogies \citep{downing2015intelligence,scherer2004activation}, our work is the first to provide systematic, quantitative, and empirical insight into the consequences of commonly used tag-matching criteria.
